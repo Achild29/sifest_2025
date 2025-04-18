@@ -1,55 +1,25 @@
-## Stage this App: Add Models+Migration
-pada tahap ini saya membuat Model beserta Migrationnya
-Terdapat 4 Model tambahan beserta:
-
-- ./app/Http/Models/Attendance
-- ./app/Http/Models/ClassRoom
-- ./app/Http/Models/Student
-- ./app/Http/Models/Teacher
-
-sedangkan pada 4 Migrations, secara urut saya membuatnya:
-
-- add_role_to_users_table:
-pada file migration ini saya menambahkan 2 field; username dan role, adapun role nya saya sudah deklarasikan pada Enums file
-
-- create_students_table
-- create_teachers_table
-- create_class_rooms_table
-- add_columns_to_students:
-pada file ini saya menambahkan field kelas_id di table students sebagai foreignId terhadap table class_rooms, saya membuat table class_rooms terlebih dahulu lalu saya menambahkan field baru, agar tidak terjadi error
-
-- create_attendance_table:
-pada table attendance terdapat status, yg telah saya deklarisakn juga pada Enums file
-
-adapun relasi nya
-1. Model User -> User one to one Student/Teacher
-Satu User = satu Student / satu Teacher, tergantung dari role-nya.
-
-2. Model Student
-Siswa milik satu user -> Student many to one User
-Siswa berada di satu kelas -> Student many to one ClassRoom
-Siswa punya banyak data absensi -> Student one to many Attendance
-
-3. Model Teacher
-Guru milik satu user -> Teacher one to one User
-Guru bisa jadi wali untuk banyak kelas -> Teacher one to many ClassRooms
-Guru bisa scan absensi masuk dan pulang untuk banyak siswa -> Teacher one to many Attendance
-
-4. Model ClassRoom
-Satu kelas dimiliki oleh satu guru (wali kelas) -> ClassRoom many to one Teacher
-Satu kelas memiliki banyak siswa -> ClassRoom one to many Student
-Satu kelas memiliki banyak data absensi -> ClassRoom one to many Attendance
-
-4. Model Attendance
-Absensi milik satu siswa -> Attendance many to one Students
-Absensi terjadi dalam satu kelas ->  Attendance many to one ClassrRoom
-Absensi discan masuk dan pulang oleh dua guru berbeda (bisa sama) -> Attendance many to one Teacher
-
-untuk melihat Databasenya: jalankan perintah berikut
+## Stage this App: Add Seeder
+pada tahap ini saya membuat seeder, untuk table; users, students, dan teachers,
+untuk membuat seeder anda bisa menjalankan perintah berikut:
 ```
-sail artisan migrate
+sail artisan make:seeder NameSeeder
 ```
 
+pada class seeder tersebut saya juga menggunakan library Faker bawaan dari Laravel
+Faker untuk men-generate name, email dan alamat
+
+untuk menjalankan seeder, ketikan perintah berikut:
+```
+sail artisan db:seed
+```
+atau anda juga bisa menjalankan seederClass tertentu:
+```
+sail artisan db:seed --class=UserSeeder
+```
+atau juga bisa sekaligus migrasi ulang+seeder:
+```
+sail artisan migrate:fresh --seed
+```
 lalu lihat pada phpmyadmin
 ## Aplikasi ini dibuat dengan
 
