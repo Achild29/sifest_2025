@@ -21,17 +21,39 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## This App: Aplikasi Absensi berbasis web
+## Stage this App: Add Service phpmyadmin
 
-Pada tahap ini saya hanya: create project yg berjalan menggunakan Docker
+Pada tahap ini saya menambahakan service baru pada container docker saya
+service baru nya yaitu:
 
+- phpmyadmin
+
+saya sudah memberikan alias pada file .bashrc saya di direktori ~/home/[username]
 ```
-curl -s "https://laravel.build/sifest?with=mysql" | bash
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 ```
-menggunakn perintah diatas, sehingga secara otomatis akan membuatkan sebuah folder dengan sifest dan isi dalam folder tersebut adalah project laravel
-adapun untuk databasenya saya menggunakan mysql
 
+sehingga dapat dengan mudah menjalankan aplikasi nya dengan perintah sebagai berikut:
+```
+sail up -d
+```
+pasitkan untuk mengetikan perintah diatas pada folder project dan juga sudah menajalankan docker desktop nya
+perintah diatas akan menjalankan semua service dalam satu container pada docker
 
+setelah berjalan lalu pergi ke halaman: [localhost](http://localhost/)
+jika masih terdapat error pastikan juga anda sudah migrasi database nya dengan perintah sebagai berikut:
+```
+sail artisan migrate
+```
+
+untuk melihat service phpmyadmin anda bisa pergi ke: [localhost:8080](http://localhost:8080) 
+untuk masuk ke panel phpmyadmin, berikut ini adalah authentication nya:
+Server: mysql
+Username: sail
+Password: password
+atau bisa anda lihat pada file .env
+
+Note: Saya menggunakan Linux: Ubuntu 24.04.2 LTS, jika kalian menggunakan windows berbeda lagi, silahkan hubungi developer untuk menjalankan aplikasi ini
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
