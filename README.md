@@ -1,42 +1,48 @@
-## Stage this App: add TailwindCSS, library Livewire/Flux UI and create view login
-saya menggunakan storage link jadi, semua asset gambar akan terdapat pada direktori storage
+## Stage this App: Fitur Login with multi user
+pada tahap ini saya akan membuat fitur login denga 3 level user yg berbeda;
+1. admin
+2. guru
+3. murid/wali murid
 
-untuk mengaktifkan strorage link, jalankan perintah berikut:
+pertama membuat 3 Controller dengan level yg berbeda:
 ```
-sail artisan storage:link
+sail artisan make:controller Admin/DashboardController
+sail artisan make:controller Teacher/DashboardController
+sail artisan make:controller Student/DashboardController
 ```
-selanjut nya buat direktori 'assets' pada ./storage/app/public/
-```
-mkdir storage/app/public/assets
-```
-jadi sekarang semua asset gambar terdapat di direktori
+setelah menjalankan perintah diatas maka secara otomatis akan membuat folder dengan file controller nya
 
-- ./storage/app/public/assets/
+- ./app/Http/Controllers/Admin/DashboardController.php
+- ./app/Http/Controllers/Teacher/DashboardController.php
+- ./app/Http/Controllers/Student/DashboardController.php
 
-pada tahap ini saya menginstall framework css: [tailwind](https://tailwindcss.com/)
+setelah itu saya coba membuat sebuah view sederhana yg akan menampilkan halaman dashboard, yang bertuliskan Hello [nama user yg telah login] anda sudah login, dengan nama file blade nya adalah dashboard
 ```
-sail npm install tailwindcss @tailwindcss/vite
+sail artisan make:view dashboard
 ```
-saya juga menggunakan library [livewire](https://livewire.laravel.com/) dari Laravel dan [Flux UI](https://fluxui.dev/docs/installation)
-```
-sail composer require livewire/livewire
-sail composer require livewire/flux
-```
-lalu saya membuat view login
-```
-sail artisan make:view auth/login
-```
-perintah diatas akan secara otomatis membuat file blade:
+lalu atur juga route nya, untuk melihat dashboard nya.
 
-- ./resources/views/auth/login.blade.php
-
-saya juga sudah menambahkan pada routes/web.php, untuk menampilkan tampilan dari file blade telah dibuat
-nah untuk melihat hasilnya jangan lupa jalankan vite nya:
+Sekarang mari kita atur Logic untuk Authentication Login nya
+saya akan membuat sebuah controller baru yg terdapat pada foler Auth
 ```
-sail npm run dev
+sail artisan make:controller Auth/AuthController
 ```
-lalu lihat pada [localhost/login](http://localhost/login)
+saya juga mengarhakan untuk login page dari AuthController tersebut, cek di route/web.php pada ->name('login');
+saya membuat customRequest baru, ./app/Http/Requests/UserAuthRequest
+```
+sail artisan make:request UserAuthRequest
+```
+pastikan pada view login, field nya adalah text, dan password sesuai dengan yg terdapat pada UserAuthRequest
+dan pada form action nya menuju pada function yg terdapat pada AuthController melalui routes
 
+Selanjutnya saya juga membuat sebuah custom middleware: RedirectIfAuthenticated yang meng-extends ke Illuminate\Auth\Middleware\RedirectIfAuthenticated
+```
+sail artisan make:middleware RedirectIfAuthenticated
+```
+ini supaya mencegah hak akses pada routes
+lalu atur juga alias pada ./boostrap/app.php
+seletelah itu tambahkan guard pada ./config/auth.php
+terakhir atur pada routes nya membuatnya menjadi sebuah group berdasarkan middleware
 
 ## Aplikasi ini dibuat dengan
 
