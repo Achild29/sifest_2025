@@ -1,48 +1,42 @@
-## Stage this App: Fitur Login with multi user
-pada tahap ini saya akan membuat fitur login denga 3 level user yg berbeda;
-1. admin
-2. guru
-3. murid/wali murid
+## Stage this App: Add Toaster
+Pada tahap ini saya akan menggunakan Toaster dari https://github.com/masmerise/livewire-toaster
+install toaster:
+```
+sail composer require masmerise/livewire-toaster
+```
+setelah itu ubah juga pada views yg akan menggunakan toaster tersebut
+secara garis beras letakan pada layout - jika anda menggunakan layout
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ... -->
+</head>
 
-pertama membuat 3 Controller dengan level yg berbeda:
-```
-sail artisan make:controller Admin/DashboardController
-sail artisan make:controller Teacher/DashboardController
-sail artisan make:controller Student/DashboardController
-```
-setelah menjalankan perintah diatas maka secara otomatis akan membuat folder dengan file controller nya
+<body>
+    <!-- Application content -->
 
-- ./app/Http/Controllers/Admin/DashboardController.php
-- ./app/Http/Controllers/Teacher/DashboardController.php
-- ./app/Http/Controllers/Student/DashboardController.php
+    <x-toaster-hub /> <!-- 👈 -->
+</body>
+</html>
+```
+lalu pada AuthController saya akan coba menggunakannya jika login gagal
+selanjutnya saya coba atur secara custom Toasternya, untuk mengaturnya terdapat pada config
+```
+sail artisan vendor:publish --tag=toaster-config
+sail artisan vendor:publish --tag=toaster-views
+```
+saya juga mengatur pada `./resources/view/vendor/toaster` check cara penggunaan Toaster pada halaman [documentasi](https://github.com/masmerise/livewire-toaster?tab=readme-ov-file#installation) nya
+lalu tambahkan pada `./resources/js/app.js`
+```js
+import './bootstrap';
+import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
 
-setelah itu saya coba membuat sebuah view sederhana yg akan menampilkan halaman dashboard, yang bertuliskan Hello [nama user yg telah login] anda sudah login, dengan nama file blade nya adalah dashboard
+// other app stuff...
 ```
-sail artisan make:view dashboard
-```
-lalu atur juga route nya, untuk melihat dashboard nya.
+check apakah Toaster berjalan dengan login username dan password yg salah
 
-Sekarang mari kita atur Logic untuk Authentication Login nya
-saya akan membuat sebuah controller baru yg terdapat pada foler Auth
-```
-sail artisan make:controller Auth/AuthController
-```
-saya juga mengarhakan untuk login page dari AuthController tersebut, cek di route/web.php pada ->name('login');
-saya membuat customRequest baru, ./app/Http/Requests/UserAuthRequest
-```
-sail artisan make:request UserAuthRequest
-```
-pastikan pada view login, field nya adalah text, dan password sesuai dengan yg terdapat pada UserAuthRequest
-dan pada form action nya menuju pada function yg terdapat pada AuthController melalui routes
-
-Selanjutnya saya juga membuat sebuah custom middleware: RedirectIfAuthenticated yang meng-extends ke Illuminate\Auth\Middleware\RedirectIfAuthenticated
-```
-sail artisan make:middleware RedirectIfAuthenticated
-```
-ini supaya mencegah hak akses pada routes
-lalu atur juga alias pada ./boostrap/app.php
-seletelah itu tambahkan guard pada ./config/auth.php
-terakhir atur pada routes nya membuatnya menjadi sebuah group berdasarkan middleware
+thanks to https://github.com/masmerise/livewire-toaster
 
 ## Aplikasi ini dibuat dengan
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserAuthRequest;
+use Masmerise\Toaster\Toaster;
 
 class AuthController extends Controller
 {
@@ -32,7 +33,7 @@ class AuthController extends Controller
         if ($response) {
             return $response;
         }
-
+        Toaster::error('Login Gagal');
         return redirect(route('login'));
     }
 

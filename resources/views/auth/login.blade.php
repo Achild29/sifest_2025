@@ -62,7 +62,8 @@
                 <flux:radio value="dark" icon="moon">Dark</flux:radio>
                 <flux:radio value="system" icon="computer-desktop">System</flux:radio>
             </flux:radio.group>
-        </div>
-        @fluxScripts
+          </div>
+          <x-toaster-hub />
+          @fluxScripts
     </body>
 </html>
