@@ -1,0 +1,21 @@
+<flux:header class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
+    <flux:navbar class="w-full">
+        <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+        Selamat Datang, {{ Auth::user()->name ?? 'User' }}
+        <flux:spacer />
+
+        <flux:dropdown position="top" align="start">
+            <flux:profile avatar="{{ asset('storage/assets/avatar.png') }}" name="{{ Auth::user()->name ?? 'User' }}" class="bg-zinc-200 dark:bg-zinc-800"/>
+            <flux:menu>
+                <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
+                    <flux:radio value="light" icon="sun" />
+                    <flux:radio value="dark" icon="moon" />
+                    <flux:radio value="system" icon="computer-desktop" />
+                </flux:radio.group>
+                <flux:navlist.item icon="cog-6-tooth" href="#">Settings Profile</flux:navlist.item>
+                <flux:menu.separator />
+                <flux:menu.item icon="arrow-right-start-on-rectangle" href="{{ route('logout') }}">Logout</flux:menu.item>
+            </flux:menu>
+        </flux:dropdown>
+    </flux:navbar>
+</flux:header>

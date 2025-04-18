@@ -1,45 +1,31 @@
-## Stage this App: Add Toaster
-Pada tahap ini saya akan menggunakan Toaster dari https://github.com/masmerise/livewire-toaster
-install toaster:
+## Stage this App: Membuat Tampilan Dashboard
+Pada tahap ini saya akan menggunakan Livewire
+pertama-tama membuat sebuah Layout terlebih dahulu
+```bash
+sail artisan livewire:layout
 ```
-sail composer require masmerise/livewire-toaster
+perintah diatas secara ototmatis akan membuat kan sebuah layout file: `./resources/views/components/layouts/app.blade.php`
+selanjutnya ubah layout tersebut, saya juga memecahnya menjadi sebuah component
+```bash
+sail artisan make:component namaComponent --view
 ```
-setelah itu ubah juga pada views yg akan menggunakan toaster tersebut
-secara garis beras letakan pada layout - jika anda menggunakan layout
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- ... -->
-</head>
+setelah component untuk layoutnya sudah selesai, sekarang kita akan membuat sebuah component dari livewire dengan nama dashboard
+```bash
+sail artisan make:livewire dashboard
+```
+sesuaikan view pada `./resources/views/livewire/dashboard.blade.php` dan `./resources/views/dashboard.blade.php`
 
-<body>
-    <!-- Application content -->
-
-    <x-toaster-hub /> <!-- 👈 -->
-</body>
-</html>
-```
-lalu pada AuthController saya akan coba menggunakannya jika login gagal
-selanjutnya saya coba atur secara custom Toasternya, untuk mengaturnya terdapat pada config
-```
-sail artisan vendor:publish --tag=toaster-config
-sail artisan vendor:publish --tag=toaster-views
-```
-saya juga mengatur pada `./resources/view/vendor/toaster` check cara penggunaan Toaster pada halaman [documentasi](https://github.com/masmerise/livewire-toaster?tab=readme-ov-file#installation) nya
-lalu tambahkan pada `./resources/js/app.js`
-```js
-import './bootstrap';
-import '../../vendor/masmerise/livewire-toaster/resources/js'; // 👈
-
-// other app stuff...
-```
-check apakah Toaster berjalan dengan login username dan password yg salah
-
-thanks to https://github.com/masmerise/livewire-toaster
+lalu lihat tampilannya pada dashboard:
+1. [Admin Dashboard](http://localhost/admin)
+2. [Guru Dashboard](http://localhost/guru)
+3. [Siswa Dashboard](http://localhost/siswa)
 
 ## Aplikasi ini dibuat dengan
+1. Laravel
+2. Tailwind CSS
+3. Flux UI
 
+## About Laravel
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -49,7 +35,6 @@ thanks to https://github.com/masmerise/livewire-toaster
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
