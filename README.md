@@ -1,26 +1,43 @@
-## Stage this App: Add Seeder
-pada tahap ini saya membuat seeder, untuk table; users, students, dan teachers,
-untuk membuat seeder anda bisa menjalankan perintah berikut:
-```
-sail artisan make:seeder NameSeeder
-```
+## Stage this App: add TailwindCSS, library Livewire/Flux UI and create view login
+saya menggunakan storage link jadi, semua asset gambar akan terdapat pada direktori storage
 
-pada class seeder tersebut saya juga menggunakan library Faker bawaan dari Laravel
-Faker untuk men-generate name, email dan alamat
+untuk mengaktifkan strorage link, jalankan perintah berikut:
+```
+sail artisan storage:link
+```
+selanjut nya buat direktori 'assets' pada ./storage/app/public/
+```
+mkdir storage/app/public/assets
+```
+jadi sekarang semua asset gambar terdapat di direktori
 
-untuk menjalankan seeder, ketikan perintah berikut:
+- ./storage/app/public/assets/
+
+pada tahap ini saya menginstall framework css: [tailwind](https://tailwindcss.com/)
 ```
-sail artisan db:seed
+sail npm install tailwindcss @tailwindcss/vite
 ```
-atau anda juga bisa menjalankan seederClass tertentu:
+saya juga menggunakan library [livewire](https://livewire.laravel.com/) dari Laravel dan [Flux UI](https://fluxui.dev/docs/installation)
 ```
-sail artisan db:seed --class=UserSeeder
+sail composer require livewire/livewire
+sail composer require livewire/flux
 ```
-atau juga bisa sekaligus migrasi ulang+seeder:
+lalu saya membuat view login
 ```
-sail artisan migrate:fresh --seed
+sail artisan make:view auth/login
 ```
-lalu lihat pada phpmyadmin
+perintah diatas akan secara otomatis membuat file blade:
+
+- ./resources/views/auth/login.blade.php
+
+saya juga sudah menambahkan pada routes/web.php, untuk menampilkan tampilan dari file blade telah dibuat
+nah untuk melihat hasilnya jangan lupa jalankan vite nya:
+```
+sail npm run dev
+```
+lalu lihat pada [localhost/login](http://localhost/login)
+
+
 ## Aplikasi ini dibuat dengan
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
