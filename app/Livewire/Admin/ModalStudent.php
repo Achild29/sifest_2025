@@ -57,7 +57,7 @@ class ModalStudent extends Component
             "wali_murid.regex" => "field Wali Murid tidak boleh terdapat angka",
             "no_telp.required" => "field no. telp tidak boleh kosong",
             "no_telp.digits_between" => "no. telp harus berupa angak, antara 9 hingga 11 (tanpa 08)",
-            "no_telp.regex" => "penulisan no. telp tidak boleh diawali dengan 08",
+            "no_telp.regex" => "penulisan no. telp tidak boleh diawali dengan 08 dan harus angka",
             "nisn.required" => "field NISN tidak boleh kosong",
             "nisn.digits" => "NISN harus 10 digit berupa angka",
             "email.required" => "field Email tidak boleh kosong",
@@ -129,7 +129,7 @@ class ModalStudent extends Component
             $student->nisn = $this->nisn;
             $student->alamat = $this->alamat;
             $student->nama_wali_murid = $this->wali_murid;
-            $student->no_telp_wali = $this->no_telp;
+            $student->no_telp_wali = "08". $this->no_telp;
             $student->save();
 
             DB::commit();
@@ -158,7 +158,7 @@ class ModalStudent extends Component
             $this->dispatch('student-updated');
         } catch (\Exception $e) {
             DB::rollBack();
-            Toaster::error('Gagal mereset password');
+            Toaster::error('Gagal mereset password: '. $e->getMessage());
         }
     }
 
@@ -183,7 +183,7 @@ class ModalStudent extends Component
             $this->dispatch('student-updated');
         } catch (\Exception $e) {
             DB::rollBack();
-            Toaster::error('Gagal menghapus data');
+            Toaster::error('Gagal menghapus data: '. $e->getMessage());
         }
     }
 

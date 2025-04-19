@@ -12,6 +12,7 @@
         @if (Auth::user()->role->value == 'Admin')
             <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">Home</flux:navlist.item>
             <flux:navlist.item icon="user-group" href="{{ route('manage.students') }}">Manage Students</flux:navlist.item>
+            <flux:navlist.item icon="user-group" href="{{ route('manage.teachers') }}">Manage Teachers</flux:navlist.item>
             
         @endif
         @if (Auth::user()->role->value == 'Guru')

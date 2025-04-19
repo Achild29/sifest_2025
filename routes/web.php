@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Livewire\Admin\ManageStudent;
+use App\Livewire\Admin\ManageTeacher;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,12 +30,17 @@ Route::group(['middleware' =>'auth:admin'], function () {
     Route::prefix('admin')->group(function () {
        Route::get('/manage-students', ManageStudent::class)
        ->name('manage.students'); 
+
+       Route::get('/manage-teachers', ManageTeacher::class)
+       ->name('manage.teachers');
     });
 });
+
 Route::group(['middleware' =>'auth:guru'], function () {
     Route::get('/guru', [TeacherDashboardController::class, 'index'])
     ->name('guru.dashboard');
 });
+
 Route::group(['middleware' =>'auth:siswa'], function () {
     Route::get('/siswa', [StudentDashboardController::class, 'index'])
     ->name('siswa.dashboard');

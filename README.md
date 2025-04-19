@@ -1,27 +1,18 @@
-## Stage this App: Manage Student-Update and Delete Student
-Tahap ini adalah Lanjutan dari tahap sebelumnya, pada tahap seblumnya Admin sudah dapat membuat data siswa baru, sekarang kita akan coba membuat fitur untuk Update
+## Stage this App: Implementasi CRUD for Model Teacher
+pada tahap ini saya akan coba implementasikan CRUD untuk data guru...
+pertama yg saya lakukan pada tahap ini adalah, merubah struktur data pada table users, merubah panjang field username dari 16 menjadi 18, supaya user dengan role teacher bisa menggunakan nip nya sebagai username untuk login, selanjutnya saya juga ubah pada seeder untuk mengenerate: 2 user dengan role admin, 5 user dengan role guru, 10 user dengan role siswa
 
-pastikan data yg akan di update benar perhatikan pada table yg menampilkan data siswa, saya akan gunakan id atau priamry key dari table data tersebut, dengan cara mengirimkan id nya sebagai parameter di fungsi edit, pastikan tombol edit mengarah pada fungsi edit yg telah ditentukan dengan mengirimkan parameter id nya pada file blade `./resources/views/livewire/admin/manage-student.blade.php` lalu untuk fungsi nya terdapat pada `./app/Http/Livewire/Admin/ManageStudent.php`, flow nya begini:
-
-dari fungsi `edit($id)` yg terdapat pada `ManageStudent.php` akan men-dispatch fungsi `showEdit($id)` yg terdapat pada `ModalStudent.php`, pada fungis `showEdit($id)` akan menampilkan form edit, jika user klik tombol update pada form tersebut maka akan menjalan fungsi `update()` yg terdapat pada `ModalStudent.php` pada flow nya data dikirmkan melalui parameter fungsi dan properti dari class tersebut
-
-untuk proses update hampir sama dengan proses delete menggunakan try-catch.
-
-terdapat perubahan juga pada fungsi store, yg awalnya validasi di dalam fungsi tersebut sekarang saya pisah menjadi fungsi tersendiri, karena akan digunakan kembali pada fungsi update, Fungsi validasi, digunakan untuk memvalidasi field-field yg terdapat pada form.
-
-Admin juga bisa merest password si siswa, flow nya hampir sama seperti update.
-
-Fitur Delete:
-
-Pada Fitur ini hampir sama flow nya, tapi ada yg menarik disini, karena Table User dan table Student memiliki relasi dan cascade on Delete
-
-```php
-$student = User::find($this->idUser)?->Student;
-$student->user->delete();
+Selanjutnya saya menyiapkan tampilan untuk data guru pada menu admin, cara nya sama seperti update yg ke-9 `Manage Student-Read and Create Student`
+membuat 2 component livewire:
+```bash
+sail artisan make:livewire Admin/ManageTeacher
+sail artisan make:livewire Admin/ModalTeacher
 ```
-maka ketika saya menghapus record pada table user, secara otomatis akan menghapus record pada table student yg memiliki relasi pada field: user_id
+jangan lupa untuk mengatur pada sidebar dan `routes/web.php`, selanjutnya sesauikan tampilan.
 
-Perlu diperhatikan, di sini saya tidak mengimplementasikan yg namanya SoftDelete, library tambahan dari Laravel, Maka dari itu perlu diperhatikan ketika akan menghapus data nya. Sekali terhapus maka data tidak bisa restore kembali
+Semua proses CRUD hampir sama seperti sebelumnya
+
+pada tahap ini admin sudah bisa mengolah data siswa dan guru, admin bisa menambahakan, melihat, mengubah dan menghapus data siswa maupun guru. 
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

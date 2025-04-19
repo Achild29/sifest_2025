@@ -18,8 +18,10 @@ class StudentSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
+        $n = str_repeat('#', 10);
+        $hp = "08".$n;
         for ($i = 0; $i < 10; $i++) {
-            $nisn = $faker->numerify('##########');
+            $nisn = $faker->numerify($n);
     
             $user = User::factory()->create([
                 'name' => $faker->firstName. ' ' . $faker->lastName,
@@ -34,7 +36,7 @@ class StudentSeeder extends Seeder
                 'nisn' => $nisn,
                 'alamat' => $faker->address,
                 'nama_wali_murid' => $faker->name,
-                'no_telp_wali' => $faker->numerify('08##########'),
+                'no_telp_wali' => $faker->numerify($hp),
             ]);
         }
     }

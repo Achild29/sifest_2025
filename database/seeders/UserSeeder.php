@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -20,17 +21,17 @@ class UserSeeder extends Seeder
             [
                 'username' => 'admin',
                 'name' => $faker->name('male'),
-                'email' => $faker->email(),
-                'password' => bcrypt('password'),
-                'role' => UserRole::admin->value
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'),
+                'role' => UserRole::admin,
             ],
             [
-                'username' => 'guru1',
-                'name' => $faker->name(),
-                'email' => $faker->email(),
-                'password' => bcrypt('password'),
-                'role' => UserRole::guru->value,
-            ],
+                'username' => 'admin2',
+                'name' => $faker->name('female'),
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'),
+                'role' => UserRole::admin,
+            ]
         ]);
     }
 }

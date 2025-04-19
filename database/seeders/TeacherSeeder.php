@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherSeeder extends Seeder
 {
@@ -17,12 +18,25 @@ class TeacherSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-        $teacherUser = User::where('role', UserRole::siswa->value)->inRandomOrder()->first();
-        Teacher::create([
-            'user_id' => $teacherUser->id,
-            'nip' => $faker->randomNumber(9) . $faker->randomNumber(9),
-            'no_telp' => '08' . $faker->randomNumber(5) . $faker->randomNumber(5),
-            'alamat' =>  $faker->address(),
-        ]);
+        $n = str_repeat('#', 18);
+        $hp = "08". str_repeat('#', 10);
+        for ($i=0; $i < 5; $i++) { 
+            $nip = $faker->numerify($n);
+
+            $user = User::factory()->create([
+                'name' => $faker->name(),
+                'username' => $nip,
+                'email' => $faker->unique()->safeEmail,
+                'password' => Hash::make('password'),
+                'role' => UserRole::guru,
+            ]);
+
+            $teacher = Teacher::create([
+                'user_id' => $user->id,
+                'nip' => $nip,
+                'no_telp' => $faker->numerify($hp),
+                'alamat' => $faker->address()
+            ]);
+        }
     }
 }

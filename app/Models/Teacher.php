@@ -17,8 +17,8 @@ class Teacher extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function classRoom() {
-        return $this->hasMany(ClassRoom::class);
+    public function classRooms() {
+        return $this->hasMany(ClassRoom::class, 'teacher_id');
     }
 
     public function scannedMasukAttendaces() {
