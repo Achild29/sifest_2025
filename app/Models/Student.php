@@ -11,7 +11,8 @@ class Student extends Model
         'nisn',
         'alamat',
         'nama_wali_murid',
-        'kelas_id'
+        'kelas_id',
+        "no_telp_wali"
     ];
 
     public function user() {

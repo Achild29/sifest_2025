@@ -31,13 +31,6 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'role' => UserRole::guru->value,
             ],
-            [
-                'username' => 'siswa1',
-                'name' => $faker->name(),
-                'email' => $faker->email(),
-                'password' => bcrypt('password'),
-                'role' => UserRole::siswa->value
-            ]
         ]);
     }
 }

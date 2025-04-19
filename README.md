@@ -1,24 +1,39 @@
-## Stage this App: Membuat Tampilan Dashboard
-Pada tahap ini saya akan menggunakan Livewire
-pertama-tama membuat sebuah Layout terlebih dahulu
+## Stage this App: Manage Student-Read and Create Student
+pada tahap ini akan saya coba implementasikan CRUD, untuk Admin, dapat Create Read Update dan Delete data Siswa
+pertama saya membuat sebuah component livewire dengan nama ManageStudent
 ```bash
-sail artisan livewire:layout
+sail artisan make:livewire ManageStudent
 ```
-perintah diatas secara ototmatis akan membuat kan sebuah layout file: `./resources/views/components/layouts/app.blade.php`
-selanjutnya ubah layout tersebut, saya juga memecahnya menjadi sebuah component
-```bash
-sail artisan make:component namaComponent --view
-```
-setelah component untuk layoutnya sudah selesai, sekarang kita akan membuat sebuah component dari livewire dengan nama dashboard
-```bash
-sail artisan make:livewire dashboard
-```
-sesuaikan view pada `./resources/views/livewire/dashboard.blade.php` dan `./resources/views/dashboard.blade.php`
+dari perintah diatas akan membuat 2 file sekaligus: `./app/Livewire/Admin/ManageStudent.php` dan `./resources/views/livewire/admin/manage-student.blade.php`file pertama sebagai backend nya sedangkan file kedua sebagai frontendnya.
+dari backend kita akan menggunakan Model Student yg mengambil dari database, lalu dikirimkan ke frontend agar menjadi sebuah data table siswa,
+jangan lupa juga untuk mengatur route nya, tambahkan juga pada menu di sidebar
 
-lalu lihat tampilannya pada dashboard:
-1. [Admin Dashboard](http://localhost/admin)
-2. [Guru Dashboard](http://localhost/guru)
-3. [Siswa Dashboard](http://localhost/siswa)
+- terdapat perubahan juga di seeder nya, jadi untuk username dengan role siswa menggunakan NISN `username.users` === `nisn.students`
+
+saya juga membuat component livewire baru bernama ModalStudent
+```bash
+sail artian make:livewire admin/ModalStudents
+```
+pada `./resources/views/livewire/admin/modal-students.blade.php` saya mendifinisak sebuah modal bisa berupa form untuk edit, create student, dan konfirmasi delete
+adapaun field input yg terdapat pada modal tersebut kita juga harus deklarisakn sebagai properti di class `./app/Livewire/Admin/MidalStudents.php` agar mempermudah kita dalam penanganan CRUD
+
+Create
+
+untuk membuat data baru, pertama kita validasi terlebih dahulu, field2 nya, setelah validasi berhasil, selanjutnya saya akan insert di table user terlebih dahulu selanjutnya insert pada table student, adapaun tahapan insertnya:
+
+Saya menggunakan blok try-catch, jika gagal menyimpan data ke database maka akan ketahuan eror nya dimana
+
+inisialisasi sebelum insert `DB::beginTransaction()` : Sistem akan mencatat semua perubahan setelah ini tapi belum disimpan dalam database, read more about [DB::beginTransaction()](https://laravel.com/docs/master/database#manually-using-transactions)
+
+proses: `DB::commit()` : pada tahap ini, menyimpan semua perubahan secara permananen, kalau semua operasi berhasil, kita commit, seperti git commit.
+
+penaganan eror, pada block catch `DB::rollBack()`: membatalkan semua perubahahan sejak insisalisasi atau sejak `DB::beginTransaction()`, artinya kalau ada eror, maka tidak akan ada data yg tersimpan pada database, nah untuk pesan eror nya terdapat pada objek e yaitu instance of Exception pada method getMessage
+
+- pastikan juga pada model terdapat properti fillable yg berisikan array field yg dapat kita insert
+
+`$this->reset()`: akan me reset semua field yg pernah di input oleh user
+
+`this->dispatch('student-created')` : method ini bawaan dari livewire, ini sangat berguna sekali, jadi data yg terdapat pada table akan secara otomatis terupdate jika data terdapat perubahan, konsepnya seperti ajax atau asyncronus, jangan lupa juga tambahkan `#[On(['student-created'])]` pada fungsi yg menngunakan model dari database.
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
