@@ -48,17 +48,17 @@
                             
                             <td class="border px-4 py-2">
                                 <div class="flex gap-3 justify-evenly">
-                                    <flux:tooltip content="Reset {{ $student->name }} password">
+                                    <flux:tooltip content="Edit {{ $student->name }}'s account">
                                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                                         bg-indigo-500 hover:bg-indigo-700
                                         dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
                                         wire:click="edit({{ $student->id }})">
-                                            <flux:icon.arrow-path />
-                                            Reset
+                                            <flux:icon.pencil-square/>
+                                            Edit
                                         </button>
                                     </flux:tooltip>
-                                    <flux:tooltip content="Delete Prodi {{ $student->name }}">
+                                    <flux:tooltip content="Delete Student: {{ $student->name }} ?">
                                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600
                                         bg-red-500 hover:bg-red-700"

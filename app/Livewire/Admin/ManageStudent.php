@@ -15,8 +15,16 @@ class ManageStudent extends Component
         return view('livewire.admin.manage-student');
     }
 
-     #[On(['student-created'])]
+     #[On(['student-created', 'student-updated'])]
     public function mount() {
         $this->students = User::where('role', UserRole::siswa->value)->get();
+    }
+
+    public function edit($id) {
+        $this->dispatch('update-student', $id);
+    }
+
+    public function delete($id) {
+        $this->dispatch('delete-student', $id);
     }
 }

@@ -1,39 +1,27 @@
-## Stage this App: Manage Student-Read and Create Student
-pada tahap ini akan saya coba implementasikan CRUD, untuk Admin, dapat Create Read Update dan Delete data Siswa
-pertama saya membuat sebuah component livewire dengan nama ManageStudent
-```bash
-sail artisan make:livewire ManageStudent
+## Stage this App: Manage Student-Update and Delete Student
+Tahap ini adalah Lanjutan dari tahap sebelumnya, pada tahap seblumnya Admin sudah dapat membuat data siswa baru, sekarang kita akan coba membuat fitur untuk Update
+
+pastikan data yg akan di update benar perhatikan pada table yg menampilkan data siswa, saya akan gunakan id atau priamry key dari table data tersebut, dengan cara mengirimkan id nya sebagai parameter di fungsi edit, pastikan tombol edit mengarah pada fungsi edit yg telah ditentukan dengan mengirimkan parameter id nya pada file blade `./resources/views/livewire/admin/manage-student.blade.php` lalu untuk fungsi nya terdapat pada `./app/Http/Livewire/Admin/ManageStudent.php`, flow nya begini:
+
+dari fungsi `edit($id)` yg terdapat pada `ManageStudent.php` akan men-dispatch fungsi `showEdit($id)` yg terdapat pada `ModalStudent.php`, pada fungis `showEdit($id)` akan menampilkan form edit, jika user klik tombol update pada form tersebut maka akan menjalan fungsi `update()` yg terdapat pada `ModalStudent.php` pada flow nya data dikirmkan melalui parameter fungsi dan properti dari class tersebut
+
+untuk proses update hampir sama dengan proses delete menggunakan try-catch.
+
+terdapat perubahan juga pada fungsi store, yg awalnya validasi di dalam fungsi tersebut sekarang saya pisah menjadi fungsi tersendiri, karena akan digunakan kembali pada fungsi update, Fungsi validasi, digunakan untuk memvalidasi field-field yg terdapat pada form.
+
+Admin juga bisa merest password si siswa, flow nya hampir sama seperti update.
+
+Fitur Delete:
+
+Pada Fitur ini hampir sama flow nya, tapi ada yg menarik disini, karena Table User dan table Student memiliki relasi dan cascade on Delete
+
+```php
+$student = User::find($this->idUser)?->Student;
+$student->user->delete();
 ```
-dari perintah diatas akan membuat 2 file sekaligus: `./app/Livewire/Admin/ManageStudent.php` dan `./resources/views/livewire/admin/manage-student.blade.php`file pertama sebagai backend nya sedangkan file kedua sebagai frontendnya.
-dari backend kita akan menggunakan Model Student yg mengambil dari database, lalu dikirimkan ke frontend agar menjadi sebuah data table siswa,
-jangan lupa juga untuk mengatur route nya, tambahkan juga pada menu di sidebar
+maka ketika saya menghapus record pada table user, secara otomatis akan menghapus record pada table student yg memiliki relasi pada field: user_id
 
-- terdapat perubahan juga di seeder nya, jadi untuk username dengan role siswa menggunakan NISN `username.users` === `nisn.students`
-
-saya juga membuat component livewire baru bernama ModalStudent
-```bash
-sail artian make:livewire admin/ModalStudents
-```
-pada `./resources/views/livewire/admin/modal-students.blade.php` saya mendifinisak sebuah modal bisa berupa form untuk edit, create student, dan konfirmasi delete
-adapaun field input yg terdapat pada modal tersebut kita juga harus deklarisakn sebagai properti di class `./app/Livewire/Admin/MidalStudents.php` agar mempermudah kita dalam penanganan CRUD
-
-Create
-
-untuk membuat data baru, pertama kita validasi terlebih dahulu, field2 nya, setelah validasi berhasil, selanjutnya saya akan insert di table user terlebih dahulu selanjutnya insert pada table student, adapaun tahapan insertnya:
-
-Saya menggunakan blok try-catch, jika gagal menyimpan data ke database maka akan ketahuan eror nya dimana
-
-inisialisasi sebelum insert `DB::beginTransaction()` : Sistem akan mencatat semua perubahan setelah ini tapi belum disimpan dalam database, read more about [DB::beginTransaction()](https://laravel.com/docs/master/database#manually-using-transactions)
-
-proses: `DB::commit()` : pada tahap ini, menyimpan semua perubahan secara permananen, kalau semua operasi berhasil, kita commit, seperti git commit.
-
-penaganan eror, pada block catch `DB::rollBack()`: membatalkan semua perubahahan sejak insisalisasi atau sejak `DB::beginTransaction()`, artinya kalau ada eror, maka tidak akan ada data yg tersimpan pada database, nah untuk pesan eror nya terdapat pada objek e yaitu instance of Exception pada method getMessage
-
-- pastikan juga pada model terdapat properti fillable yg berisikan array field yg dapat kita insert
-
-`$this->reset()`: akan me reset semua field yg pernah di input oleh user
-
-`this->dispatch('student-created')` : method ini bawaan dari livewire, ini sangat berguna sekali, jadi data yg terdapat pada table akan secara otomatis terupdate jika data terdapat perubahan, konsepnya seperti ajax atau asyncronus, jangan lupa juga tambahkan `#[On(['student-created'])]` pada fungsi yg menngunakan model dari database.
+Perlu diperhatikan, di sini saya tidak mengimplementasikan yg namanya SoftDelete, library tambahan dari Laravel, Maka dari itu perlu diperhatikan ketika akan menghapus data nya. Sekali terhapus maka data tidak bisa restore kembali
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
