@@ -1,18 +1,21 @@
-## Stage this App: Implementasi CRUD for Model Teacher
-pada tahap ini saya akan coba implementasikan CRUD untuk data guru...
-pertama yg saya lakukan pada tahap ini adalah, merubah struktur data pada table users, merubah panjang field username dari 16 menjadi 18, supaya user dengan role teacher bisa menggunakan nip nya sebagai username untuk login, selanjutnya saya juga ubah pada seeder untuk mengenerate: 2 user dengan role admin, 5 user dengan role guru, 10 user dengan role siswa
+## Stage this App: Implementasi Settings Profile for user Admin
+pada tahap ini:
 
-Selanjutnya saya menyiapkan tampilan untuk data guru pada menu admin, cara nya sama seperti update yg ke-9 `Manage Student-Read and Create Student`
-membuat 2 component livewire:
+saya sudah mengimplementasikan Setting profile untuk user dengan role Admin
+user bisa merubah, nama, username, email, dan password
+adapun logic untuk merubah data tersebut hampir sama seperti sebelumnya, dan semua logic nya terdapat pada:
+
+`./app/Livewire/Admin/ModalSettings.php`
+
+dan saya juga menambahkan fitur Hapus Akun, fitur ini hanya terdapat untuk user dengan role Admin.
+
+jika tidak ada user dengan role admin di database, bisa jalankan seeder untuk useradmin
+dengan menjalankan perintah berikut:
+
 ```bash
-sail artisan make:livewire Admin/ManageTeacher
-sail artisan make:livewire Admin/ModalTeacher
+sail artisan db:seed --class=UserSeeder
 ```
-jangan lupa untuk mengatur pada sidebar dan `routes/web.php`, selanjutnya sesauikan tampilan.
-
-Semua proses CRUD hampir sama seperti sebelumnya
-
-pada tahap ini admin sudah bisa mengolah data siswa dan guru, admin bisa menambahakan, melihat, mengubah dan menghapus data siswa maupun guru. 
+perintah diatas, akan secara otomatis men-generate 2 user dengan role admin
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

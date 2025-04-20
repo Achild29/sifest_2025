@@ -6,6 +6,7 @@ use App\Http\Controllers\Student\DashboardController as StudentDashboardControll
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Livewire\Admin\ManageStudent;
 use App\Livewire\Admin\ManageTeacher;
+use App\Livewire\Admin\Settings;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,7 +20,6 @@ Route::middleware('guest')->group(function () {
         
     Route::post('/login', [AuthController::class, 'verify'])
         ->name('auth.verify');
-
     
 });
 
@@ -33,6 +33,9 @@ Route::group(['middleware' =>'auth:admin'], function () {
 
        Route::get('/manage-teachers', ManageTeacher::class)
        ->name('manage.teachers');
+
+       Route::get('/settings', Settings::class)
+       ->name('settings');
     });
 });
 

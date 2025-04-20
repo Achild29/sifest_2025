@@ -12,7 +12,7 @@
                     <flux:radio value="dark" icon="moon" />
                     <flux:radio value="system" icon="computer-desktop" />
                 </flux:radio.group>
-                <flux:navlist.item icon="cog-6-tooth" href="#">Settings Profile</flux:navlist.item>
+                <flux:navlist.item icon="cog-6-tooth" href="{{ route('settings') }}">Settings Profile</flux:navlist.item>
                 <flux:menu.separator />
                 <flux:menu.item icon="arrow-right-start-on-rectangle" href="{{ route('logout') }}">Logout</flux:menu.item>
             </flux:menu>
