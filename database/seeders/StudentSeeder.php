@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\UserRole;
+use App\Helpers\QrCodeHelper;
 use App\Models\User;
 use App\Models\Student;
 use Faker\Factory as Faker;
@@ -35,6 +36,7 @@ class StudentSeeder extends Seeder
                 'user_id' => $user->id,
                 'nisn' => $nisn,
                 'alamat' => $faker->address,
+                'qr_path' => QrCodeHelper::generateQrCode($nisn),
                 'nama_wali_murid' => $faker->name,
                 'no_telp_wali' => $faker->numerify($hp),
             ]);

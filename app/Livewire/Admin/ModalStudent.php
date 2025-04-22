@@ -3,11 +3,13 @@
 namespace App\Livewire\Admin;
 
 use App\Enums\UserRole;
+use App\Helpers\QrCodeHelper;
 use App\Models\Student;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -82,6 +84,7 @@ class ModalStudent extends Component
                 "user_id" => $userCreate->id,
                 "nisn" => $this->nisn,
                 "alamat" => $this->alamat,
+                "qr_path" => QrCodeHelper::generateQrCode($this->nisn),
                 "nama_wali_murid" => $this->wali_murid,
                 "no_telp_wali" => "08" . $this->no_telp,
             ]);
@@ -171,9 +174,20 @@ class ModalStudent extends Component
     public function removeStudent() {
         $student = User::find($this->idUser)?->Student;
 
+        if (!$student) {
+            Toaster::error('Siswa tidak ada');
+            return;
+        }
+
         DB::beginTransaction();
         try {
-            $student->user->delete();
+            if ($student->qr_path &&
+            Storage::disk('public')
+            ->exists('qr_code/'.$student->qr_path)){
+                Storage::disk('public')->delete('qr_code/'.$student->qr_path);
+            }
+            
+            $student->user->forceDelete();
 
             DB::commit();
 

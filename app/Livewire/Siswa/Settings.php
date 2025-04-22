@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Settings extends Component
 {
-    public $nama, $email, $alamat, $nisn, $kelas, $wali, $no_telp_wali;
+    public $nama, $email, $alamat, $nisn, $kelas, $wali, $no_telp_wali, $qr_code;
 
     public function render()
     {
@@ -26,5 +26,6 @@ class Settings extends Component
         $this->alamat = $user->student->alamat;
         $this->kelas = $user->student->kelas;
         $this->wali = $user->student->nama_wali_murid;
+        $this->qr_code = $user->student->qr_path;
     }
 }

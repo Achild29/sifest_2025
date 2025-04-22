@@ -12,7 +12,8 @@ class Student extends Model
         'alamat',
         'nama_wali_murid',
         'kelas_id',
-        "no_telp_wali"
+        "no_telp_wali",
+        'qr_path'
     ];
 
     public function user() {

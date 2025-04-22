@@ -22,6 +22,7 @@
         @endif
         @if (Auth::user()->role->value == 'Siswa')
             <flux:navlist.item icon="home" href="{{ route('siswa.dashboard') }}">Home</flux:navlist.item>
+            <flux:navlist.item icon="qr-code" href="{{ asset('storage/qr_code/'. Auth::user()->student->qr_path) }}" target="_blank">QR Code</flux:navlist.item>
                     
         @endif
     </flux:navlist>
