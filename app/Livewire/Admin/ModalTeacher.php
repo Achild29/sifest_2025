@@ -95,7 +95,7 @@ class ModalTeacher extends Component
         $this->nip = $user->teacher->nip;
         $this->email = $user->email;
         $this->alamat = $user->teacher->alamat;
-        $this->no_telp = ltrim($user->teacher->no_telp, "08");
+        $this->no_telp = substr($user->teacher->no_telp, 2);
     }
 
     #[On('update-teacher')]

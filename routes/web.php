@@ -7,7 +7,7 @@ use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardControll
 use App\Livewire\Admin\ListUser;
 use App\Livewire\Admin\ManageStudent;
 use App\Livewire\Admin\ManageTeacher;
-use App\Livewire\Admin\Settings;
+use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,9 +35,6 @@ Route::group(['middleware' =>'auth:admin'], function () {
        Route::get('/manage-teachers', ManageTeacher::class)
        ->name('manage.teachers');
 
-       Route::get('/settings', Settings::class)
-       ->name('settings');
-
        Route::get('/list-users', ListUser::class)
        ->name('list.users');
     });
@@ -46,6 +43,10 @@ Route::group(['middleware' =>'auth:admin'], function () {
 Route::group(['middleware' =>'auth:guru'], function () {
     Route::get('/guru', [TeacherDashboardController::class, 'index'])
     ->name('guru.dashboard');
+
+    Route::prefix('/guru')->group(function () {
+       
+    });
 });
 
 Route::group(['middleware' =>'auth:siswa'], function () {
@@ -53,5 +54,10 @@ Route::group(['middleware' =>'auth:siswa'], function () {
     ->name('siswa.dashboard');
 });
 
-Route::get('/logout', [AuthController::class, 'logout'])
-    ->name('logout');
+
+Route::middleware('auth:admin,guru,siswa')->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+    
+    Route::get('/settings', Settings::class)->name('settings');
+});

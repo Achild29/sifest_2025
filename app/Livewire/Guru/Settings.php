@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Guru;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -9,18 +9,20 @@ use Livewire\Component;
 
 class Settings extends Component
 {
-    public $nama, $username, $email;
-    
+    public $nama, $email, $no_telp, $alamat, $nip;
+
     public function render()
     {
-        return view('livewire.admin.settings');
+        return view('livewire.guru.settings');
     }
 
-    #[On('user-updated')]
+    #[On('guru-updated')]
     public function mount() {
         $user = User::find(Auth::user()->id);
         $this->nama = $user->name;
-        $this->username = $user->username;
         $this->email = $user->email;
+        $this->no_telp = $user->teacher->no_telp;
+        $this->alamat = $user->teacher->alamat;
+        $this->nip = $user->teacher->nip;
     }
 }

@@ -12,7 +12,4 @@ class Dashboard extends Component
         return view('livewire.dashboard');
     }
 
-    public function store() {
-        dd($this->nama, $this->nisn, $this->alamat, $this->wali_murid, $this->no_telp, $this->password);
-    }
 }

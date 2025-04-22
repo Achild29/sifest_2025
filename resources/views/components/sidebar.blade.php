@@ -25,4 +25,9 @@
                     
         @endif
     </flux:navlist>
+    <flux:spacer />
+    <flux:separator />
+    <flux:navlist variant="outline" class="mb-5">
+        <flux:navlist.item icon="cog-6-tooth" href="{{ route('settings') }}">Settings</flux:navlist.item>
+    </flux:navlist>
 </flux:sidebar>

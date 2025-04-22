@@ -1,10 +1,12 @@
-## Stage this App: Implementasi SoftDelete untuk model user
-pada tahap ini: saya mengimplementasi SoftDeltes bawaan dari Lavel, berikut penjelasan [SoftDelete](https://laravel.com/docs/12.x/eloquent#soft-deleting) dari Situs resmi Laravel
+## Stage this App: Implementasi Settings for Teacher
+Pada tahap ini saya mengimplemtasikan Setting untuk user dengan role Guru,
+user dengan role guru dapat merubah email, nomor_telp, alamat, dan merubah password nya
 
-Jadi untuk setiap akun admin yg menghapus akun nya, akan masuk ke TableL: Daftar Akun yg sudah tidak aktif
+saya juga merubah route untuk settings
 
-lalu saya juga menambahkan tampilan untuk Dashboard user dengan role Admin
+menambahkan sidebar juga
 
+merubah tampilan untuk settings
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

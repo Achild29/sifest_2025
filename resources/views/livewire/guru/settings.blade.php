@@ -6,56 +6,31 @@
     <flux:separator variant="subtle" class="mb-5"/>
 
     <ul class="divide-y divide-gray-100">
+        {{-- Nama --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
                     <flux:icon.user variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
                 </div>
                 <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Username</flux:heading>
-                    <flux:text class="mt-2 ml-5" variant="strong">{{ $username }} </flux:text>
+                    <flux:heading size="lg" class="font-bold">Nama</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">{{ $nama }} </flux:text>
                 </div>
             </div>
-            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="edit-username">
-                    <flux:tooltip content="Edit username">
-                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                        >
-                            <flux:icon.pencil-square/>
-                            Edit
-                        </button>
-                    </flux:tooltip>
-                </flux:modal.trigger>
-            </div>
         </li>
+        {{-- NIP / Username --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
                     <flux:icon.identification variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
                 </div>
                 <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Nama</flux:heading>
-                    <flux:text class="mt-2 ml-5" variant="strong">{{ $nama }} </flux:text>
+                    <flux:heading size="lg" class="font-bold">NIP / Username</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">{{ $nip }} </flux:text>
                 </div>
             </div>
-            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="edit-nama">
-                    <flux:tooltip content="Edit Nama">
-                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                        >
-                            <flux:icon.pencil-square/>
-                            Edit
-                        </button>
-                    </flux:tooltip>
-                </flux:modal.trigger>
-            </div>
         </li>
+        {{-- Email --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
@@ -81,33 +56,22 @@
                 </flux:modal.trigger>
             </div>
         </li>
+        {{-- No Telpon --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
-                    <flux:icon.key variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                    <flux:icon.phone variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
                 </div>
                 <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Password</flux:heading>
+                    <flux:heading size="lg" class="font-bold">Nomor Handphone</flux:heading>
                     <div class="flex gap-2">
-                        <flux:text class="mt-2 ml-5" variant="strong">forgot password ?</flux:text>
-                        <flux:modal.trigger name="edit-reset">
-                            <flux:tooltip content="Reset Password">
-                                <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                                bg-indigo-500 hover:bg-indigo-700
-                                dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                                >
-                                    <flux:icon.arrow-path/>
-                                    reset password
-                                </button>
-                            </flux:tooltip>
-                        </flux:modal.trigger>
+                        <flux:text class="mt-2 ml-5" variant="strong">{{ $no_telp }}</flux:text>
                     </div>
                 </div>
             </div>
             <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="edit-password">
-                    <flux:tooltip content="Edit Password">
+                <flux:modal.trigger name="edit-telp">
+                    <flux:tooltip content="Edit nomor telpon">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                         bg-indigo-500 hover:bg-indigo-700
@@ -120,30 +84,63 @@
                 </flux:modal.trigger>
             </div>
         </li>
+        {{-- Alamat --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
-                    <flux:icon.trash variant="solid" class="text-red-700 dark:text-red-300 size-12" />
+                    <flux:icon.home-modern variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
                 </div>
                 <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Delete account</flux:heading>
-                    <flux:text class="mt-2 ml-5" variant="strong">Hapus akun ini ?</flux:text>                        
+                    <flux:heading size="lg" class="font-bold">Alamat</flux:heading>
+                    <div class="flex gap-2">
+                        <flux:text class="mt-2 ml-5" variant="strong">{{ $alamat }}</flux:text>
+                    </div>
                 </div>
             </div>
             <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="delete-account">
-                    <flux:tooltip content="Delete this account?">
+                <flux:modal.trigger name="edit-alamat">
+                    <flux:tooltip content="Edit Alamat">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600
-                        bg-red-500 hover:bg-red-700"
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                        bg-indigo-500 hover:bg-indigo-700
+                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
                         >
-                            <flux:icon.trash />
-                            Delete
+                            <flux:icon.pencil-square/>
+                            Edit
                         </button>
                     </flux:tooltip>
                 </flux:modal.trigger>
             </div>
         </li>
+        {{-- Password --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.key variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Password</flux:heading>
+                    <div class="flex gap-2">
+                        <flux:text class="mt-2 ml-5" variant="strong">Change Password ?</flux:text>
+                    </div>
+                </div>
+            </div>
+            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+                <flux:modal.trigger name="edit-password">
+                    <flux:tooltip content="ubah Password">
+                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                        bg-indigo-500 hover:bg-indigo-700
+                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        >
+                            <flux:icon.pencil-square/>
+                            Edit
+                        </button>
+                    </flux:tooltip>
+                </flux:modal.trigger>
+            </div>
+        </li>
+        {{-- tampilan    --}}
         <li class="flex justify-between gap-x-6 py-5">
             <div class="flex min-w-0 gap-x-4">
                 <div class="flex-none">
@@ -165,9 +162,6 @@
                 </div>
             </div>
         </li>
-        
     </ul>
-
-    <livewire:admin.modal-settings />
-      
+    <livewire:guru.settings-modal />
 </div>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
@@ -21,6 +22,7 @@ class ModalSettings extends Component
         return view('livewire.admin.modal-settings');
     }
 
+    #[On('user-updated')]
     public function mount() {
         $this->user = $this->getUser();
         $this->nama = $this->user->name;
@@ -51,6 +53,7 @@ class ModalSettings extends Component
             DB::commit();
             Toaster::success('Data berhasil di perbaharui');
             Flux::modal('edit-username')->close();
+            $this->reset();
             $this->dispatch('user-updated');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -77,6 +80,7 @@ class ModalSettings extends Component
             DB::commit();
             Flux::modal('edit-nama')->close();
             Toaster::success('Data berhasil di perbaharui');
+            $this->reset();
             $this->dispatch('user-updated');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -106,6 +110,7 @@ class ModalSettings extends Component
             DB::commit();
             Flux::modal('edit-email')->close();
             Toaster::success('Data berhasil di perbaharui');
+            $this->reset();
             $this->dispatch('user-updated');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -161,6 +166,7 @@ class ModalSettings extends Component
             DB::commit();
             Flux::modal('edit-password')->close();
             Toaster::info('Password berhasil di update');
+            $this->reset();
             $this->dispatch('user-updated');
         } catch (\Exception $e) {
             DB::rollBack();

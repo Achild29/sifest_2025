@@ -103,7 +103,7 @@ class ModalStudent extends Component
         $this->nisn = $user->Student->nisn; // dd($user->username === $user->Student->nisn, $user->username, $user->Student->nisn); => true
         $this->alamat = $user->Student->alamat;
         $this->wali_murid = $user->Student->nama_wali_murid;
-        $this->no_telp = ltrim($user->Student->no_telp_wali, '08');
+        $this->no_telp = substr($user->Student->no_telp_wali, 2);
     }
 
     #[On('update-student')]
