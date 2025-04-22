@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
+use App\Livewire\Admin\ListUser;
 use App\Livewire\Admin\ManageStudent;
 use App\Livewire\Admin\ManageTeacher;
 use App\Livewire\Admin\Settings;
@@ -36,6 +37,9 @@ Route::group(['middleware' =>'auth:admin'], function () {
 
        Route::get('/settings', Settings::class)
        ->name('settings');
+
+       Route::get('/list-users', ListUser::class)
+       ->name('list.users');
     });
 });
 

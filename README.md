@@ -1,21 +1,10 @@
-## Stage this App: Implementasi Settings Profile for user Admin
-pada tahap ini:
+## Stage this App: Implementasi SoftDelete untuk model user
+pada tahap ini: saya mengimplementasi SoftDeltes bawaan dari Lavel, berikut penjelasan [SoftDelete](https://laravel.com/docs/12.x/eloquent#soft-deleting) dari Situs resmi Laravel
 
-saya sudah mengimplementasikan Setting profile untuk user dengan role Admin
-user bisa merubah, nama, username, email, dan password
-adapun logic untuk merubah data tersebut hampir sama seperti sebelumnya, dan semua logic nya terdapat pada:
+Jadi untuk setiap akun admin yg menghapus akun nya, akan masuk ke TableL: Daftar Akun yg sudah tidak aktif
 
-`./app/Livewire/Admin/ModalSettings.php`
+lalu saya juga menambahkan tampilan untuk Dashboard user dengan role Admin
 
-dan saya juga menambahkan fitur Hapus Akun, fitur ini hanya terdapat untuk user dengan role Admin.
-
-jika tidak ada user dengan role admin di database, bisa jalankan seeder untuk useradmin
-dengan menjalankan perintah berikut:
-
-```bash
-sail artisan db:seed --class=UserSeeder
-```
-perintah diatas, akan secara otomatis men-generate 2 user dengan role admin
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
