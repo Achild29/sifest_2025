@@ -1,12 +1,6 @@
-## Stage this App: Implementasi Settings for Teacher
-Pada tahap ini saya mengimplemtasikan Setting untuk user dengan role Guru,
-user dengan role guru dapat merubah email, nomor_telp, alamat, dan merubah password nya
-
-saya juga merubah route untuk settings
-
-menambahkan sidebar juga
-
-merubah tampilan untuk settings
+## Stage this App: Implementasi Settings for Student
+Pada tahap ini saya mengimplemtasikan Setting untuk user dengan role Siswa,
+user dengan role siswa hanya dapat merubah email dan merubah password nya
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

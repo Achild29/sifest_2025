@@ -29,7 +29,7 @@ $faker = Faker::create('id_ID');
             </div>
             
             <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">{{ $admin->count(); }} Siswa</dd>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white">{{ $siswa->count(); }} Siswa</dd>
                 <dt class="text-base/7 text-gray-600 dark:text-white">Jumlah User Siswa yg terdaftar</dt>
                 <div class="self-center">
                     <flux:tooltip content="goto Manage Teacher">

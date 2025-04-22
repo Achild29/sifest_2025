@@ -11,4 +11,7 @@ use App\Enums\UserRole;
     @if (Auth::user()->role->value == UserRole::guru->value)
         @livewire('guru.settings')
     @endif
+    @if (Auth::user()->role->value == UserRole::siswa->value)
+        @livewire('siswa.settings')
+    @endif
 </div>

@@ -152,7 +152,7 @@
                 </div>
                 <div class="min-w-0 flex-auto">
                     <flux:heading size="lg" class="font-bold">Tampilan</flux:heading>
-                    <flux:text class="mt-2 ml-5" variant="strong">Dark mode atau Light Mode ?</flux:text>        
+                    <flux:text class="mt-2 ml-5" variant="strong" class="hidden sm:flex">Dark mode atau Light Mode ?</flux:text>        
                 </div>
             </div>
             <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
