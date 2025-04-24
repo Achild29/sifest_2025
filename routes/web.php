@@ -7,6 +7,9 @@ use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardControll
 use App\Livewire\Admin\ListUser;
 use App\Livewire\Admin\ManageStudent;
 use App\Livewire\Admin\ManageTeacher;
+use App\Livewire\Guru\ManageKelas;
+use App\Livewire\Guru\ManageKelasAddStudent;
+use App\Livewire\Guru\ManageKelasDetail;
 use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +48,15 @@ Route::group(['middleware' =>'auth:guru'], function () {
     ->name('guru.dashboard');
 
     Route::prefix('/guru')->group(function () {
-       
+        Route::prefix('/kelas')->group(function () { 
+            Route::get('/', ManageKelas::class)
+            ->name('manage.kelas');
+
+            Route::get('/{id}', ManageKelasDetail::class)
+            ->name('detail.kelas');
+            Route::get('/{id}/add-students', ManageKelasAddStudent::class)
+            ->name('add.students.kelas');
+        });
     });
 });
 

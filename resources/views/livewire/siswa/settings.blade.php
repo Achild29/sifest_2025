@@ -1,3 +1,17 @@
+@section('header-message')
+<flux:breadcrumbs>
+    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
+        <div class="flex gap-2">
+            <flux:icon.home variant="mini" /> Home
+        </div>
+    </flux:breadcrumbs.item>
+    <flux:breadcrumbs.item >
+        <div class="flex gap-2">
+            <flux:icon.cog-6-tooth variant="mini" /> Settings
+        </div>
+    </flux:breadcrumbs.item>
+</flux:breadcrumbs>
+@endsection
 <div>
     <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
     
@@ -54,19 +68,19 @@
                 </div>
             </div>
             <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:tooltip content="lohat QR Code">
-                <a href="{{ asset('storage/qr_code/'. $qr_code) }}" target="_blank">
-                    <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                    bg-indigo-500 hover:bg-indigo-700
-                    dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                    >
-                        <flux:icon.qr-code/>
-                        lihat
-                    </button>
-                </a>
+                <flux:tooltip content="lihat QR Code">
+                    <a href="{{ asset('storage/qr_code/'. $qr_code) }}" target="_blank">
+                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                        bg-indigo-500 hover:bg-indigo-700
+                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        >
+                            <flux:icon.qr-code/>
+                            lihat
+                        </button>
+                    </a>
                 </flux:tooltip>
-        </div>
+            </div>
         </li>        
         {{-- Alamat --}}
         <li class="flex justify-between gap-x-6 py-5">

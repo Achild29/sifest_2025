@@ -1,3 +1,17 @@
+@section('header-message')
+<flux:breadcrumbs>
+    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
+        <div class="flex gap-2">
+            <flux:icon.home variant="mini" /> Home
+        </div>
+    </flux:breadcrumbs.item>
+    <flux:breadcrumbs.item >
+        <div class="flex gap-2">
+            <flux:icon.cog-6-tooth variant="mini" /> Settings
+        </div>
+    </flux:breadcrumbs.item>
+</flux:breadcrumbs>
+@endsection
 <div>
     <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
     

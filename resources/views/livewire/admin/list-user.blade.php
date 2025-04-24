@@ -4,6 +4,16 @@ use Faker\Factory as Faker;
 
 $faker = Faker::create('id_ID');
 ?>
+@section('header-message')
+<flux:breadcrumbs>
+    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
+        <div class="flex gap-2">
+            <flux:icon.home variant="mini" /> Home
+        </div>
+    </flux:breadcrumbs.item>
+    <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
+</flux:breadcrumbs>
+@endsection
 <div>
     <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
     

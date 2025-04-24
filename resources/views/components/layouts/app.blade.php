@@ -12,7 +12,9 @@
         </head>
         <body class="min-h-screen bg-white dark:bg-zinc-700">
             <x-sidebar></x-sidebar>
-            <x-header></x-header>
+            <x-header>
+                {{ $slot }}
+            </x-header>
         
             <flux:main>
                 {{ $slot }}

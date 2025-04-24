@@ -18,6 +18,7 @@
         @endif
         @if (Auth::user()->role->value == 'Guru')
             <flux:navlist.item icon="home" href="{{ route('guru.dashboard') }}">Home</flux:navlist.item>
+            <flux:navlist.item icon="book-open" href="{{ route('manage.kelas') }}" :current="request()->routeIs('*.kelas')">Manage Kelas</flux:navlist.item>
                     
         @endif
         @if (Auth::user()->role->value == 'Siswa')

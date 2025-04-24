@@ -1,36 +1,14 @@
-## Stage this App: Generate QR Code
-untuk QR Code saya menggunakan package dari `simplesoftwareio/simple-qrcode`, untuk menginstall package tersebut, run this command:
-```bash
-sail composer require simplesoftwareio/simple-qrcode
-```
-atau
-```bash
-composer require simplesoftwareio/simple-qrcode
-```
-note: karena saya developmentnya menggunakan docker maka dari itu terdapat perintah sail, read more about [sail](https://laravel.com/docs/master/sail)
+## Stage this App: add Breadcrumbs and Teacher can Manage ClassRoom
+Banyak update yg telah dilakukan pada tahap ini,
 
-Selanjutnya, saya membuat fungsi helper untuk mengenerate Qr code adapun fungsi tersebut terdapat pada `app/Helpers/QrCodeHelper.php`, saya membuat agar reuseable.
-adapaun fungsi nya:
-membuat qr code dari nisn siswa, qrcode nya berupa gambar/png, format name nya adalah qr_nisn.png dan tersimpan di `storage/public/qr_code/`
+[Breadcrumbs](https://fluxui.dev/components/breadcrumbs): menambahkan Breadcrumbs pada setiap header
 
-pada seeder student `databse/StudentSeeder.php` saya juga menggunakan fungsi helper tersebut,
-saat user dengan role admin membuat akun siswa fungsi helper tersebut juga digunakan.
-
-secara otomatis saat seeder di jalankan akan membuat qr code tersebut dan juga saat user dengan role admin membuat akun siswa secara otomatis juga akan membuat qr code nya juga. nah ketika admin menghapus akun siswa, gambarnya juga akan otomatis terhapus.
-
-pada akun siswa, saya juga menambahkan sidebar untuk melihat qr_code nya, ketika di klik akan membuka tab baru dan menampilkan qr_code nya...
-
-Struktur database nya juga berubah, pada table student saya menambahkan field qr_path:
-
-run this command please:
-```bash
-php artisan migrate:fresh --seed
-```
-or
+perubahan pada table `classroom` menambahkan field description, jangan lupa untuk migrate juga
 ```bash
 sail artisan migrate:fresh --seed
 ```
-and check folder `storage/public/qr_code`
+Core: Teacher can manage Classroom,
+Guru dapat membuat sebuah kelas, guru juga bisa menambahkan siswa ke dalam kelas tersebut, guru juga bisa mengeluarkan siswa dari kelas tersebut
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

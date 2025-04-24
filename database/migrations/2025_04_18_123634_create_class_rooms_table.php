@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('teacher_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('name', 50);
+            $table->string('description');
             $table->timestamps();
         });
     }

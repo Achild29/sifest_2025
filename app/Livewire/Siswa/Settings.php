@@ -24,7 +24,7 @@ class Settings extends Component
         $this->no_telp_wali = $user->student->no_telp_wali;
         $this->nisn = $user->student->nisn;
         $this->alamat = $user->student->alamat;
-        $this->kelas = $user->student->kelas;
+        $this->kelas = $user->student->classRoom->name;
         $this->wali = $user->student->nama_wali_murid;
         $this->qr_code = $user->student->qr_path;
     }
