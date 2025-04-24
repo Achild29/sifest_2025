@@ -14,11 +14,16 @@
             <flux:navlist.item icon="user-group" href="{{ route('manage.students') }}">Manage Students</flux:navlist.item>
             <flux:navlist.item icon="user-group" href="{{ route('manage.teachers') }}">Manage Teachers</flux:navlist.item>
             <flux:navlist.item icon="users" href="{{ route('manage.users') }}">Manage Admin</flux:navlist.item>
+            <flux:navlist.item icon="book-open" href="{{ route('admin.manage.kelas') }}" :current="request()->routeIs([
+                'admin.manage.kelas', 'admin.add.teacher.kelas'
+                ])" >Manage Kelas</flux:navlist.item>
             
         @endif
         @if (Auth::user()->role->value == 'Guru')
             <flux:navlist.item icon="home" href="{{ route('guru.dashboard') }}">Home</flux:navlist.item>
-            <flux:navlist.item icon="book-open" href="{{ route('manage.kelas') }}" :current="request()->routeIs('*.kelas')">Manage Kelas</flux:navlist.item>
+            <flux:navlist.item icon="book-open" href="{{ route('manage.kelas') }}" :current="request()->routeIs([
+                'manage.kelas', 'detail.kelas', 'add.students.kelas'
+            ])">Manage Kelas</flux:navlist.item>
                     
         @endif
         @if (Auth::user()->role->value == 'Siswa')

@@ -1,40 +1,8 @@
-## Stage this App: update minor
-pada update kali ini, saya hanya mengatur folder...
+## Stage this App: Admin Manage Class and Fixing Bug
+pada tahap ini, jika ada user dengan role guru terhapus, maka secara otomatis kelas tersbut akan tidak memiliki guru, nah pada fitur ini, admin dapat Assign a teacher to Class, that have not teacher
 
-- `app/Livewire/Admin/` 4 directories, 2 files
-    - ├── Dashboard.php
-    - ├── ManageAdmin
-    - │   └── ManageAdmin.php
-    - ├── ManageStudents
-    - │   ├── ManageStudentsModal.php
-    - │   └── ManageStudents.php
-    - ├── ManageTeacher
-    - │   ├── ManageTeacherModal.php
-    - │   └── ManageTeacher.php
-    - ├── Settings
-        - ├── SettingsModal.php
-        - └── Settings.php
-- `app/Livewire/Guru/`2 directories, 6 files
-    - ├── ManageKelas
-    - │   ├── ManageKelasAddStudents.php
-    - │   ├── ManageKelasDetail.php
-    - │   ├── ManageKelasModal.php
-    - │   └── ManageKelas.php
-    - └── Settings
-        - ├── SettingsModal.php
-        - └── Settings.php
-- `app/Livewire/Siswa` 1 directories, 2 files
-    - └── Settings
-        - ├── SettingsModal.php
-        - └── Settings.php
-
-to check pleas run this on each folder:
-```bash
-tree
-```
-also on views
-
-and please check on `route.web.php`
+ada penambahan component juga pada sidebar, yaitu menu ini+menambahakannya juga pada `routes/web.php`
+Fixing Bug on `resources/views/livewire/siswa/settings.php` with **Null safe Operator**
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

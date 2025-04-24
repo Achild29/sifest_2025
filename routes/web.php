@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Livewire\Admin\ManageAdmin\ManageAdmin;
+use App\Livewire\Admin\ManageKelas\ManageKelas as AdminManageKelas;
+use App\Livewire\Admin\ManageKelas\ManageKelasAddTeacher;
 use App\Livewire\Admin\ManageStudents\ManageStudents;
 use App\Livewire\Admin\ManageTeacher\ManageTeacher;
 use App\Livewire\Guru\ManageKelas\ManageKelas;
@@ -40,6 +42,12 @@ Route::group(['middleware' =>'auth:admin'], function () {
 
        Route::get('/manage-users', ManageAdmin::class)
        ->name('manage.users');
+       
+       Route::get('/manage-kelas', AdminManageKelas::class)
+       ->name('admin.manage.kelas');
+
+       Route::get('/manage-kelas/{id}/add', ManageKelasAddTeacher::class)
+       ->name('admin.add.teacher.kelas');
     });
 });
 
@@ -54,6 +62,7 @@ Route::group(['middleware' =>'auth:guru'], function () {
 
             Route::get('/{id}', ManageKelasDetail::class)
             ->name('detail.kelas');
+
             Route::get('/{id}/add-students', ManageKelasAddStudents::class)
             ->name('add.students.kelas');
         });
