@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ManageStudents;
 
 use App\Enums\UserRole;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class ManageStudent extends Component
+class ManageStudents extends Component
 {
     public $students;
+
     public function render()
     {
-        return view('livewire.admin.manage-student');
+        return view('livewire.admin.manage-students.manage-students');
     }
 
      #[On(['student-created', 'student-updated'])]

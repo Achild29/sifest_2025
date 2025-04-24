@@ -25,8 +25,8 @@ class Dashboard extends Component
         $this->siswa = User::where('role', UserRole::siswa)->get();
     }
 
-    public function listUsers() {
-        return redirect(route('list.users'));
+    public function manageUsers() {
+        return redirect(route('manage.users'));
     }
 
     public function manageTeachers() {

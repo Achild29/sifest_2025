@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\ManageKelas;
 
 use App\Models\ClassRoom;
 use App\Models\Student;
@@ -19,9 +19,9 @@ class ManageKelasModal extends Component
 
     public function render()
     {
-        return view('livewire.guru.manage-kelas-modal');
+        return view('livewire.guru.manage-kelas.manage-kelas-modal');
     }
-
+    
     public function addKelas() {
         $this->validate([
             'nama' => 'required|max:50',

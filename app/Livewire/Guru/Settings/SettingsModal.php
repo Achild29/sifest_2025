@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\Settings;
 
 use App\Models\User;
 use Flux\Flux;
@@ -20,7 +20,7 @@ class SettingsModal extends Component
 
     public function render()
     {
-        return view('livewire.guru.settings-modal');
+        return view('livewire.guru.settings.settings-modal');
     }
 
     #[On('guru-updated')]

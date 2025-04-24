@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Siswa;
+namespace App\Livewire\Siswa\Settings;
 
 use App\Models\User;
 use Flux\Flux;
@@ -19,7 +19,7 @@ class SettingsModal extends Component
 
     public function render()
     {
-        return view('livewire.siswa.settings-modal');
+        return view('livewire.siswa.settings.settings-modal');
     }
 
     #[On('siswa-updated')]

@@ -1,20 +1,20 @@
 @section('header-message')
-<flux:breadcrumbs>
-    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
-        <div class="flex gap-2">
-            <flux:icon.home variant="mini" /> Home
-        </div>
-    </flux:breadcrumbs.item>
-    <flux:breadcrumbs.item >
-        <div class="flex gap-2">
-            <flux:icon.cog-6-tooth variant="mini" /> Settings
-        </div>
-    </flux:breadcrumbs.item>
-</flux:breadcrumbs>
-@endsection
-<div>
+    <flux:breadcrumbs>
+        <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
+            <div class="flex gap-2">
+                <flux:icon.home variant="mini" /> Home
+            </div>
+        </flux:breadcrumbs.item>
+        <flux:breadcrumbs.item >
+            <div class="flex gap-2">
+                <flux:icon.cog-6-tooth variant="mini" /> Settings
+            </div>
+        </flux:breadcrumbs.item>
+    </flux:breadcrumbs>
     <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
-    
+@endsection
+
+<div>
     <flux:heading size="xl" class="font-extrabold" level="1">Settings</flux:heading>
     <flux:text class="mb-2 mt-2 font-semibold">This page you can manage your account</flux:text>
     <flux:separator variant="subtle" class="mb-5"/>
@@ -39,10 +39,90 @@
                     <flux:icon.identification variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
                 </div>
                 <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">NIP / Username</flux:heading>
-                    <flux:text class="mt-2 ml-5" variant="strong">{{ $nip }} </flux:text>
+                    <flux:heading size="lg" class="font-bold">NISN / Username</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">{{ $nisn }} </flux:text>
                 </div>
             </div>
+        </li>
+        {{-- Kelas --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.book-open variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Kelas | Wali Kelas - No.Hp Wali kelas</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">
+                        {{ $kelas ?? '-' }} | {{ $wali_kelas->teacher->user->name }} - {{ $wali_kelas->teacher->no_telp }}
+                    </flux:text>
+                </div>
+            </div>
+        </li>
+        {{-- QR --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.qr-code variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Absensi QR-Code</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">digunakan untuk scan masuk dan scan pulang</flux:text>
+                </div>
+            </div>
+            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
+                <flux:tooltip content="lihat QR Code">
+                    <a href="{{ asset('storage/qr_code/'. $qr_code) }}" target="_blank">
+                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                        bg-indigo-500 hover:bg-indigo-700
+                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        >
+                            <flux:icon.qr-code/>
+                            lihat
+                        </button>
+                    </a>
+                </flux:tooltip>
+            </div>
+        </li>        
+        {{-- Alamat --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.home-modern variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Alamat</flux:heading>
+                    <div class="flex gap-2">
+                        <flux:text class="mt-2 ml-5" variant="strong">{{ $alamat }}</flux:text>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{-- Nama Wali --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.users variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Nama Orang Tua / Wali</flux:heading>
+                    <flux:text class="mt-2 ml-5" variant="strong">{{ $wali }} </flux:text>
+                </div>
+            </div>
+        </li>
+        {{-- No Telpon --}}
+        <li class="flex justify-between gap-x-6 py-5">
+            <div class="flex min-w-0 gap-x-4">
+                <div class="flex-none">
+                    <flux:icon.phone variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
+                </div>
+                <div class="min-w-0 flex-auto">
+                    <flux:heading size="lg" class="font-bold">Nomor Handphone Orang Tua / Wali</flux:heading>
+                    <div class="flex gap-2">
+                        <flux:text class="mt-2 ml-5" variant="strong">{{ $no_telp_wali }}</flux:text>
+                    </div>
+                </div>
+            </div> 
         </li>
         {{-- Email --}}
         <li class="flex justify-between gap-x-6 py-5">
@@ -58,62 +138,6 @@
             <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
                 <flux:modal.trigger name="edit-email">
                     <flux:tooltip content="Edit Email ">
-                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                        >
-                            <flux:icon.pencil-square/>
-                            Edit
-                        </button>
-                    </flux:tooltip>
-                </flux:modal.trigger>
-            </div>
-        </li>
-        {{-- No Telpon --}}
-        <li class="flex justify-between gap-x-6 py-5">
-            <div class="flex min-w-0 gap-x-4">
-                <div class="flex-none">
-                    <flux:icon.phone variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
-                </div>
-                <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Nomor Handphone</flux:heading>
-                    <div class="flex gap-2">
-                        <flux:text class="mt-2 ml-5" variant="strong">{{ $no_telp }}</flux:text>
-                    </div>
-                </div>
-            </div>
-            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="edit-telp">
-                    <flux:tooltip content="Edit nomor telpon">
-                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                        >
-                            <flux:icon.pencil-square/>
-                            Edit
-                        </button>
-                    </flux:tooltip>
-                </flux:modal.trigger>
-            </div>
-        </li>
-        {{-- Alamat --}}
-        <li class="flex justify-between gap-x-6 py-5">
-            <div class="flex min-w-0 gap-x-4">
-                <div class="flex-none">
-                    <flux:icon.home-modern variant="solid" class="text-indigo-500 dark:text-amber-600 size-12" />
-                </div>
-                <div class="min-w-0 flex-auto">
-                    <flux:heading size="lg" class="font-bold">Alamat</flux:heading>
-                    <div class="flex gap-2">
-                        <flux:text class="mt-2 ml-5" variant="strong">{{ $alamat }}</flux:text>
-                    </div>
-                </div>
-            </div>
-            <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
-                <flux:modal.trigger name="edit-alamat">
-                    <flux:tooltip content="Edit Alamat">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                         bg-indigo-500 hover:bg-indigo-700
@@ -177,5 +201,5 @@
             </div>
         </li>
     </ul>
-    <livewire:guru.settings-modal />
+    <livewire:siswa.settings.settings-modal />
 </div>

@@ -18,7 +18,7 @@ $faker = Faker::create('id_ID');
                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                         bg-indigo-500 hover:bg-indigo-700
                         dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                        wire:click="listUsers"
+                        wire:click="manageUsers"
                         >
                             <flux:icon.users/>
                             Manage admin

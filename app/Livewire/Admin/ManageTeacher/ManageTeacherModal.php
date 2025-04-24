@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ManageTeacher;
 
 use App\Enums\UserRole;
 use App\Models\Teacher;
@@ -13,14 +13,14 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
-class ModalTeacher extends Component
+class ManageTeacherModal extends Component
 {
     public $nama, $nip, $email, $alamat, $no_telp;
     public $idUser;
 
     public function render()
     {
-        return view('livewire.admin.modal-teacher');
+        return view('livewire.admin.manage-teacher.manage-teacher-modal');
     }
 
     public function validasi(?User $user) {
@@ -164,7 +164,7 @@ class ModalTeacher extends Component
         
         DB::beginTransaction();
         try {
-            $teacher->user->delete();
+            $teacher->user->forceDelete();
 
             DB::commit();
 

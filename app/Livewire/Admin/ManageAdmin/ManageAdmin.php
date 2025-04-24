@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ManageAdmin;
 
 use App\Enums\UserRole;
 use App\Models\User;
@@ -12,7 +12,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
-class ListUser extends Component
+class ManageAdmin extends Component
 {
     public $admin, $user, $adminDeleted;
     public $nama, $email, $username;    
@@ -30,7 +30,7 @@ class ListUser extends Component
 
     public function render()
     {
-        return view('livewire.admin.list-user');
+        return view('livewire.admin.manage-admin.manage-admin');
     }
 
     public function addUser() {

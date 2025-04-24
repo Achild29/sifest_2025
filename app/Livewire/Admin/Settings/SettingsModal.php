@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\Settings;
 
 use App\Models\User;
 use Flux\Flux;
@@ -12,14 +12,14 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
-class ModalSettings extends Component
+class SettingsModal extends Component
 {
     public $nama, $username, $email, $old_password, $password_new, $password_conf;
     protected $user;
 
     public function render()
     {
-        return view('livewire.admin.modal-settings');
+        return view('livewire.admin.settings.settings-modal');
     }
 
     #[On('user-updated')]

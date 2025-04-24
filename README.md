@@ -1,14 +1,40 @@
-## Stage this App: add Breadcrumbs and Teacher can Manage ClassRoom
-Banyak update yg telah dilakukan pada tahap ini,
+## Stage this App: update minor
+pada update kali ini, saya hanya mengatur folder...
 
-[Breadcrumbs](https://fluxui.dev/components/breadcrumbs): menambahkan Breadcrumbs pada setiap header
+- `app/Livewire/Admin/` 4 directories, 2 files
+    - ├── Dashboard.php
+    - ├── ManageAdmin
+    - │   └── ManageAdmin.php
+    - ├── ManageStudents
+    - │   ├── ManageStudentsModal.php
+    - │   └── ManageStudents.php
+    - ├── ManageTeacher
+    - │   ├── ManageTeacherModal.php
+    - │   └── ManageTeacher.php
+    - ├── Settings
+        - ├── SettingsModal.php
+        - └── Settings.php
+- `app/Livewire/Guru/`2 directories, 6 files
+    - ├── ManageKelas
+    - │   ├── ManageKelasAddStudents.php
+    - │   ├── ManageKelasDetail.php
+    - │   ├── ManageKelasModal.php
+    - │   └── ManageKelas.php
+    - └── Settings
+        - ├── SettingsModal.php
+        - └── Settings.php
+- `app/Livewire/Siswa` 1 directories, 2 files
+    - └── Settings
+        - ├── SettingsModal.php
+        - └── Settings.php
 
-perubahan pada table `classroom` menambahkan field description, jangan lupa untuk migrate juga
+to check pleas run this on each folder:
 ```bash
-sail artisan migrate:fresh --seed
+tree
 ```
-Core: Teacher can manage Classroom,
-Guru dapat membuat sebuah kelas, guru juga bisa menambahkan siswa ke dalam kelas tersebut, guru juga bisa mengeluarkan siswa dari kelas tersebut
+also on views
+
+and please check on `route.web.php`
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

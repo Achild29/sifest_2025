@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\ManageKelas;
 
 use App\Enums\UserRole;
 use App\Models\ClassRoom;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
@@ -18,7 +17,7 @@ class ManageKelasDetail extends Component
 
     public function render()
     {
-        return view('livewire.guru.manage-kelas-detail');
+        return view('livewire.guru.manage-kelas.manage-kelas-detail');
     }
 
     public function mount($id) {

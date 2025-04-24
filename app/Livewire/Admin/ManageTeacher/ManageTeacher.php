@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ManageTeacher;
 
 use App\Enums\UserRole;
 use App\Models\User;
@@ -9,11 +9,12 @@ use Livewire\Component;
 
 class ManageTeacher extends Component
 {
+
     public $teachers;
 
     public function render()
     {
-        return view('livewire.admin.manage-teacher');
+        return view('livewire.admin.manage-teacher.manage-teacher');
     }
 
     #[On(['teacher-created', 'teacher-updated'])]
@@ -28,5 +29,5 @@ class ManageTeacher extends Component
 
     public function delete($id) {
         $this->dispatch('delete-teacher', $id);
-    }
+    }    
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ManageStudents;
 
 use App\Enums\UserRole;
 use App\Helpers\QrCodeHelper;
@@ -15,14 +15,14 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
-class ModalStudent extends Component
+class ManageStudentsModal extends Component
 {
     public $nama, $nisn, $email, $alamat, $wali_murid, $no_telp;
     public $idUser;
 
     public function render()
     {
-        return view('livewire.admin.modal-student');
+        return view('livewire.admin.manage-students.manage-students-modal');
     }
 
     public function validasi(?User $user) {

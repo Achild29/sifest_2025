@@ -5,17 +5,17 @@ use Faker\Factory as Faker;
 $faker = Faker::create('id_ID');
 ?>
 @section('header-message')
-<flux:breadcrumbs>
-    <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
-        <div class="flex gap-2">
-            <flux:icon.home variant="mini" /> Home
-        </div>
-    </flux:breadcrumbs.item>
-    <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
-</flux:breadcrumbs>
+    <flux:breadcrumbs>
+        <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
+            <div class="flex gap-2">
+                <flux:icon.home variant="mini" /> Home
+            </div>
+        </flux:breadcrumbs.item>
+        <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
+    </flux:breadcrumbs>
+    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 <div>
-    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
     
     <flux:heading size="xl" class="font-extrabold" level="1">List Users</flux:heading>
     <flux:text class="mb-2 mt-2 font-semibold">This page you can find list of Users with role Admin, Except your account</flux:text>
@@ -244,6 +244,7 @@ $faker = Faker::create('id_ID');
             </div>
         </div>
     </flux:modal>
+
     <flux:modal name="remove-user" class="min-w-[22rem]">
         <div class="space-y-6">
             <div>
@@ -267,6 +268,5 @@ $faker = Faker::create('id_ID');
             </div>
         </div>
     </flux:modal>
-
 
 </div>

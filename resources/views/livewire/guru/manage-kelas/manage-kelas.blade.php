@@ -29,7 +29,8 @@
             </flux:tooltip>
         </div>
     </flux:modal.trigger>
-    <livewire:guru.manage-kelas-modal />
+    {{-- edit This --}}
+    <livewire:guru.manage-kelas.manage-kelas-modal />
 
     <div class="overflow-x-auto border rounded-lg shadow-2xl">
         <table class="min-w-full table-auto border">

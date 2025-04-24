@@ -8,10 +8,10 @@
         <flux:breadcrumbs.item href="{{ route('manage.kelas') }}">Manage Kelas</flux:breadcrumbs.item>
         <flux:breadcrumbs.item>Detail Kelas</flux:breadcrumbs.item>
     </flux:breadcrumbs>
+    <x-slot:title>Aplikasi Absensi | Kelas Detail | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 
 <div>
-    <x-slot:title>Aplikasi Absensi | Kelas Detail | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
     
     <flux:heading size="xl" class="font-extrabold" level="1">Detail kelas {{ $kelas->name }}</flux:heading>
     <flux:text class="mb-2 mt-2 font-semibold">This page you can find list of students in this class room, edit name, edit desctiption</flux:text>

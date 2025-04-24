@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\Settings;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ class Settings extends Component
 
     public function render()
     {
-        return view('livewire.guru.settings');
+        return view('livewire.guru.settings.settings');
     }
 
     #[On('guru-updated')]

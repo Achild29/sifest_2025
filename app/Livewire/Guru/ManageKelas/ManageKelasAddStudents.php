@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\ManageKelas;
 
 use App\Enums\UserRole;
 use App\Models\ClassRoom;
@@ -10,15 +10,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
-use function Laravel\Prompts\error;
-
-class ManageKelasAddStudent extends Component
+class ManageKelasAddStudents extends Component
 {
     public $kelas, $murid, $nama, $nisn, $siswa;
-    
+
     public function render()
     {
-        return view('livewire.guru.manage-kelas-add-student');
+        return view('livewire.guru.manage-kelas.manage-kelas-add-students');
     }
 
     public function mount($id) {

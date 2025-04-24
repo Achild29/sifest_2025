@@ -4,12 +4,12 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
-use App\Livewire\Admin\ListUser;
-use App\Livewire\Admin\ManageStudent;
-use App\Livewire\Admin\ManageTeacher;
-use App\Livewire\Guru\ManageKelas;
-use App\Livewire\Guru\ManageKelasAddStudent;
-use App\Livewire\Guru\ManageKelasDetail;
+use App\Livewire\Admin\ManageAdmin\ManageAdmin;
+use App\Livewire\Admin\ManageStudents\ManageStudents;
+use App\Livewire\Admin\ManageTeacher\ManageTeacher;
+use App\Livewire\Guru\ManageKelas\ManageKelas;
+use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
+use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
 use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -32,14 +32,14 @@ Route::group(['middleware' =>'auth:admin'], function () {
     ->name('admin.dashboard');
 
     Route::prefix('admin')->group(function () {
-       Route::get('/manage-students', ManageStudent::class)
+       Route::get('/manage-students', ManageStudents::class)
        ->name('manage.students'); 
 
        Route::get('/manage-teachers', ManageTeacher::class)
        ->name('manage.teachers');
 
-       Route::get('/list-users', ListUser::class)
-       ->name('list.users');
+       Route::get('/manage-users', ManageAdmin::class)
+       ->name('manage.users');
     });
 });
 
@@ -54,7 +54,7 @@ Route::group(['middleware' =>'auth:guru'], function () {
 
             Route::get('/{id}', ManageKelasDetail::class)
             ->name('detail.kelas');
-            Route::get('/{id}/add-students', ManageKelasAddStudent::class)
+            Route::get('/{id}/add-students', ManageKelasAddStudents::class)
             ->name('add.students.kelas');
         });
     });

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Guru;
+namespace App\Livewire\Guru\ManageKelas;
 
 use App\Models\ClassRoom;
-use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -11,10 +10,10 @@ use Livewire\Component;
 class ManageKelas extends Component
 {
     public $ClassRooms;
-
+    
     public function render()
     {
-        return view('livewire.guru.manage-kelas');
+        return view('livewire.guru.manage-kelas.manage-kelas');
     }
 
     #[On(['kelas-created', 'kelas-updated'])]
