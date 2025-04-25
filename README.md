@@ -1,8 +1,5 @@
-## Stage this App: Admin Manage Class and Fixing Bug
-pada tahap ini, jika ada user dengan role guru terhapus, maka secara otomatis kelas tersbut akan tidak memiliki guru, nah pada fitur ini, admin dapat Assign a teacher to Class, that have not teacher
-
-ada penambahan component juga pada sidebar, yaitu menu ini+menambahakannya juga pada `routes/web.php`
-Fixing Bug on `resources/views/livewire/siswa/settings.php` with **Null safe Operator**
+## Stage this App: Sorting list of Teacher
+untuk Assing kelas dari Admin, menampilkan semua guru dan mensortir nya sesuai dengan jumlah kelas yg mereka miliki
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

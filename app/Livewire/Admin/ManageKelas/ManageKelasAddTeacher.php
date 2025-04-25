@@ -22,9 +22,13 @@ class ManageKelasAddTeacher extends Component
     public function mount($id) {
         $this->kelas = ClassRoom::find($id);
         $this->teachers = User::where('role', UserRole::guru)
-        ->whereHas('teacher', function ($q) {
-            $q->doesntHave('classRooms');
-        })->get();
+        ->whereHas('teacher')
+        ->with(['teacher' => function ($query) {
+            $query->withCount('classRooms');
+        }])
+        ->get()
+        ->sortBy(fn($user) => $user->teacher?->class_rooms_count ?? 0)
+        ->values();
     }
 
     public function showConfirm($id) {

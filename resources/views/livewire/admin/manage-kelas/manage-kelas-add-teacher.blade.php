@@ -5,7 +5,7 @@
                 <flux:icon.home variant="mini" /> Home
             </div>
         </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="admin.manage.kelas">Manage Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('admin.manage.kelas') }}">Manage Kelas</flux:breadcrumbs.item>
         <flux:breadcrumbs.item >assign Teacher to class</flux:breadcrumbs.item>
     </flux:breadcrumbs>
     <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
@@ -16,7 +16,7 @@
     <flux:separator variant="subtle" class="mb-5"/>
 
     <div class="flex justify-center mb-2">
-        <flux:heading size="xl" class="font-extrabold" level="1">Daftar Guru yg tidak memiliki Kelas</flux:heading>
+        <flux:heading size="xl" class="font-extrabold" level="1">Daftar Guru</flux:heading>
     </div>
 
     <div class="overflow-x-auto border rounded-lg shadow-2xl">
@@ -26,6 +26,7 @@
                   <th class="w-4 px-4 py-2 border ">No.</th>
                   <th class="border px-4 py-2 whitespace-pre">Nama Guru</th>
                   <th class="border px-4 py-2 whitespace-pre">NIP</th>
+                  <th class="border px-4 py-2 whitespace-pre">Kelas</th>
                   <th class="border px-4 py-2 whitespace-pre w-4">action</th>
                 </tr>
               </thead>
@@ -36,6 +37,13 @@
                             <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
                             <td class="border px-4 py-2">{{ $user->name }}</td>
                             <td class="border px-4 py-2">{{ $user->teacher->nip }}</td>
+                            <td class="border px-4 py-2">
+                                @if ($user->teacher && $user->teacher->classRooms && $user->teacher->classRooms->count())
+                                    {{ $user->teacher->classRooms->pluck('name')->implode(', ') }}
+                                @else
+                                    <em>Tidak memiliki kelas</em>
+                                @endif
+                            </td>
                             <td class="border px-4 py-2">
                                 <div class="flex gap-3 justify-evenly">
                                     <flux:tooltip content="Assign Teacher to this Class {{ $kelas->name  }}" position="bottom">
