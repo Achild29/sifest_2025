@@ -6,10 +6,8 @@ use App\Enums\StatusAbsensi;
 use App\Models\Attendance;
 use App\Models\ClassRoom;
 use App\Models\Student;
-use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
 
@@ -85,7 +83,7 @@ class AbsensiKelasManual extends Component
         try {
             $absen->jam_pulang = now()->format('H:i:s');
             $absen->status = StatusAbsensi::hadir;
-            $absen->message = "Hadir. Scanned Pulang by ". Auth::user()->name . " at ". now()->format('H:i:s') . ' Manual';
+            $absen->message = "Hadir. Absen Pulang Manual by ". Auth::user()->name . " at ". now()->format('H:i:s');
             $absen->scanned_pulang_by = Auth::user()->teacher->id;
             $absen->save();
             

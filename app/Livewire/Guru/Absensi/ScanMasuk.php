@@ -30,11 +30,14 @@ class ScanMasuk extends Component
     #[On('qr-scanned')]
     public function handleScan(array $data)
     {
-        if (!isset($data['code'])) {
-            return $this->handleScanEror($data);
+        if (isset($data['status'])) {
+            return $this->dispatch('qr-scanned-failed', $data);
         }
 
         $student = Student::where('nisn', $data['code'])->first();
+        if (!$student) return redirect()->route('guru.absensi.scan.masuk', $this->kelas->id)
+            ->error('QR-CODE tidak terdaftar dalam database');
+
         $user = User::where('username', $data['code'])->first();
         $this->siswaId = $student->id;
         $siswaKelasId =  $student->kelas_id;
@@ -83,6 +86,6 @@ class ScanMasuk extends Component
     #[On('qr-scanned-failed')]
     public function handleScanEror($error) {
         return redirect()->route('guru.absensi.scan.masuk', $this->kelas->id)
-        ->error('EROR: '. $error);
+        ->error('Status: '. $error['status']. 'eror: '.$error['error']);
     }
 }

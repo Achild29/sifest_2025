@@ -13,7 +13,7 @@
         <flux:breadcrumbs.item href="{{ route('guru.absensi') }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Scan Masuk</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Scan Masuk | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Scan Pulang | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 
 @push('html5-qrcode')
@@ -21,8 +21,9 @@
 @endpush
 
 @push('scan-qr')
-    <script src="{{ asset('js/scan-qr-masuk.js') }}"></script>
+    <script src="{{ asset('js/scan-qr-pulang.js') }}"></script>
 @endpush
+
 <div>
     <div class="md:flex">
         <div class="grid">
@@ -47,5 +48,5 @@
         <h1 class="text-2xl font-bold mb-4">Scan QR Code Absensi Masuk <span class="text-red-500">{{ $kelas->name }}</span></h1>
         <div id="reader" style="width: 450px;"></div>
     </div>
+    
 </div>
-

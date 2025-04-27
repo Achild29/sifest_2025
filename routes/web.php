@@ -13,6 +13,7 @@ use App\Livewire\Guru\Absensi\Absensi;
 use App\Livewire\Guru\Absensi\AbsensiKelas;
 use App\Livewire\Guru\Absensi\AbsensiKelasManual;
 use App\Livewire\Guru\Absensi\ScanMasuk;
+use App\Livewire\Guru\Absensi\ScanPulang;
 use App\Livewire\Guru\ManageKelas\ManageKelas;
 use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
 use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
@@ -84,6 +85,9 @@ Route::group(['middleware' =>'auth:guru'], function () {
 
         Route::get('/{id}/scan-masuk', ScanMasuk::class)
         ->name('guru.absensi.scan.masuk');
+
+        Route::get('/{id}/scan-pulang', ScanPulang::class)
+        ->name('guru.absensi.scan.pulang');
         
     });
 });
