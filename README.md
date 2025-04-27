@@ -1,5 +1,17 @@
-## Stage this App: Sorting list of Teacher
-untuk Assing kelas dari Admin, menampilkan semua guru dan mensortir nya sesuai dengan jumlah kelas yg mereka miliki
+## Stage this App: Alternatif Main Core
+Pada update ini, Guru dapat melakukan absensi Manual terhadap Siswa nya
+
+saya juga menambahkan perubahan pada `app/Providers/AppServiceProvider.php` menambahkan agar waktu sesuai dengan waktu Asia/Jakarta
+lalu pada config nya sama `config/app.php` , nah pada config tertulis env maka, di file `.env` tambahkan parameter berikut
+```env
+APP_TIMEZONE=Asia/Jakarta
+```
+saya juga merubah struktur database nya pada table Attendaces, merubah type data pada jam_masuk, yg awalnya datetime menjadi time
+setelah perubahan ini jangan lupa jalankan migrasi awal lagi:
+```bash
+sail artisan migrate:fresh --seed
+```
+
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

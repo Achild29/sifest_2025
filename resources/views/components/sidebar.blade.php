@@ -24,6 +24,7 @@
             <flux:navlist.item icon="book-open" href="{{ route('manage.kelas') }}" :current="request()->routeIs([
                 'manage.kelas', 'detail.kelas', 'add.students.kelas'
             ])">Manage Kelas</flux:navlist.item>
+            <flux:navlist.item icon="clipboard-document-list" href="{{ route('guru.absensi') }}" :current="request()->routeIs(['guru.absensi','guru.absensi.*'])">Absensi</flux:navlist.item>
                     
         @endif
         @if (Auth::user()->role->value == 'Siswa')

@@ -9,6 +9,9 @@ use App\Livewire\Admin\ManageKelas\ManageKelas as AdminManageKelas;
 use App\Livewire\Admin\ManageKelas\ManageKelasAddTeacher;
 use App\Livewire\Admin\ManageStudents\ManageStudents;
 use App\Livewire\Admin\ManageTeacher\ManageTeacher;
+use App\Livewire\Guru\Absensi\Absensi;
+use App\Livewire\Guru\Absensi\AbsensiKelas;
+use App\Livewire\Guru\Absensi\AbsensiKelasManual;
 use App\Livewire\Guru\ManageKelas\ManageKelas;
 use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
 use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
@@ -66,6 +69,18 @@ Route::group(['middleware' =>'auth:guru'], function () {
             Route::get('/{id}/add-students', ManageKelasAddStudents::class)
             ->name('add.students.kelas');
         });
+    });
+
+    Route::prefix('/absensi')->group(function () {
+        Route::get('/', Absensi::class)
+        ->name('guru.absensi');
+
+        Route::get('/{id}', AbsensiKelas::class)
+        ->name('guru.absensi.kelas');
+
+        Route::get('/{id}/add-manual', AbsensiKelasManual::class)
+        ->name('guru.absensi.kelas.manual');
+        
     });
 });
 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('class_room_id')->constrained('class_rooms')->onDelete('cascade');
             $table->date('tanggal');
-            $table->dateTime('jam_masuk')->nullable();
-            $table->dateTime('jam_pulang')->nullable();
+            $table->time('jam_masuk')->nullable();
+            $table->time('jam_pulang')->nullable();
             $table->enum('status', [
                 StatusAbsensi::alpha->value,
                 StatusAbsensi::hadir->value,
