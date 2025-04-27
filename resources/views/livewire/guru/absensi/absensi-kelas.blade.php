@@ -21,7 +21,7 @@
             <div class="mx-auto flex max-w-xs flex-col gap-y-2">
                 <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white self-center">
                     <flux:tooltip content="lakukan absensi Masuk">
-                        <a href="">
+                        <a href="{{   route('guru.absensi.scan.masuk', $kelas->id) }}">
                             <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                             bg-indigo-500 hover:bg-indigo-700

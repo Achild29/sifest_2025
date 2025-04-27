@@ -1,17 +1,47 @@
-## Stage this App: Alternatif Main Core
-Pada update ini, Guru dapat melakukan absensi Manual terhadap Siswa nya
+## Stage this App: Main Core: Scan Masuk
+Pada update ini, Guru dapat melakukan scan untuk absensi Masuk
 
-saya juga menambahkan perubahan pada `app/Providers/AppServiceProvider.php` menambahkan agar waktu sesuai dengan waktu Asia/Jakarta
-lalu pada config nya sama `config/app.php` , nah pada config tertulis env maka, di file `.env` tambahkan parameter berikut
-```env
-APP_TIMEZONE=Asia/Jakarta
-```
-saya juga merubah struktur database nya pada table Attendaces, merubah type data pada jam_masuk, yg awalnya datetime menjadi time
-setelah perubahan ini jangan lupa jalankan migrasi awal lagi:
-```bash
-sail artisan migrate:fresh --seed
-```
+untuk fitur scan nya saya menggunakan library [html5-qrcode](https://github.com/mebjas/html5-qrcode/tree/master) jangan lupa kasih bintang pada github nya hehe.
+nah untuk menggunakan library tersebut saya mengambil script js nya lalu saya simpan script js nya pada direktori`public/js` dengan nama file `html5-qrcode.min.js` adapun sctipt nya saya ambil dari [githubnya](https://github.com/mebjas/html5-qrcode/blob/master/minified/html5-qrcode.min.js)
 
+nah pada view `resources/views/livewire/guru/absensi/scan-masuk.blade.php` saya menambahk code untuk script scanner code nya
+```php
+@push('html5-qrcode') //untuk menggunakan library html5-qrcode
+    <script src="{{ asset('js/html5-qrcode.min.js') }}"></script>
+@endpush
+
+@push('scan-qr') //untuk memanggil script scanner
+    <script src="{{ asset('js/scan-qr-masuk.js') }}"></script>
+@endpush
+```
+nah pada layouts juga harus ditambahkan `resources/views/components/layouts/app/blade.php`
+```php
+@stack('html5-qrcode') //didalam header
+@stack('scan-qr') //didalam body
+```
+methode diatas saya menggunakan stack-push fitur bawaan blade laravel
+selanjutanya saya juga menambahkan file `scan-qr-masuk.js` pada direktori `public/js` agar rapih, jadi saya pisahkan untuk js berada di direktori tersbut sedangkan php berada pada blade php
+
+pada src `scan-qr-masuk.js`:
+```js
+function onScanSuccess(decodedText, decodedResult) {
+    var variabelData = { data: {   //ini data yg akan dikirimkan
+        code: decodedResult.decodedText
+    }};
+    Livewire.dispatch('qr-scanned', variabelData); //ini akan menjalakan fungsi yg terdapat pada component livewire
+    html5QRCodeScanner.clear();
+}
+```
+akan terhubung/menjalakan pada fungsi yg terdapat pada `app/Livewire/Guru/Absensi/ScanMasuk.php`
+```php
+#[On('qr-scanned')]
+public function handleScan(array $data)
+{
+    ...
+}
+```
+nah pada fungsi handleScan membutuhkan parameter data berupa array yg telah dikirimkan dari file js tersebut
+selanjutnya akan membuat record attendaces
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

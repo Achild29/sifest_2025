@@ -9,6 +9,7 @@
         <title>{{ $title ?? 'Aplikasi Absensi' }}</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])        
         @fluxAppearance
+        @stack('html5-qrcode')
         </head>
         <body class="min-h-screen bg-white dark:bg-zinc-700">
             <x-sidebar></x-sidebar>
@@ -22,5 +23,6 @@
             </flux:main>
             
             @fluxScripts
+            @stack('scan-qr')
         </body>
 </html>

@@ -16,7 +16,7 @@ use Masmerise\Toaster\Toaster;
 class AbsensiKelasManual extends Component
 {
     public $kelas, $murid;
-    protected $status, $message, $absenId;
+    protected $status, $message, $absenId, $scannedBy;
     public $siswa;
 
     public function render()
@@ -39,7 +39,8 @@ class AbsensiKelasManual extends Component
     public function absenMasuk($id) {
         $this->siswa = Student::find($id);
         $this->status = StatusAbsensi::others->value;
-        $this->message = 'Scanned Masuk by. '. Auth::user()->name .' at '. now()->format('H:i:s');
+        $this->message = 'Absen Manual Masuk by. '. Auth::user()->name .' at '. now()->format('H:i:s');
+        $this->scannedBy = Auth::user()->teacher->id;
         $this->store();
     }
     
@@ -66,7 +67,7 @@ class AbsensiKelasManual extends Component
                 'jam_masuk' => now()->format('H:i:s'),
                 'status' => $this->status,
                 'message' => $this->message,
-                'scanned_masuk_by' => Auth::user()->teacher->id
+                'scanned_masuk_by' => $this->scannedBy
             ]);
     
             DB::commit();
@@ -84,7 +85,7 @@ class AbsensiKelasManual extends Component
         try {
             $absen->jam_pulang = now()->format('H:i:s');
             $absen->status = StatusAbsensi::hadir;
-            $absen->message = "Hadir. Scanned Pulang by ". Auth::user()->name;
+            $absen->message = "Hadir. Scanned Pulang by ". Auth::user()->name . " at ". now()->format('H:i:s') . ' Manual';
             $absen->scanned_pulang_by = Auth::user()->teacher->id;
             $absen->save();
             
