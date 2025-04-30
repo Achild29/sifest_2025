@@ -1,12 +1,13 @@
-## Stage this App: Main Core: Scan Pulang
-Pada update ini, Guru dapat melakukan scan untuk absensi Pulang
+## Stage this App: Main Core: Laporan Absensi Bulanan
+Pada update ini, Guru dapat melihat laporan absensi setiap bulan nya pada masing-masing kelas
 
-Hampir sama seperti Scan Masuk...
+disini juga saya merubah file `routes/web.php`, saya pisahkan untuk bagian guru, ke file baru `routers/web.php`
+run this command to make a new file
+```bash
+touch routes/guru.php
+```
 
-yang membedakan nya hanya update pada jam_pulang
-cek logic nya pada `app/Livewire/Guru/Absensi/ScanPulang.php`
-
-lalu saya juga menambahkan pengecekan jika QR-Code lain yg tidak terdaftar dalam aplikasi ini maka akan menampilkan pesan EROR
+saya pindahkan semua route yg berubungan dengan model teachers/guru
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

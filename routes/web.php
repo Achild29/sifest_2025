@@ -3,20 +3,11 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
-use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Livewire\Admin\ManageAdmin\ManageAdmin;
 use App\Livewire\Admin\ManageKelas\ManageKelas as AdminManageKelas;
 use App\Livewire\Admin\ManageKelas\ManageKelasAddTeacher;
 use App\Livewire\Admin\ManageStudents\ManageStudents;
 use App\Livewire\Admin\ManageTeacher\ManageTeacher;
-use App\Livewire\Guru\Absensi\Absensi;
-use App\Livewire\Guru\Absensi\AbsensiKelas;
-use App\Livewire\Guru\Absensi\AbsensiKelasManual;
-use App\Livewire\Guru\Absensi\ScanMasuk;
-use App\Livewire\Guru\Absensi\ScanPulang;
-use App\Livewire\Guru\ManageKelas\ManageKelas;
-use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
-use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
 use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -56,41 +47,8 @@ Route::group(['middleware' =>'auth:admin'], function () {
     });
 });
 
-Route::group(['middleware' =>'auth:guru'], function () {
-    Route::get('/guru', [TeacherDashboardController::class, 'index'])
-    ->name('guru.dashboard');
-
-    Route::prefix('/guru')->group(function () {
-        Route::prefix('/kelas')->group(function () { 
-            Route::get('/', ManageKelas::class)
-            ->name('manage.kelas');
-
-            Route::get('/{id}', ManageKelasDetail::class)
-            ->name('detail.kelas');
-
-            Route::get('/{id}/add-students', ManageKelasAddStudents::class)
-            ->name('add.students.kelas');
-        });
-    });
-
-    Route::prefix('/absensi')->group(function () {
-        Route::get('/', Absensi::class)
-        ->name('guru.absensi');
-
-        Route::get('/{id}', AbsensiKelas::class)
-        ->name('guru.absensi.kelas');
-
-        Route::get('/{id}/add-manual', AbsensiKelasManual::class)
-        ->name('guru.absensi.kelas.manual');
-
-        Route::get('/{id}/scan-masuk', ScanMasuk::class)
-        ->name('guru.absensi.scan.masuk');
-
-        Route::get('/{id}/scan-pulang', ScanPulang::class)
-        ->name('guru.absensi.scan.pulang');
-        
-    });
-});
+//Guru
+require __DIR__.'/guru.php';
 
 Route::group(['middleware' =>'auth:siswa'], function () {
     Route::get('/siswa', [StudentDashboardController::class, 'index'])
