@@ -31,6 +31,14 @@ class Report extends Component
     }
 
     public function reportStudent() {
-        dd($this->selectedStudent);
+        $this->validate([
+            'selectedClass' => 'required',
+            'selectedStudent' => 'required'
+        ],[
+            'selectedClass.required' => 'Harap pilih kelas',
+            'selectedStudent.required' => 'Harap pilih siswa'
+        ]);
+
+        return redirect()->route('guru.laporan.siswa', $this->selectedStudent);
     }
 }

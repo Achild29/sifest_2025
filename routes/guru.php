@@ -11,6 +11,7 @@ use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
 use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
 use App\Livewire\Guru\Report\Report;
 use App\Livewire\Guru\Report\ReportKelas;
+use App\Livewire\Guru\Report\ReportSiswa;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' =>'auth:guru'], function () {
@@ -55,6 +56,9 @@ Route::group(['middleware' =>'auth:guru'], function () {
         
         Route::get('/kelas-{id}', ReportKelas::class)
         ->name('guru.laporan.kelas');
+
+        Route::get('/siswa-{id}', ReportSiswa::class)
+        ->name('guru.laporan.siswa');
     });
     
 });

@@ -1,13 +1,5 @@
-## Stage this App: Main Core: Laporan Absensi Bulanan
-Pada update ini, Guru dapat melihat laporan absensi setiap bulan nya pada masing-masing kelas
-
-disini juga saya merubah file `routes/web.php`, saya pisahkan untuk bagian guru, ke file baru `routers/web.php`
-run this command to make a new file
-```bash
-touch routes/guru.php
-```
-
-saya pindahkan semua route yg berubungan dengan model teachers/guru
+## Stage this App: Main Core: Laporan Absensi Bulanan per Siswa
+Pada update ini, Guru dapat melihat laporan absensi setiap bulan nya pada masing-masing Siswa
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
