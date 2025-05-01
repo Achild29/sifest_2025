@@ -18,4 +18,7 @@ use App\Enums\UserRole;
     @if (Auth::user()->role->value == UserRole::admin->value)
         @livewire('admin.dashboard')
     @endif
+    @if (Auth::user()->role->value == UserRole::siswa->value)
+        @livewire('siswa.dashboard')
+    @endif
 </div>

@@ -1,5 +1,6 @@
-## Stage this App: Main Core: Laporan Absensi Bulanan per Siswa
-Pada update ini, Guru dapat melihat laporan absensi setiap bulan nya pada masing-masing Siswa
+## Stage this App: Dashboard Siswa
+pada Dashboard
+User dengan Role Siswa dapat melihat data kehadirannya perbulan, ini diperuntukan untuk memonitoring siswa tersebut oleh orang tua nya
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
