@@ -1,6 +1,7 @@
-## Stage this App: Dashboard Siswa
-pada Dashboard
-User dengan Role Siswa dapat melihat data kehadirannya perbulan, ini diperuntukan untuk memonitoring siswa tersebut oleh orang tua nya
+## Stage this App: Dashboard Guru + Modify Routes
+Implementasi Dashboard Guru dan merubah struktur pada folder `routes/`
+
+Memisahkan file sesuai dengan User Role nya
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
