@@ -36,12 +36,20 @@
                             <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{{ $kelas->students->count() }}</dd>
                             <dt class="text-base/7 text-gray-600 dark:text-white">Jumlah Siswa</dt>
                         </div> 
-                        <div class="mx-auto flex max-w-xs flex-col gap-y-2 sm:mt-2">
-                            <a href="">
-                                <dt class="text-base/7 text-gray-600 dark:text-white">export to pdf</dt>
-                                <dt class="text-base/7 text-gray-600 dark:text-white">Laporan Bulan: {{ $bulan }}</dt>
-                            </a>
-                        </div>                        
+                        <flux:tooltip content="Download laporan Bulanan untuk '{{ $kelas->name }}'">
+                            <button class="mx-auto flex max-w-xs flex-col gap-y-2 cursor-pointer 
+                            border w-fit rounded-2xl py-[6px] px-3.5 transition-all duration-200
+                            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                            bg-indigo-500 hover:bg-indigo-700
+                            dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                            wire:click="sendData('download-pdf-landscape')">
+                                <dt class="text-base/7 font-bold text-white flex gap-2 self-center">
+                                    <flux:icon.pdf />
+                                    export to pdf
+                                </dt>
+                                <dt class="text-base/7 font-bold text-white">Laporan Bulanan Kelas: <span class="text-red-500">{{ $kelas->name }}</span></dt>
+                            </button>
+                        </flux:tooltip>                        
                     </dl>
                 </div>
             </div>

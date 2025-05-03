@@ -36,20 +36,28 @@
                 <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">Others</flux:text>
                 <flux:text class="font-semibold flex gap-2 text-lg lg:text-xl justify-center">{{ $jumlahKehadiran['o'] }}</flux:text>
             </div>
-            <a href="" target="_blank">
-                <div class="lg:hidden w-full h-24 border rounded-xl mb-2 py-5 lg:py-3
+            <button wire:click="sendData('view-pdf')" class="lg:hidden w-full h-24 border rounded-xl mb-2 py-5 lg:py-3
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                bg-indigo-500 hover:bg-indigo-700
+                bg-indigo-500 hover:bg-indigo-700 cursor-pointer
                 dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400">
-                    <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">Lihat Table Kehadiran</flux:text>
-                    <flux:text class="font-semibold flex gap-2 text-lg lg:text-xl justify-center">
-                        <flux:icon.document-arrow-down />
-                    </flux:text>
-                </div>
-            </a>
+                <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">Lihat Table Kehadiran / View PDF</flux:text>
+                <flux:text class="font-semibold flex gap-2 text-lg lg:text-xl justify-center">
+                    <flux:icon.pdf />
+                </flux:text>
+            </button>
         </div>
     </div>
-    <div class="lg:hidden mt-[550px]">
+    <div class="hidden justify-end mb-2  mt-[550px] lg:flex lg:mt-0">
+        <flux:tooltip content="add user admin" position="bottom">
+            <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded cursor-pointer transition-all duration-200
+            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600
+            bg-emerald-500 hover:bg-emerald-700 shadow-xl"
+            wire:click="sendData('download-pdf')"
+            >
+                <flux:icon.pdf />
+                download PDF
+            </button>
+        </flux:tooltip>
     </div>
     <div class="hidden lg:flex overflow-x-auto border mt-5 rounded-lg shadow-2xl">
         <table class="min-w-full table-auto border">
@@ -84,3 +92,6 @@
         </table>
     </div>
 </div>
+@push('sendData')
+    <script src="{{ asset('js/sendData.js') }}"></script>
+@endpush

@@ -3,11 +3,6 @@
     use App\Enums\StatusAbsensi;
 
     $Bulan = Carbon::createFromFormat('Y-m', $this->bulan)->format('M-Y');
-    $h = 0;
-    $izin = 0;
-    $s = 0;
-    $a = 0;
-    $o = 0;
 @endphp
 @section('header-message')
     <flux:breadcrumbs>
@@ -40,13 +35,21 @@
                         <div class="mx-auto flex max-w-xs flex-col gap-y-2">
                             <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{{ $student->user->name }}</dd>
                             <dt class="text-base/7 text-gray-600 dark:text-white">{{ $student->nisn }} @ {{ $student->classRoom->name }}</dt>
-                        </div> 
-                        <div class="mx-auto flex max-w-xs flex-col gap-y-2 sm:mt-2">
-                            <a href="">
-                                <dt class="text-base/7 text-gray-600 dark:text-white">export to pdf</dt>
-                                <dt class="text-base/7 text-gray-600 dark:text-white">Laporan Siswa: {{ $student->user->name }}</dt>
-                            </a>
-                        </div>                        
+                        </div>
+                        <flux:tooltip content="Download laporan untuk '{{ $student->user->name }}'">
+                            <button class="mx-auto flex max-w-xs flex-col gap-y-2 cursor-pointer 
+                            border w-fit rounded-2xl py-[6px] px-3.5 transition-all duration-200
+                            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                            bg-indigo-500 hover:bg-indigo-700
+                            dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400
+                            " wire:click="sendData('download-pdf')">
+                                <dt class="text-base/7 font-bold text-white flex gap-2 self-center">
+                                    <flux:icon.pdf />
+                                    export to pdf
+                                </dt>
+                                <dt class="text-base/7 font-bold text-white">Laporan Siswa: <span class="text-red-500">{{ $student->user->name }}</span></dt>
+                            </button>
+                        </flux:tooltip> 
                     </dl>
                 </div>
             </div>
@@ -78,31 +81,6 @@
                             @if ($absensi && $absensi->isNotEmpty())
                                 @foreach ($absensi as $item)
                                     @if ($item->tanggal === $bulan.'-'.sprintf('%02d', $i))
-                                        @if ($item->status === StatusAbsensi::hadir->value )
-                                            @php
-                                                $h++;
-                                            @endphp
-                                        @endif
-                                        @if ($item->status === StatusAbsensi::izin->value )
-                                            @php
-                                                $izin++;
-                                            @endphp
-                                        @endif
-                                        @if ($item->status === StatusAbsensi::alpha->value )
-                                            @php
-                                                $a++;
-                                            @endphp
-                                        @endif
-                                        @if ($item->status === StatusAbsensi::sakit->value )
-                                            @php
-                                                $s++;
-                                            @endphp
-                                        @endif
-                                        @if ($item->status === StatusAbsensi::others->value )
-                                            @php
-                                                $o++;
-                                            @endphp
-                                        @endif
                                         <td class="border px-4 py-2 text-center">
                                             {{ Str::substr(Str::upper($item->status), 0, 1) }}
                                         </td>
@@ -117,23 +95,23 @@
                     <tr>
                         <td rowspan="5" colspan="2" class="border px-4 py-2 text-center text-2xl" >Jumlah Kehadiran</td>
                         <td class="border px-4 py-2 bg-green-200 dark:bg-green-800">Hadir</td>
-                        <td class="border px-4 py-2 text-center bg-green-200 dark:bg-green-800">{{ $h }}</td>
+                        <td class="border px-4 py-2 text-center bg-green-200 dark:bg-green-800">{{ $jumlahKehadiran['h'] }}</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2 bg-cyan-200 dark:bg-cyan-800">Izin</td>
-                        <td class="border px-4 py-2 bg-cyan-200 text-center dark:bg-cyan-800">{{ $izin }}</td>
+                        <td class="border px-4 py-2 bg-cyan-200 text-center dark:bg-cyan-800">{{ $jumlahKehadiran['i'] }}</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2 bg-amber-200 dark:bg-amber-600">Sakit</td>
-                        <td class="border px-4 py-2 bg-amber-200 text-center dark:bg-amber-600">{{ $s }}</td>
+                        <td class="border px-4 py-2 bg-amber-200 text-center dark:bg-amber-600">{{ $jumlahKehadiran['s'] }}</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2 bg-red-200 dark:bg-red-800">Alpha</td>
-                        <td class="border px-4 py-2 bg-red-200 text-center dark:bg-red-800">{{ $a }}</td>
+                        <td class="border px-4 py-2 bg-red-200 text-center dark:bg-red-800">{{ $jumlahKehadiran['a'] }}</td>
                     </tr>
                     <tr>
                         <td class="border px-4 py-2 ">Others</td>
-                        <td class="border px-4 py-2 text-center">{{ $o }}</td>
+                        <td class="border px-4 py-2 text-center">{{ $jumlahKehadiran['o'] }}</td>
                     </tr>
                 </tbody> 
         </table>

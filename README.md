@@ -1,7 +1,15 @@
-## Stage this App: Dashboard Guru + Modify Routes
-Implementasi Dashboard Guru dan merubah struktur pada folder `routes/`
+## Stage this App: Export PDF with library mpdf
+Implementasi Export PDF menggunakan library dari [`mpdf`](https://mpdf.github.io/)
+untuk menginstall nya ketikan perintah berikut:
+```bash
+composer require mpdf/mpdf
+```
+template pdf nya terdapat pada `resources/views/pdf` terdapat 2 template untuk portait dan landscape
+ada pun logic untuk convert nya terdapat pada `app/Https/Controllers/pdf/PdfLayout.php`
 
-Memisahkan file sesuai dengan User Role nya
+atur juga pada `routes/` nya
+
+dan menambahkan tombol untuk mengirimkan data yg akan di cetak menjadi pdf
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
