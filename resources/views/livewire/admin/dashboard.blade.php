@@ -4,6 +4,16 @@ use Faker\Factory as Faker;
 
 $faker = Faker::create('id_ID');
 ?>
+@section('header-message')
+    <flux:breadcrumbs>
+        <flux:breadcrumbs.item >
+            <div class="flex gap-2">
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
+            </div>
+        </flux:breadcrumbs.item>
+    </flux:breadcrumbs>
+@endsection
 <div class="mt-5">
     <div class="bg-zinc-200 dark:bg-zinc-800 py-24 sm:py-32 rounded-2xl shadow-2xl">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -15,9 +25,7 @@ $faker = Faker::create('id_ID');
                 <div class="self-center">
                     <flux:tooltip content="add user admin" position="bottom">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        focus-visible:outline-2 focus-visible:outline-offset-2 bg-amber-600 hover:bg-amber-500 focus-visible:outline-amber-400"
                         wire:click="manageUsers"
                         >
                             <flux:icon.users/>
@@ -34,9 +42,7 @@ $faker = Faker::create('id_ID');
                 <div class="self-center">
                     <flux:tooltip content="goto Manage Teacher">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        focus-visible:outline-2 focus-visible:outline-offset-2 bg-amber-600 hover:bg-amber-500 focus-visible:outline-amber-400"
                         wire:click="manageStudents"
                         >
                         <flux:icon.user-group/>
@@ -53,9 +59,8 @@ $faker = Faker::create('id_ID');
                 <div class="self-center">
                     <flux:tooltip content="goto Manage Teacher">
                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                        bg-indigo-500 hover:bg-indigo-700
-                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                        focus-visible:outline-2 focus-visible:outline-offset-2
+                        bg-amber-600 hover:bg-amber-500 focus-visible:outline-amber-400"
                         wire:click="manageTeachers"
                         >
                         <flux:icon.user-group/>

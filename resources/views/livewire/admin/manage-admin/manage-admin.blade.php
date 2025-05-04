@@ -8,12 +8,13 @@ $faker = Faker::create('id_ID');
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     
@@ -63,9 +64,8 @@ $faker = Faker::create('id_ID');
                                 <div class="flex gap-3 justify-evenly">
                                     <flux:tooltip content="reset password {{ $user->name }}'s account">
                                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                                        bg-indigo-500 hover:bg-indigo-700
-                                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                                        focus-visible:outline-2 focus-visible:outline-offset-2
+                                        bg-amber-600 hover:bg-amber-500 focus-visible:outline-amber-400"
                                         wire:click="showReset({{ $user->id }})"
                                         >
                                             <flux:icon.arrow-path/>
@@ -154,10 +154,25 @@ $faker = Faker::create('id_ID');
                 <flux:heading size="lg">Add user</flux:heading>
                 <flux:text class="mt-2">menambahakan user dengan role admin.</flux:text>
             </div>
-
-            <flux:input wire:model="nama" label="Name" placeholder="{{ $faker->name() }}" badge="Required" />
-            <flux:input wire:model="username" label="username" placeholder="{{ $faker->userName }}" badge="Required"/>
-            <flux:input wire:model="email" label="Email" type="email" placeholder="{{ $faker->unique()->safeEmail }}" badge="Required"/>
+                
+            <flux:field>
+                <flux:label class="gap-0.5">Full Name<span class="text-red-500">*</span></flux:label>
+                <flux:badge size="sm">required</flux:badge>
+                <flux:input wire:model="nama" placeholder="{{ $faker->name() }}"/>
+                <flux:error name="nama" />
+            </flux:field>
+            <flux:field>
+                <flux:label class="gap-0.5">Username<span class="text-red-500">*</span></flux:label>
+                <flux:badge size="sm">required</flux:badge>
+                <flux:input wire:model="username" placeholder="{{ $faker->userName() }}"/>
+                <flux:error name="username" />
+            </flux:field>
+            <flux:field>
+                <flux:label class="gap-0.5">Email<span class="text-red-500">*</span></flux:label>
+                <flux:badge size="sm">required</flux:badge>
+                <flux:input wire:model="email" placeholder="{{ $faker->unique()->safeEmail }}"/>
+                <flux:error name="email" />
+            </flux:field>
 
             <flux:input readonly variant="filled" value="password" copyable label="Password"
             description="Default password is 'password'" icon="key"/>

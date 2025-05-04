@@ -1,11 +1,17 @@
+@php
+    $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
+    if (!is_null(Auth::user()->profil_path)) {
+        $profil_path = 'storage/assets/'.Auth::user()->profil_path;
+    }
+@endphp
 <flux:header class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
     <flux:navbar class="w-full">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-            @yield('header-message', 'Selamat Datang, ' . (Auth::user()->name ?? 'User'))
+            @yield('header-message')
         <flux:spacer />
 
         <flux:dropdown position="top" align="start">
-            <flux:profile avatar="{{ asset('storage/assets/avatar.png') }}" name="{{ Auth::user()->name ?? 'User' }}" class="bg-zinc-200 dark:bg-zinc-800"/>
+            <flux:profile avatar="{{ asset($profil_path) }}" name="{{ explode(' ', Auth::user()->name)[0] }}" class="bg-zinc-200 dark:bg-zinc-800"/>
             <flux:menu>
                 <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
                     <flux:radio value="light" icon="sun" />

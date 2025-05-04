@@ -8,7 +8,7 @@ use App\Enums\UserRole;
     <x-slot:title>Dashboard {{  Auth::user()->role->name ?? "| Aplikasi Absensi" }} </x-slot:title>
     
     <div class="flex gap-2">
-        <flux:heading size="xl" level="1">Wellcome back, {{ Auth::user()->name ?? 'User' }} </flux:heading>
+        <flux:heading size="xl" level="1">Selamat Datang, {{ Auth::user()->name ?? 'User' }} </flux:heading>
         <flux:heading size="xl" level="1" class="hidden dark:flex">👋🏻</flux:heading>
         <flux:heading size="xl" level="1" class="dark:hidden">👋</flux:heading>
     </div>

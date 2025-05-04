@@ -2,13 +2,17 @@
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">
+                    Home
+                </span>
             </div>
         </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="{{ route('admin.manage.kelas') }}">Manage Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('admin.manage.kelas') }}" class="hidden lg:flex">Manage Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('admin.manage.kelas') }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item >assign Teacher to class</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     <flux:heading size="xl" class="font-extrabold" level="1">Assign Teacher to this Class: {{ $kelas->name }}</flux:heading>

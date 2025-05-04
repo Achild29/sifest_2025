@@ -2,12 +2,13 @@
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden md:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item >Manage Students</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Manage Students | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Manage Students | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     
@@ -30,7 +31,7 @@
     </flux:modal.trigger>
     <livewire:admin.manage-students.manage-students-modal />
 
-    <div class="overflow-x-auto border rounded-lg shadow-2xl">
+    <div class="overflow-x-scroll border rounded-lg shadow-2xl">
         <table class="min-w-full table-auto border">
             <thead class="bg-zinc-100 dark:bg-zinc-800">
                 <tr class="text-lg">

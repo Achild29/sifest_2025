@@ -1,15 +1,18 @@
-## Stage this App: Export PDF with library mpdf
-Implementasi Export PDF menggunakan library dari [`mpdf`](https://mpdf.github.io/)
-untuk menginstall nya ketikan perintah berikut:
+## Stage this App: Optimize UI for user Admin and migrtation
+Mengoptimalkan Tampilan untuk User Admin, responsive pada mobile device
+
+Merubah Struktur Database:
+
+Menambahkan field baru pada table user
 ```bash
-composer require mpdf/mpdf
+php artisan make:migration ...
 ```
-template pdf nya terdapat pada `resources/views/pdf` terdapat 2 template untuk portait dan landscape
-ada pun logic untuk convert nya terdapat pada `app/Https/Controllers/pdf/PdfLayout.php`
+check pada folder `database/migration/` dan juga menambahkan properti fillable pada model user `app/Models/User.php`
 
-atur juga pada `routes/` nya
-
-dan menambahkan tombol untuk mengirimkan data yg akan di cetak menjadi pdf
+run this command:
+```bash
+php artisan migrate
+```
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
