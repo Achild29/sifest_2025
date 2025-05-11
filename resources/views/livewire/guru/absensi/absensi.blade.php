@@ -2,12 +2,13 @@
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('guru.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item>Absensi</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Absensi | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Absensi | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 <div>

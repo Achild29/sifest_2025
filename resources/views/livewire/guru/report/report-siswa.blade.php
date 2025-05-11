@@ -11,8 +11,12 @@
                 <flux:icon.home variant="mini" /><span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}">Laporan Absensi</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item>Laporan Absensi Siswa</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}" class="hidden sm:flex">Laporan Absensi</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}" icon="ellipsis-horizontal" class="sm:hidden" />
+        <flux:breadcrumbs.item>
+            <span class="hidden sm:flex">Laporan Absensi</span>    
+            Siswa
+        </flux:breadcrumbs.item>
     </flux:breadcrumbs>
     <x-slot:title>Aplikasi Absensi | Laporan Absensi Siswa | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
@@ -25,19 +29,19 @@
     <flux:separator variant="subtle" class="mb-5"/>
 
     <div class="sm:grid xl:grid-cols-3 gap-4 px-5 py-5 mb-16 sm:mb-5">
-        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl shadow-2xl p-2">
+        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl shadow lg:shadow-md p-2">
             <flux:input type="month" label="Bulan" wire:model.live="bulan" />
         </div>
-        <div class="w-full h-24 col-span-2 mb-16 mt-2 sm:mt-0 sm:mb-0">
-            <div class="py-5 sm:py-4 bg-zinc-50 dark:bg-zinc-800 rounded-2xl shadow-2xl">
+        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl shadow lg:shadow-md col-span-2 mb-16 mt-2 sm:mt-0 sm:mb-0">
+            <div class="py-5 sm:py-4 ">
                 <div class="mx-auto max-w-7xl lg:px-5">
-                    <dl class="grid grid-cols-1 gap-x-5 gap-y-5 text-center lg:grid-cols-2">
+                    <dl class="grid gap-x-5 gap-y-3 text-center lg:grid-cols-2">
                         <div class="mx-auto flex max-w-xs flex-col gap-y-2">
                             <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{{ $student->user->name }}</dd>
                             <dt class="text-base/7 text-gray-600 dark:text-white">{{ $student->nisn }} @ {{ $student->classRoom->name }}</dt>
                         </div>
                         <flux:tooltip content="Download laporan untuk '{{ $student->user->name }}'">
-                            <button class="mx-auto flex max-w-xs flex-col gap-y-2 cursor-pointer 
+                            <button class="mx-auto flex max-w-xs flex-col cursor-pointer 
                             border w-fit rounded-2xl py-[6px] px-3.5 transition-all duration-200
                             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                             bg-indigo-500 hover:bg-indigo-700
@@ -47,7 +51,7 @@
                                     <flux:icon.pdf />
                                     export to pdf
                                 </dt>
-                                <dt class="text-base/7 font-bold text-white">Laporan Siswa: <span class="text-red-500">{{ $student->user->name }}</span></dt>
+                                <dt class="text-base/7 font-bold text-white">Laporan Siswa: <span class="text-amber-500 dark:text-indigo-500">{{ $student->user->name }}</span></dt>
                             </button>
                         </flux:tooltip> 
                     </dl>

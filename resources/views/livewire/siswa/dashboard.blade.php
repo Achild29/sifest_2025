@@ -5,7 +5,16 @@
 
     $Bulan = Carbon::createFromFormat('Y-m', $bulan)->format('M-Y');
 @endphp
-
+@section('header-message')
+    <flux:breadcrumbs>
+        <flux:breadcrumbs.item >
+            <div class="flex gap-2">
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
+            </div>
+        </flux:breadcrumbs.item>
+    </flux:breadcrumbs>
+@endsection
 <div>
     <div class="grid grid-cols-3 xl:grid-cols-3 gap-4 px-4 py-4">
         <div class="w-full h-24 rounded-xl col-span-2">

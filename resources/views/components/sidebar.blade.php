@@ -1,3 +1,9 @@
+@php
+    $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
+    if (!is_null(Auth::user()->profil_path)) {
+        $profil_path = 'storage/assets/'.Auth::user()->profil_path;
+    }
+@endphp
 <flux:sidebar sticky stashable class="bg-zinc-50 dark:bg-zinc-900 border-r rtl:border-r-0 rtl:border-l border-zinc-200 dark:border-zinc-700">
     <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
@@ -35,8 +41,16 @@
         @endif
     </flux:navlist>
     <flux:spacer />
-    <flux:separator />
+    <flux:separator class="lg:hidden" />
     <flux:navlist variant="outline" class="mb-5">
-        <flux:navlist.item icon="cog-6-tooth" href="{{ route('settings') }}">Settings</flux:navlist.item>
+        <flux:navlist.group expandable heading="{{ Auth::user()->name }}" class="grid lg:hidden">
+            <flux:navlist.item icon="cog-6-tooth" href="{{ route('settings') }}">Settings</flux:navlist.item>
+            <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">
+                <flux:radio value="light" icon="sun" />
+                <flux:radio value="dark" icon="moon" />
+                <flux:radio value="system" icon="computer-desktop" />
+            </flux:radio.group>
+            <flux:navlist.item icon="arrow-right-start-on-rectangle" href="{{ route('logout') }}">Logout</flux:navlist.item>
+        </flux:navlist.group>
     </flux:navlist>
 </flux:sidebar>

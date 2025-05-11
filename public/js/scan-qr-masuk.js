@@ -2,8 +2,8 @@ let html5QRCodeScanner = new Html5QrcodeScanner(
     "reader", {
         fps: 10,
         qrbox: {
-            width: 300,
-            height: 300,
+            width: 200,
+            height: 200,
         },
     }
 );

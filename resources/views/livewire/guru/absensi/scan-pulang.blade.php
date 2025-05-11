@@ -10,10 +10,10 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item href="{{ route('guru.absensi') }}" class="hidden sm:flex">Absensi</flux:breadcrumbs.item>
         <flux:breadcrumbs.item href="{{ route('guru.absensi.kelas', $kelas->id) }}" class="hidden sm:flex">Kelas {{ $kelas->name }}</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="{{ route('guru.absensi') }}" icon="ellipsis-horizontal" class="sm:hidden" />
+        <flux:breadcrumbs.item href="{{ route('guru.absensi.kelas', $kelas->id) }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Scan Masuk</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Scan Pulang | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Scan Pulang | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 @push('html5-qrcode')
@@ -46,7 +46,7 @@
 
     <div class="grid justify-center">
         <h1 class="text-2xl font-bold mb-4">Scan QR Code Absensi Masuk <span class="text-red-500">{{ $kelas->name }}</span></h1>
-        <div id="reader" style="width: 450px;"></div>
+        <div id="reader" style="width: 300px;"></div>
     </div>
     
 </div>

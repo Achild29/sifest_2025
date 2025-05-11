@@ -10,7 +10,7 @@
         <flux:breadcrumbs.item href="{{ route('detail.kelas', $kelas->id) }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Assign Students to Class</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Add Students | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Add Students | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 <div>

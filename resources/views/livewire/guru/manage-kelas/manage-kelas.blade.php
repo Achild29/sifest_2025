@@ -2,7 +2,8 @@
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('guru.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item>Manage Kelas</flux:breadcrumbs.item>

@@ -6,11 +6,16 @@
     <flux:breadcrumbs>
         <flux:breadcrumbs.item href="{{ route('guru.dashboard') }}">
             <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> Home
+                <flux:icon.home variant="mini" /> 
+                <span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}">Laporan Absensi</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item>Laporan Absensi Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}" class="hidden sm:flex">Laporan Absensi</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('guru.laporan') }}" icon="ellipsis-horizontal" class="sm:hidden" />
+        <flux:breadcrumbs.item>
+            <span class="hidden sm:flex">Laporan Absensi</span>
+            Kelas
+        </flux:breadcrumbs.item>
     </flux:breadcrumbs>
     <x-slot:title>Aplikasi Absensi | Laporan Absensi Kelas | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
@@ -25,20 +30,20 @@
     
     <flux:separator variant="subtle" class="mb-5"/>
     <div class="sm:grid xl:grid-cols-3 gap-4 px-5 py-5 mb-16 sm:mb-5">
-        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl shadow-2xl p-2">
+        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl lg:shadow-md shadow p-2">
             <flux:input type="month" label="Bulan" wire:model.live="bulan" />
         </div>
-        <div class="w-full h-24 col-span-2 mb-16 mt-2 sm:mt-0 sm:mb-0">
-            <div class="py-5 sm:py-4 bg-zinc-50 dark:bg-zinc-800 rounded-2xl shadow-2xl">
+        <div class="w-full h-24 bg-zinc-100 dark:bg-zinc-800 rounded-2xl lg:shadow-md shadow col-span-2 mb-16 mt-2 sm:mt-0 sm:mb-0">
+            <div class="py-5 sm:py-4 ">
                 <div class="mx-auto max-w-7xl lg:px-5">
-                    <dl class="grid grid-cols-1 gap-x-5 gap-y-5 text-center lg:grid-cols-2">
+                    <dl class="grid gap-x-5 gap-y-3 text-center lg:grid-cols-2">
                         <div class="mx-auto flex max-w-xs flex-col gap-y-2">
                             <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{{ $kelas->students->count() }}</dd>
                             <dt class="text-base/7 text-gray-600 dark:text-white">Jumlah Siswa</dt>
                         </div> 
                         <flux:tooltip content="Download laporan Bulanan untuk '{{ $kelas->name }}'">
-                            <button class="mx-auto flex max-w-xs flex-col gap-y-2 cursor-pointer 
-                            border w-fit rounded-2xl py-[6px] px-3.5 transition-all duration-200
+                            <button class="mx-auto flex max-w-xs flex-col cursor-pointer shadow
+                            w-fit rounded-2xl py-[6px] px-3.5 transition-all duration-200
                             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                             bg-indigo-500 hover:bg-indigo-700
                             dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"

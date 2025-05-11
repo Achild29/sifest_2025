@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="https://my.unpam.ac.id/icons/logo.png">
 
         <!-- Styles / Scripts -->
+        <link rel="stylesheet" href="{{ asset('build/assets/app-BAxmsT8G.css') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @fluxAppearance
     </head>
@@ -65,5 +66,6 @@
           </div>
           <x-toaster-hub />
           @fluxScripts
+          <script src="{{ asset('build/assets/app-DTQu3JlR.js') }}"></script>
     </body>
 </html>

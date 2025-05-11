@@ -7,6 +7,7 @@
         <link rel="icon" type="image/x-icon" href="https://my.unpam.ac.id/icons/logo.png">
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
         <title>{{ $title ?? 'Aplikasi Absensi' }}</title>
+        <link rel="stylesheet" href="{{ asset('build/assets/app-BAxmsT8G.css') }}">
         @vite(['resources/css/app.css', 'resources/js/app.js'])        
         @fluxAppearance
         @stack('html5-qrcode')
@@ -24,5 +25,6 @@
             
             @fluxScripts
             @stack('scan-qr')
+            <script src="{{ asset('build/assets/app-DTQu3JlR.js') }}"></script>
         </body>
 </html>

@@ -13,7 +13,7 @@
             </div>
         </flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 @php
     $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="shrink-0 sm:flex sm:flex-col items-start sm:items-end">
-                        <div class="bg-zinc-300s rounded-lg">
+                        <div class="rounded-lg">
                             <flux:switch x-data x-model="$flux.dark" label="Toggle" class="sm:hidden mt-5"  />
                             <flux:radio.group x-data variant="segmented" x-model="$flux.appearance" class="hidden sm:flex">
                                 <flux:radio value="light" icon="sun">Light</flux:radio>

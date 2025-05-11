@@ -5,7 +5,8 @@
                 <flux:icon.home variant="mini" /> <span class="hidden sm:flex">Home</span>
             </div>
         </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="{{ route('manage.kelas') }}">Manage Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('manage.kelas') }}" class="hidden sm:flex">Manage Kelas</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="{{ route('manage.kelas') }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Detail Kelas</flux:breadcrumbs.item>
     </flux:breadcrumbs>
     <x-slot:title>Aplikasi Absensi | Kelas Detail | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
