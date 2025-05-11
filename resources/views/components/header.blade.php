@@ -10,8 +10,8 @@
             @yield('header-message')
         <flux:spacer />
 
+        <flux:profile :chevron="false" avatar="{{ asset($profil_path) }}" class="lg:hidden" />
         <flux:dropdown position="top" align="start">
-            <flux:profile :chevron="false" avatar="{{ asset($profil_path) }}" class="lg:hidden" />
             <flux:profile avatar="{{ asset($profil_path) }}" name="{{ explode(' ', Auth::user()->name)[0] }}" class="bg-zinc-200 dark:bg-zinc-800 hidden lg:flex"/>
             <flux:menu>
                 <flux:radio.group x-data variant="segmented" x-model="$flux.appearance">

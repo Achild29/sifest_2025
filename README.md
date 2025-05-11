@@ -1,18 +1,7 @@
-## Stage this App: Optimize UI for user Admin and migrtation
-Mengoptimalkan Tampilan untuk User Admin, responsive pada mobile device
+## Stage this App: add library sail-ssl
+saya menggunakan library dari [sail-ssl](https://github.com/ryoluo/sail-ssl)
 
-Merubah Struktur Database:
-
-Menambahkan field baru pada table user
-```bash
-php artisan make:migration ...
-```
-check pada folder `database/migration/` dan juga menambahkan properti fillable pada model user `app/Models/User.php`
-
-run this command:
-```bash
-php artisan migrate
-```
+agar pada local development menggunakan https
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

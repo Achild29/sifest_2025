@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Config::set('app.timezone', 'Asia/Jakarta');
         date_default_timezone_set('Asia/Jakarta');
+        URL::forceHttps();
     }
 }
