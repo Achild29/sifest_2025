@@ -1,7 +1,6 @@
-## Stage this App: add library sail-ssl
-saya menggunakan library dari [sail-ssl](https://github.com/ryoluo/sail-ssl)
+## Stage this App: add Fitur upload for Photo Profiel
 
-agar pada local development menggunakan https
+semua user bisa mengganti photo profil nya
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

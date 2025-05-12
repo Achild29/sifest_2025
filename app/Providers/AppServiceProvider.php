@@ -24,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Config::set('app.timezone', 'Asia/Jakarta');
         date_default_timezone_set('Asia/Jakarta');
-        URL::forceHttps();
+        // URL::forceHttps();
     }
 }

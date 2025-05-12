@@ -18,13 +18,14 @@
 @php
     $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
     if (!is_null(Auth::user()->profil_path)) {
-        $profil_path = 'storage/assets/'.Auth::user()->profil_path;
+        $profil_path = 'storage/assets/profile_pictures/'.Auth::user()->profil_path;
     }
 @endphp
 <div>
     <flux:heading size="xl" class="font-extrabold" level="1">Settings</flux:heading>
     <flux:text class="mb-2 mt-2 font-semibold">This page you can manage your account</flux:text>
     <flux:separator variant="subtle" class="mb-5"/>
+    
     <div class="md:grid grid-cols-3 gap-4 px-4 py-4 leading-10">
         <div class="p-4 bg-zinc-200 dark:bg-zinc-800 rounded-xl row-span-2 text-center shadow-xl mb-5">
             <h1>Profil Picture</h1>
@@ -32,8 +33,9 @@
                 <a href="{{ asset($profil_path) }}" target="_blank" rel="noopener noreferrer">
                     <img src="{{ asset($profil_path) }}" alt="Profile Picture" class="w-[150px] h-auto border rounded-2xl mb-2">
                 </a>
-                <flux:input type="file" wire:model="logo" description="change photo profile"/>
+                <flux:input type="file" wire:model="photo" description="change photo profile"/>
                 <flux:button class="mt-2" wire:click="changePhoto">Button</flux:button>
+                
                 <h5 class="mt-5">{{ $nama }}</h5>
                 <p class="text-black-1">{{ $email }}</p>
             </div>

@@ -1,7 +1,7 @@
 @php
     $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
     if (!is_null(Auth::user()->profil_path)) {
-        $profil_path = 'storage/assets/'.Auth::user()->profil_path;
+        $profil_path = 'storage/assets/profile_pictures/'.Auth::user()->profil_path;
     }
 @endphp
 <flux:header class="block! bg-white lg:bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">

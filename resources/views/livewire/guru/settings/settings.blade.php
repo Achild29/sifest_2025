@@ -18,7 +18,7 @@
 @php
     $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';
     if (!is_null(Auth::user()->profil_path)) {
-        $profil_path = 'storage/assets/'.Auth::user()->profil_path;
+        $profil_path = 'storage/assets/profile_pictures/'.Auth::user()->profil_path;
     }
 @endphp
 <div>
@@ -34,7 +34,7 @@
                 <a href="{{ asset($profil_path) }}" target="_blank" rel="noopener noreferrer">
                     <img src="{{ asset($profil_path) }}" alt="Profile Picture" class="w-[150px] h-auto border rounded-2xl mb-2">
                 </a>
-                <flux:input type="file" wire:model="logo" description="change photo profile"/>
+                <flux:input type="file" wire:model="photo" description="change photo profile"/>
                 <flux:button class="mt-2" wire:click="changePhoto">Button</flux:button>
                 <h5 class="mt-5">{{ $nama }}</h5>
                 <p class="text-black-1">{{ $email }}</p>
@@ -42,9 +42,9 @@
         </div>
         <div class="p-4 w-full bg-zinc-200 dark:bg-zinc-800 rounded-xl col-span-2 shadow-xl mb-5">
             <h1 class="text-2xl font-bold ml-5">Profil Detail</h1>
-            <p class="ml-5">Your account role is <span class="font-bold">Admin</span></p>
+            <p class="ml-5">Your account role is <span class="font-bold">Guru</span></p>
         </div>
-        <div class="p-4 w-full bg-zinc-200 dark:bg-zinc-800 rounded-xl row-span-2 col-span-2 shadow-xl">
+        <div class="p-4 w-full bg-zinc-200 dark:bg-zinc-800 rounded-xl row-span-3 col-span-2 shadow-xl">
             <ul class="divide-y divide-gray-100">
                 {{-- Nama --}}
                 <li class="flex justify-between gap-x-6 py-5">
