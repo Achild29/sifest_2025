@@ -11,7 +11,7 @@ use Livewire\Component;
 class Dashboard extends Component
 {
     public array $absenHariIni = [];
-    public $bulan;
+    public $bulan, $user;
 
     public function render()
     {
@@ -20,8 +20,8 @@ class Dashboard extends Component
 
     public function mount() {
         $this->bulan = now()->format('Y-m');
-        $user = User::find(Auth::user()->id);
-        $absen = Attendance::where('student_id', $user->student->id)
+        $this->user = User::find(Auth::user()->id);
+        $absen = Attendance::where('student_id', $this->user->student->id)
             ->where('tanggal', now()->format('Y-m-d'))
             ->get();
         if ($absen) {

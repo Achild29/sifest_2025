@@ -57,6 +57,6 @@
 
     @livewire('siswa.table-kehadiran', [
         'bulan' => $bulan, 
-        'id' => Auth::user()->id
+        'id' => $user->student->id
     ], key($bulan))
 </div>

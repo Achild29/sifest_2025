@@ -12,9 +12,9 @@
         </div>
         <div class="w-full h-30 lg:flex gap-3 col-span-6 mb-16 mt-2 sm:mt-0 sm:mb-0 bg-zinc-100 dark:bg-zinc-800 rounded-2xl lg:shadow-md shadow items-center">
             <div class="w-full h-24 py-4 mb-8">
-                <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">{{ $student->user->name }}</flux:text>
-                <flux:text class="font-semibold flex gap-2 text-lg lg:text-xl justify-center">{{ $student->nisn }}</flux:text>
-                <flux:text class="font-semibold flex gap-2 text-lg lg:text-xl justify-center">{{ $student->classRoom->name }}</flux:text>
+                <flux:text class="font-semibold flex gap-2 text-xl lg:text-lg justify-center">{{ $student->user->name }}</flux:text>
+                <flux:text class="font-semibold flex gap-2 text-lg lg:text-lg justify-center">{{ $student->nisn }}</flux:text>
+                <flux:text class="font-semibold flex gap-2 text-lg lg:text-lg justify-center">{{ $student->classRoom->name }}</flux:text>
             </div>
             <div class="w-full h-24 bg-green-200 dark:bg-green-800 rounded-xl mb-2 sm:mb-0 py-5 lg:py-3">
                 <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">Hadir</flux:text>
