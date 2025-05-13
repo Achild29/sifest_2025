@@ -1,6 +1,21 @@
-## Stage this App: add Fitur upload for Photo Profiel
+## Stage this App: Integration with AI
 
-semua user bisa mengganti photo profil nya
+pertama saya menambahkan library [Prism Laravel x LLMs](https://prismphp.com/)
+installation
+```bash
+composer require prism-php/prism
+```
+selanjutnya saya mengatur config nya, untuk menampilkan config nya
+```bash
+php artisan vendor:publish --tag=prism-config
+```
+lanjut saya juga membuat sebuah model beserta migration nya untuk menampung riwayat percakapannya
+
+saya juga sudah menambahkan key `GEMINI_API_KEY` pada file `.env`
+
+logic nya berada di `app/Livewire/Guru/BahanAjar/ChatBot/php`
+
+mengatur route nya di `routes/guru.php`
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

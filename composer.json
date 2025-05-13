@@ -16,6 +16,7 @@
         "livewire/livewire": "^3.6",
         "masmerise/livewire-toaster": "^2.7",
         "mpdf/mpdf": "^8.2",
+        "prism-php/prism": "^0.67.0",
         "simplesoftwareio/simple-qrcode": "^4.2"
     },
     "require-dev": {
