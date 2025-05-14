@@ -19,4 +19,8 @@ class ClassRoom extends Model
     public function attendance() {
         return $this->hasMany(Attendance::class, 'class_room_id');
     }
+
+    public function moduls() {
+        return $this->hasMany(Modul::class);
+    }
 }

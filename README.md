@@ -1,21 +1,7 @@
-## Stage this App: Integration with AI
+## Stage this App: Create Fitur Bahan Ajar
+Pertama saya membuat Model dan migration nya untuk Bahan Ajar
 
-pertama saya menambahkan library [Prism Laravel x LLMs](https://prismphp.com/)
-installation
-```bash
-composer require prism-php/prism
-```
-selanjutnya saya mengatur config nya, untuk menampilkan config nya
-```bash
-php artisan vendor:publish --tag=prism-config
-```
-lanjut saya juga membuat sebuah model beserta migration nya untuk menampung riwayat percakapannya
-
-saya juga sudah menambahkan key `GEMINI_API_KEY` pada file `.env`
-
-logic nya berada di `app/Livewire/Guru/BahanAjar/ChatBot/php`
-
-mengatur route nya di `routes/guru.php`
+Bahan Ajar diupload oleh Guru yg nanti nya akan bisa diakses oleh Murid
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

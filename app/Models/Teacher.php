@@ -28,4 +28,8 @@ class Teacher extends Model
     public function scannedPulangAttendaces() {
         return $this->hasMany(Attendance::class, 'scanned_pulang_by');
     }
+
+    public function moduls() {
+        return $this->hasMany(Modul::class);
+    }
 }
