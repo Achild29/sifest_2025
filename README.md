@@ -1,7 +1,12 @@
-## Stage this App: Create Fitur Bahan Ajar
-Pertama saya membuat Model dan migration nya untuk Bahan Ajar
+## Stage this App: Update UI Student QR-Code
 
-Bahan Ajar diupload oleh Guru yg nanti nya akan bisa diakses oleh Murid
+Untuk Menampilkan QR-CODE Siswa
+
+terdapat countdown selama 1 Menit,
+karena check secara realtime ke database, untuk mengechek ke database membutuhkan resource maka dari itu saya batasi hanya 1 Menit, agar beban server tidak berat
+
+jika sudah melakukan absensi dan dinyatakan HADIR maka countdown nya berubah menjadi 5 detik
+
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

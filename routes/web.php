@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\pdf\PdfLayout;
-use App\Http\Controllers\Student\DashboardController;
 use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
 
@@ -26,10 +25,8 @@ require __DIR__.'/admin.php';
 //Guru
 require __DIR__.'/guru.php';
 
-Route::group(['middleware' =>'auth:siswa'], function () {
-    Route::get('/siswa', [DashboardController::class, 'index'])
-    ->name('siswa.dashboard');
-});
+//Siswa
+require __DIR__.'/siswa.php';
 
 Route::post('/view-pdf', [PdfLayout::class, 'viewPdf'])->name('view-pdf');
 Route::post('/download-pdf', [PdfLayout::class, 'downloadPdf'])->name('download-pdf');

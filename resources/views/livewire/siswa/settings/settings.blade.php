@@ -94,7 +94,7 @@
                     </div>
                     <div class="shrink-0 sm:flex sm:flex-col sm:items-end">
                         <flux:tooltip content="Lihat QR-Code">
-                            <a href="{{ asset('storage/qr_code/'. $qr_code) }}" target="_blank" rel="noopener noreferrer">
+                            <a href="{{ route('qrcode') }}">
                                 <button class="flex items-center gap-2 text-[13px] text-white font-semibold lg:py-1.5 px-2 lg:px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                                 bg-indigo-500 hover:bg-indigo-700
