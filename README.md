@@ -1,12 +1,8 @@
-## Stage this App: Update UI Student QR-Code
+## Stage this App: Moduls for Students
 
-Untuk Menampilkan QR-CODE Siswa
+Membuat Tampilan untuk Moduls pada user Role Siswa
 
-terdapat countdown selama 1 Menit,
-karena check secara realtime ke database, untuk mengechek ke database membutuhkan resource maka dari itu saya batasi hanya 1 Menit, agar beban server tidak berat
-
-jika sudah melakukan absensi dan dinyatakan HADIR maka countdown nya berubah menjadi 5 detik
-
+Siswa dapat mengakases Modul yg telah diberikan oleh Guru
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

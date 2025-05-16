@@ -37,7 +37,7 @@
     </div>
     <div class="grid lg:grid-cols-3 gap-5 mb-2">
         @foreach ($moduls as $item)
-            <div class="bg-white-1 border border-white-3 p-5 rounded-xl h-96 w-80 lg:w-full">
+            <div class="bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 p-5 rounded-xl h-96 w-[360px] lg:w-full">
                 @if ($item->extension === 'pptx' || $item->extension === 'ppt')
                     <div class="h-64 flex items-center justify-center">
                         <img src="{{ asset('storage/assets/ppt.svg') }}" alt="{{ $item->name }}" loading="lazy" class="max-w-full max-h-full object-contain">
