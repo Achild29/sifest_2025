@@ -5,7 +5,7 @@ use App\Livewire\Admin\ManageAdmin\ManageAdmin;
 use App\Livewire\Admin\ManageKelas\ManageKelas;
 use App\Livewire\Admin\ManageKelas\ManageKelasAddTeacher;
 use App\Livewire\Admin\ManageStudents\ManageStudentsDashboard;
-use App\Livewire\Admin\ManageTeacher\ManageTeacher;
+use App\Livewire\Admin\ManageTeacher\ManageTeacherDashboard;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' =>'auth:admin'], function () {
@@ -16,8 +16,8 @@ Route::group(['middleware' =>'auth:admin'], function () {
         Route::get('/manage-students', ManageStudentsDashboard::class)
             ->name('manage.students');
 
-       Route::get('/manage-teachers', ManageTeacher::class)
-       ->name('manage.teachers');
+        Route::get('/manage-teachers', ManageTeacherDashboard::class)
+            ->name('manage.teachers');
 
        Route::get('/manage-users', ManageAdmin::class)
        ->name('manage.users');

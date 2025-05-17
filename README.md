@@ -1,4 +1,4 @@
-## Stage this App: Fixing Bug on Livesearch Moduls and Update UI for Manage Student
+## Stage this App: Fixing Bug and Update UI for Manage Teacher
 
 
 ## Aplikasi ini dibuat dengan

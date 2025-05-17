@@ -12,8 +12,9 @@
         @blur="searchFocused = false"
         />
     </div>
+    
     <div class="grid lg:grid-cols-3 gap-5 mb-5">
-        @foreach ($siswa as $item)
+        @foreach ($teachers as $item)
             <div class="grid gap-2 p-2 rounded-2xl dark:bg-zinc-800 bg-zinc-100 shadow-lg">
                 <div class="grid grid-cols-2">
                     <div class="flex justify-center p-5 h-64 rounded-2xl bg-amber-100">
@@ -24,20 +25,38 @@
                             <flux:heading size="lg" class="font-bold" level="1"> {{ $item->name }} </flux:heading>
                         </div>
                         <div class="p-2 w-full row-span-2 col-span-2">
-                            <flux:text>NISN: 
-                                <span class="font-bold"> {{ $item->student->nisn }} </span>
+                            <flux:text>NIP: 
+                                <span class="font-bold"> {{ $item->teacher->nip }} </span>
                             </flux:text>
                             <flux:text>Email: 
                                 <span class="font-bold"> {{ $item->email }} </span>
                             </flux:text>
                             <flux:text>Kelas: 
-                                <span class="font-bold"> {{ $item->student->classRoom->name ?? '-' }} </span>
+                                @if ($item->teacher && $item->teacher->classRooms && $item->teacher->classRooms->count())
+                                    @if ($item->teacher->classRooms->count() > 1)
+                                        <br>
+                                        @foreach ($item->teacher->classRooms as $kelas)
+                                            <span class="font-bold ml-2">
+                                                {{$loop->iteration}}. {{$kelas->name}}
+                                            </span>
+                                            @unless ($loop->last)
+                                                <br>
+                                            @endunless
+                                        @endforeach
+                                    @else
+                                        <span class="font-bold">
+                                            {{ $item->teacher->classRooms->pluck('name')->implode(', ') }}
+                                        </span>
+                                    @endif
+                                @else
+                                    <em class="text-red-500">Tidak memiliki kelas</em>
+                                @endif
                             </flux:text>
-                            <flux:text>Wali murid: 
-                                <span class="font-bold"> {{ $item->student->nama_wali_murid }} </span>
+                            <flux:text>Alamat: 
+                                <span class="font-bold"> {{ $item->teacher->alamat }} </span>
                             </flux:text>
                             <flux:text>nomor telp: 
-                                <span class="font-bold"> {{ $item->student->no_telp_wali }} </span>
+                                <span class="font-bold"> {{ $item->teacher->no_telp }} </span>
                             </flux:text>
                         </div>
                     </div>
@@ -52,7 +71,7 @@
                     </flux:tooltip>
                 </div>
             </div>
-        @endforeach
+        @endforeach        
     </div>
-    {{ $siswa->links() }}
+    {{ $teachers->links() }}
 </div>

@@ -79,9 +79,7 @@ class ManageTeacherModal extends Component
             ]);
             
             DB::commit();
-            Toaster::success('Berhasil menambahakn data');
-            $this->reset();
-            $this->dispatch('teacher-created');
+            return redirect()->route('manage.teachers')->success('Berhasil menambahakn data');
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal menambahakan data: '. $e->getMessage());
@@ -124,10 +122,7 @@ class ManageTeacherModal extends Component
 
             DB::commit();
 
-            Toaster::success('Data berhasil di perbaharui');
-            Flux::modal('update-teacher')->close();
-            $this->reset();
-            $this->dispatch('teacher-updated');
+            return redirect()->route('manage.teachers')->success('Data berhasil di perbaharui');
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal memperbaharui data: '. $e->getMessage());
@@ -144,9 +139,7 @@ class ManageTeacherModal extends Component
             
             DB::commit();
 
-            Toaster::success("Password's $user->name berhasil direset ke default");
-            Flux::modal('reset-teacher')->close();
-            $this->dispatch('teacher-updated');
+            return redirect()->route('manage.teachers')->success("Password's $user->name berhasil direset ke default");
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal me-reset password: '.$e->getMessage());
@@ -167,9 +160,7 @@ class ManageTeacherModal extends Component
             $teacher->user->forceDelete();
 
             DB::commit();
-
-            Flux::modal('delete-teacher')->close();
-            Toaster::warning('Data berhasil di hapus');
+            return redirect()->route('manage.teachers')->warning('Data berhasil di hapus');
             $this->reset();
             $this->dispatch('teacher-updated');
         } catch (\Exception $e) {
@@ -177,4 +168,11 @@ class ManageTeacherModal extends Component
             Toaster::error('Gagal menghapus data: '. $e->getMessage());
         }
     }
+
+    #[On('addNewTeacherModal')]
+    public function addTeacher() {
+        $this->reset();
+        Flux::modal('create-teacher')->show();
+    }
+    
 }

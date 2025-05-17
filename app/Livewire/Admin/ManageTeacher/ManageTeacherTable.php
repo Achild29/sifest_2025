@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin\ManageStudents;
+namespace App\Livewire\Admin\ManageTeacher;
 
 use App\Enums\UserRole;
 use App\Models\User;
@@ -9,25 +9,25 @@ use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-class ManageStudentsTable extends Component
+class ManageTeacherTable extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    public $search;
-
+    public $search = '';
+    
     public function render()
     {
-        $data = User::where('role', UserRole::siswa->value)
+        $teachers = User::where('role', UserRole::guru->value)
             ->where('name', 'like', '%'.$this->search.'%')
-            ->orWhereHas('student', function (Builder $query) {
+            ->orWhereHas('teacher', function (Builder $query) {
                 $query->where('username', 'like', '%'.$this->search.'%')
-                ->orWhereHas('classRoom', function (Builder $q) {
+                ->orWhereHas('classRooms', function (Builder $q) {
                     $q->where('name', 'like', '%'.$this->search.'%');
                 });
             })
-            ->paginate(5);
-        return view('livewire.admin.manage-students.manage-students-table',[
-            'students' => $data
+            ->paginate(3);
+        return view('livewire.admin.manage-teacher.manage-teacher-table', [
+            'teachers' => $teachers
         ]);
     }
 
@@ -36,10 +36,10 @@ class ManageStudentsTable extends Component
     }
 
     public function showEdit($id) {
-        $this->dispatch('update-student', $id);
+        $this->dispatch('update-teacher', $id);
     }
 
-    public function showDelete($id) {
-        $this->dispatch('delete-student', $id);
+    public function showConfirmDelete($id) {
+        $this->dispatch('delete-teacher', $id);
     }
 }

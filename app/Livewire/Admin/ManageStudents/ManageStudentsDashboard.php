@@ -4,12 +4,13 @@ namespace App\Livewire\Admin\ManageStudents;
 
 use App\Enums\UserRole;
 use App\Models\User;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ManageStudentsDashboard extends Component
 {
     public $jumlahSiswa;
-    public $viewTypeSwitch= true;
+    public $isGridView= true;
 
     public function render()
     {
@@ -18,6 +19,10 @@ class ManageStudentsDashboard extends Component
 
     public function mount() {
         $this->jumlahSiswa = User::where('role', UserRole::siswa->value)->count();
+    }
+
+    public function addStudent() {
+        $this->dispatch('add-new-student');
     }
 
 }

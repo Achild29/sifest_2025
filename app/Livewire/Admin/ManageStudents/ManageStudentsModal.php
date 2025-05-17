@@ -69,6 +69,12 @@ class ManageStudentsModal extends Component
         ]);
     }
 
+    #[On('add-new-student')]
+    public function addStudent() {
+        $this->reset();
+        Flux::modal('create-student')->show();
+    }
+
     public function store() {
         $this->validasi(null);
         DB::beginTransaction();
@@ -89,9 +95,7 @@ class ManageStudentsModal extends Component
                 "no_telp_wali" => "08" . $this->no_telp,
             ]);
             DB::commit();
-            Toaster::success('Berhasil menambahkan data');
-            $this->reset();
-            $this->dispatch('student-created');
+            return redirect()->route('manage.students')->success('Berhasil menambahkan data');
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal Menambahkan data: ' . $e->getMessage());
@@ -137,10 +141,7 @@ class ManageStudentsModal extends Component
 
             DB::commit();
 
-            Toaster::success('Data berhasil di perbaharui');
-            Flux::modal('update-student')->close();
-            $this->reset();
-            $this->dispatch('student-updated');
+            return redirect()->route('manage.students')->success('Data berhasil di perbaharui');
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal memperbaharui data: '. $e->getMessage());
@@ -156,9 +157,7 @@ class ManageStudentsModal extends Component
 
             DB::commit();
 
-            Toaster::success("password's $user->name berhasil di reset ke Default");
-            Flux::modal('reset-student')->close();
-            $this->dispatch('student-updated');
+            return redirect()->route('manage.students')->success("password's $user->name berhasil di reset ke Default");
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal mereset password: '. $e->getMessage());
@@ -191,10 +190,7 @@ class ManageStudentsModal extends Component
 
             DB::commit();
 
-            Flux::modal('delete-student')->close();            
-            Toaster::warning('Data berhasil di hapus');
-            $this->reset();
-            $this->dispatch('student-updated');
+            return redirect()->route('manage.students')->warning('Data berhasil di hapus');
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal menghapus data: '. $e->getMessage());
