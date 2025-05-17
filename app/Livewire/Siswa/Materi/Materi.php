@@ -6,11 +6,12 @@ use App\Models\Modul;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class Materi extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $search = '';
     public $user;
@@ -29,6 +30,10 @@ class Materi extends Component
     public function mount() {
         $this->user = User::find(Auth::user()->id);
         $this->modul = Modul::where('class_room_id', $this->getKelasId())->count();
+    }
+
+    public function searchFocus() {
+        $this->resetPage();
     }
 
     private function getKelasId() {

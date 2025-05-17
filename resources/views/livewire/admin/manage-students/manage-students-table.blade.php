@@ -1,37 +1,18 @@
-@section('header-message')
-    <flux:breadcrumbs>
-        <flux:breadcrumbs.item href="{{ route('admin.dashboard') }}">
-            <div class="flex gap-2">
-                <flux:icon.home variant="mini" /> 
-                <span class="hidden md:flex">Home</span>
-            </div>
-        </flux:breadcrumbs.item>
-        <flux:breadcrumbs.item >Manage Students</flux:breadcrumbs.item>
-    </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Manage Students | {{  Auth::user()->role->name }} </x-slot:title>
-@endsection
-<div>
-    
-    <flux:heading size="xl" class="font-extrabold" level="1">Manage Students</flux:heading>
-    <flux:text class="mb-2 mt-2 font-semibold">This page you can manage Students, you can Add, Edit and Delete Students</flux:text>
-    <flux:text class="mb-2 mt-2 font-semibold">Default Username is '<span class="font-black">NISN</span>' | Default Password is '<span class="font-black">password</span>'</flux:text>
-    <flux:separator variant="subtle" class="mb-5"/>
-
-    <flux:modal.trigger name="create-student">
-        <div class="flex justify-end mb-2">
-            <flux:tooltip content="add new student">
-                <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded cursor-pointer transition-all duration-200
-                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600
-                bg-emerald-500 hover:bg-emerald-700 shadow-xl">
-                    <flux:icon.plus-circle variant="solid" />
-                    Add Students
-                </button>
-            </flux:tooltip>
-        </div>
-    </flux:modal.trigger>
-    <livewire:admin.manage-students.manage-students-modal />
-
-    <div class="overflow-x-scroll border rounded-lg shadow-2xl">
+<div class="mt-10">
+    <div class="w-72 mb-5"
+        x-data="{ searchFocused: false, focusSearch() { this.searchFocused = true; $wire.searchFocus(); } }"
+    >
+        <flux:input 
+        icon="magnifying-glass"
+        label="Cari Siswa"
+        description="keywords pencarian: Nama, Nisn dan Kelas"
+        wire:model.live="search"
+        placeholder="Search..."
+        @focus="focusSearch()"
+        @blur="searchFocused = false"
+        />
+    </div>
+    <div class="overflow-x-scroll border rounded-lg shadow-2xl mb-5">
         <table class="min-w-full table-auto border">
             <thead class="bg-zinc-100 dark:bg-zinc-800">
                 <tr class="text-lg">
@@ -64,7 +45,7 @@
                                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
                                         bg-indigo-500 hover:bg-indigo-700
                                         dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                                        wire:click="edit({{ $student->id }})">
+                                        wire:click="showEdit({{ $student->id }})">
                                             <flux:icon.pencil-square/>
                                             Edit
                                         </button>
@@ -73,7 +54,7 @@
                                         <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
                                         focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600
                                         bg-red-500 hover:bg-red-700"
-                                        wire:click="delete({{ $student->id }})">
+                                        wire:click="showDelete({{ $student->id }})">
                                             <flux:icon.trash />
                                             Delete
                                         </button>
@@ -91,7 +72,5 @@
               </tbody>
         </table>
     </div>
-    <div class="flex fixed bottom-5 right-5">
-        {{-- toasterHub --}}
-    </div>
+    {{ $students->links() }}
 </div>

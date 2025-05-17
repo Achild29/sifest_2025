@@ -1,8 +1,5 @@
-## Stage this App: Moduls for Students
+## Stage this App: Fixing Bug on Livesearch Moduls and Update UI for Manage Student
 
-Membuat Tampilan untuk Moduls pada user Role Siswa
-
-Siswa dapat mengakases Modul yg telah diberikan oleh Guru
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

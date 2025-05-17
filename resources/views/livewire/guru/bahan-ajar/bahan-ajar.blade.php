@@ -16,8 +16,14 @@
     <flux:separator variant="subtle" class="mb-5"/>
     
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 px-4 py-3 ">
-        <div>
-            <flux:input icon="magnifying-glass" wire:model.live="search" placeholder="Search by Modul Name or Class Name..."/>
+        <div x-data="{ searchFocused: false, focusSearch() { this.searchFocused = true; $wire.searchFocus(); } }">
+            <flux:input
+            icon="magnifying-glass"
+            wire:model.live="search"
+            placeholder="Search by Modul Name or Class Name..."
+            @focus="focusSearch()"
+            @blur="searchFocused = false"
+            />
         </div>
         <div class="text-center">
             <flux:heading size="xl" class="font-extrabold" level="1">Bahan Ajar <br> Yang Anda Miliki</flux:heading>

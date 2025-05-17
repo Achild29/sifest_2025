@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 use Masmerise\Toaster\Toaster;
 
 class BahanAjar extends Component
 {
-    use WithFileUploads, WithPagination;
+    use WithFileUploads, WithPagination, WithoutUrlPagination;
 
     public $search = '';
     public $kelas, $selectedClass, $namaModul, $modul;
@@ -32,6 +33,10 @@ class BahanAjar extends Component
         return view('livewire.guru.bahan-ajar.bahan-ajar', [
             'moduls' => $data,
         ]);
+    }
+
+    public function searchFocus() {
+        $this->resetPage();
     }
 
     public function mount() {
