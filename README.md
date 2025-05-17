@@ -1,4 +1,4 @@
-## Stage this App: Fixing Bug and Update UI for Manage Teacher
+## Stage this App: Update UI for Manage Admin
 
 
 ## Aplikasi ini dibuat dengan

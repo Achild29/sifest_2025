@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="text-center">
-            <flux:heading size="xl" class="font-extrabold" level="1">Data Siswa</flux:heading>
+            <flux:heading size="xl" class="font-extrabold" level="1">Data Guru</flux:heading>
             <flux:text>Jumlah: <span class="font-bold text-red-500">{{$jumlahSiswa}}</span> guru</flux:text>
         </div>
         <div class="flex justify-center lg:justify-end">

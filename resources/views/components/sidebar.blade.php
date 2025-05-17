@@ -19,7 +19,7 @@
             <flux:navlist.item icon="home" href="{{ route('admin.dashboard') }}">Home</flux:navlist.item>
             <flux:navlist.item icon="user-group" href="{{ route('manage.students') }}">Manage Students</flux:navlist.item>
             <flux:navlist.item icon="user-group" href="{{ route('manage.teachers') }}">Manage Teachers</flux:navlist.item>
-            <flux:navlist.item icon="users" href="{{ route('manage.users') }}">Manage Admin</flux:navlist.item>
+            <flux:navlist.item icon="users" href="{{ route('manage.admin') }}">Manage Admin</flux:navlist.item>
             <flux:navlist.item icon="book-open" href="{{ route('admin.manage.kelas') }}" :current="request()->routeIs([
                 'admin.manage.kelas', 'admin.add.teacher.kelas'
                 ])" >Manage Kelas</flux:navlist.item>
