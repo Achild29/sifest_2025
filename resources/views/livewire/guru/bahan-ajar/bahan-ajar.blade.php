@@ -79,6 +79,12 @@
     </div>
     {{ $moduls->links() }}
 
+    @if ($moduls->count() <= 0)
+        <div class="grid items-center text-center bg-rose-100 lg:h-[550px] h-96 rounded-2xl shadow-2xl">
+            <flux:heading size="xl" class="font-extrabold text-red-500" level="1">Anda belum memiliki Bahan Ajar</flux:heading>
+        </div>
+    @endif
+
     <flux:modal name="add-modul" class="md:w-96">
         <div class="space-y-6">
             <div>

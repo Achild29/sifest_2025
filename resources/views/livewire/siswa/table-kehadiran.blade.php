@@ -14,7 +14,7 @@
             <div class="w-full h-24 py-4 mb-8">
                 <flux:text class="font-semibold flex gap-2 text-xl lg:text-lg justify-center">{{ $student->user->name }}</flux:text>
                 <flux:text class="font-semibold flex gap-2 text-lg lg:text-lg justify-center">{{ $student->nisn }}</flux:text>
-                <flux:text class="font-semibold flex gap-2 text-lg lg:text-lg justify-center">{{ $student->classRoom->name }}</flux:text>
+                <flux:text class="font-semibold flex gap-2 text-lg lg:text-lg justify-center text-red-500">{{ $student->classRoom->name ?? 'Belum ada kelas' }}</flux:text>
             </div>
             <div class="w-full h-24 bg-green-200 dark:bg-green-800 rounded-xl mb-2 sm:mb-0 py-5 lg:py-3">
                 <flux:text class="font-semibold flex gap-2 text-xl lg:text-2xl justify-center">Hadir</flux:text>

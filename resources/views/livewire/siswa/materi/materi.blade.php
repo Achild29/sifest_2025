@@ -30,7 +30,7 @@
         </div>
         <div class="text-center lg:text-end">
             <flux:text size="xl">kelas: 
-                <span class="font-bold">{{ $user->student->classRoom->name }}</span>
+                <span class="font-bold text-red-500">{{ $user->student->classRoom->name ?? '-' }}</span>
             </flux:text>
             <flux:text size="xl"><span class="font-bold">{{ $modul }}</span> moduls</flux:text>
         </div>
