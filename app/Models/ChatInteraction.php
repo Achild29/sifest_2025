@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChatInteraction extends Model
 {
-    protected $fillable = ['question', 'answer', 'user_id'];
+    protected $fillable = ['question', 'answer', 'teacher_id'];
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function teacher() {
+        return $this->belongsTo(Teacher::class);
     }
 }

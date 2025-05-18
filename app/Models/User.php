@@ -61,7 +61,4 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class);
     }
 
-    public function chatInteractions() {
-        return $this->hasMany(ChatInteraction::class);
-    }
 }

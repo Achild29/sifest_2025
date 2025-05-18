@@ -3,6 +3,7 @@
 namespace App\Livewire\Guru\BahanAjar;
 
 use App\Models\ChatInteraction;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
@@ -16,11 +17,15 @@ use Prism\Prism\ValueObjects\Messages\UserMessage;
 class ChatBot extends Component
 {
     public $messages = [];
-    public $question, $answer;
+    public $question, $answer, $user;
 
     #[On('chat-bot')]
     public function mount() {
-        $this->messages = ChatInteraction::where('user_id', Auth::user()->id)->get();
+        $this->user = User::find(Auth::user()->id);
+        // dd($this->user->teacher->id);
+        $this->messages = ChatInteraction::where('teacher_id', $this->user->teacher->id)->get();
+        // dd($this->messages);
+
     }
     
     public function render()
@@ -49,7 +54,7 @@ class ChatBot extends Component
             $interaction = ChatInteraction::create([
                 'question' =>$this->question,
                 'answer' => $this->answer,
-                'user_id' => Auth::user()->id
+                'teacher_id' => $this->user->teacher->id,
             ]);
             DB::commit();
         } catch (\Exception $e) {
@@ -63,7 +68,7 @@ class ChatBot extends Component
     public function removeChat() {
         DB::beginTransaction();
         try {
-            ChatInteraction::where('user_id', Auth::user()->id)->delete();
+            ChatInteraction::where('teacher_id', $this->user->teacher->id)->delete();
             DB::commit();
             return redirect()->route('chatbot')->success('Berhasil menghapus chat');
         } catch (\Exception $e) {

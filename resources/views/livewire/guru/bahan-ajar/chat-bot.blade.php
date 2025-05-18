@@ -18,6 +18,7 @@
     }
 @endphp
 <div>
+    {{-- @dd($user->teacher->id) --}}
     <div class="md:flex">
         <div class="grid">
             <flux:heading size="xl" class="font-extrabold" level="1">Chat Bot</flux:heading>

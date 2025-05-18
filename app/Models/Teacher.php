@@ -32,4 +32,8 @@ class Teacher extends Model
     public function moduls() {
         return $this->hasMany(Modul::class);
     }
+
+    public function chatInteractions() {
+        return $this->hasMany(ChatInteraction::class);
+    }
 }
