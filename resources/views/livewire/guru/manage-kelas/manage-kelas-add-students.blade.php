@@ -24,52 +24,59 @@
     
     <flux:separator variant="subtle" class="my-5"/>
 
-    <div class="flex justify-center mb-2">
-        <flux:heading size="xl" class="font-extrabold" level="1">Daftar Murid yg tidak memiliki kelas</flux:heading>
-    </div>
-
-    <div class="overflow-x-auto border rounded-lg shadow-2xl">
-        <table class="min-w-full table-auto border">
-            <thead class="bg-zinc-100 dark:bg-zinc-800">
-                <tr class="text-lg">
-                  <th class="w-4 px-4 py-2 border ">No.</th>
-                  <th class="border px-4 py-2 whitespace-pre">Nama Murid</th>
-                  <th class="border px-4 py-2 whitespace-pre">NISN</th>
-                  <th class="border px-4 py-2 whitespace-pre w-4">action</th>
-                </tr>
-              </thead>
-              <tbody class="text-lg">
-                @if ($murid && $murid->isNotEmpty())
-                    @foreach ($murid as $user)    
-                        <tr>
-                            <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
-                            <td class="border px-4 py-2">{{ $user->name }}</td>
-                            <td class="border px-4 py-2">{{ $user->student->nisn }}</td>
-                            <td class="border px-4 py-2">
-                                <div class="flex gap-3 justify-evenly">
-                                    <flux:tooltip content="Add siswa {{ $user->name }} to Class: {{ $kelas->name  }}" position="bottom">
-                                        <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
-                                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
-                                        bg-indigo-500 hover:bg-indigo-700
-                                        dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
-                                        wire:click="showConfirm({{ $user->id }})"
-                                        >
-                                        <flux:icon.user-plus/>
-                                        Assign
-                                        </button>
-                                    </flux:tooltip>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach                  
-                @else
-                    <tr class="">
-                        <td colspan="2" class="px-4 py-2 text-right text-red-500 font-semibold italic">Belum ada data </td>
-                    </tr>                    
-                @endif
-
-              </tbody>
-        </table>
+    <div class="">
+        <div class="grid lg:grid-cols-3 gap-2 my-2">
+            <div class="w-72"
+                x-data="{ searchFocused: false, focusSearch() { this.searchFocused = true; $wire.searchFocus(); } }"
+            >
+                <flux:input 
+                icon="magnifying-glass"
+                label="Cari Siswa"
+                description="keywords pencarian: Nama, Nisn dan Kelas"
+                wire:model.live="search"
+                placeholder="Search..."
+                @focus="focusSearch()"
+                @blur="searchFocused = false"
+                />
+            </div>
+            <div class="text-center">
+                <flux:heading size="xl" class="font-extrabold" level="1">Daftar Murid yg tidak memiliki kelas</flux:heading>
+                <flux:text>Jumlah: <span class="font-bold text-red-500">{{$users->count()}}</span> siswa</flux:text>
+            </div>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-5 my-5">
+            @foreach ($murid as $item)
+                <div class="bg-zinc-100 dark:bg-zinc-800 border lg:grid gap-2 border-zinc-200 dark:border-zinc-800 p-5 rounded-xl h-96 w-[360px] lg:w-full">
+                    <div class="h-64 flex rounded-2xl p-2 justify-center bg-cyan-100 dark:bg-amber-100 shadow">
+                        <img src="{{ asset($profil_path = $item->profil_path ? 'storage/assets/profile_pictures/'.$item->profil_path : 'storage/assets/avatar_students.svg') }}" alt="" loading="lazy" class="max-w-full max-h-full object-contain rounded-2xl shadow-xl">
+                    </div>
+                    <div class="grid lg:grid-cols-2 gap-2">
+                        <div class="grid">
+                            <h4 class="font-raleway font-bold mt-2.5">{{ $item->name }}</h4>
+                            <p> {{ $item->student->nisn ?? '-'  }} </p>
+                        </div>
+                        <div class="grid lg:justify-end items-center justify-center">
+                            <flux:tooltip content="Add siswa {{ $item->name }} to Class: {{ $kelas->name  }}" position="bottom">
+                                <button class="flex items-center gap-2 text-[13px] text-white font-semibold py-[6px] px-3.5 w-fit rounded-[5px] cursor-pointer transition-all duration-200
+                                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                                bg-indigo-500 hover:bg-indigo-700
+                                dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400"
+                                wire:click="showConfirm({{ $item->id }})"
+                                >
+                                <flux:icon.user-plus/>
+                                Assign
+                                </button>
+                            </flux:tooltip>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        @if ($murid->count() > 0)
+            {{ $murid->links() }}
+        @else
+            Belum ada data
+        @endif
     </div>
 
     <flux:modal name="add-students" class="min-w-[22rem]">
@@ -89,6 +96,6 @@
                 <flux:button type="submit" icon="plus" variant="primary" wire:click="addStudent">add</flux:button>
             </div>
         </div>
-</flux:modal>
+    </flux:modal>
 
 </div>

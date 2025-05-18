@@ -1,4 +1,5 @@
 *
 !private/
-!public/
+!public/assets/
+!public/qr_code/
 !.gitignore
