@@ -84,7 +84,8 @@ class ManageStudentsModal extends Component
                 "username" => $this->nisn,
                 "email" => $this->email,
                 "password" => Hash::make('password'),
-                "role" => UserRole::siswa
+                "role" => UserRole::siswa,
+                'profil_path' => 'avatar_students.svg'
             ]);
             $studentCreate = Student::create([
                 "user_id" => $userCreate->id,

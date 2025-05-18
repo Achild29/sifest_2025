@@ -69,7 +69,8 @@ class ManageTeacherModal extends Component
                 'username' => $this->nip,
                 'email' => $this->email,
                 'password' => Hash::make('password'),
-                'role' => UserRole::guru
+                'role' => UserRole::guru,
+                'profil_path' => 'avatar_teachers.svg'
             ]);
             $teacherCreate = Teacher::create([
                 'user_id' => $userCreate->id,

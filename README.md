@@ -1,5 +1,6 @@
-## Stage this App: Update UI for Add Student in ClassRoom
+## Stage this App: Update seeder
 
+menambahkan assets photo profil
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

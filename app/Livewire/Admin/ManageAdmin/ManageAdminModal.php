@@ -67,8 +67,8 @@ class ManageAdminModal extends Component
                 'name' => $this->nama,
                 'username' => $this->username,
                 'email' => $this->email,
-                'password' => Hash::make('password')
-
+                'password' => Hash::make('password'),
+                'profil_path' => 'avatar_admin.svg'
             ]);
 
             DB::commit();

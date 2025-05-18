@@ -29,6 +29,7 @@ class TeacherSeeder extends Seeder
                 'email' => $faker->unique()->safeEmail,
                 'password' => Hash::make('password'),
                 'role' => UserRole::guru,
+                'profil_path' => 'avatar_teachers.svg'
             ]);
 
             $teacher = Teacher::create([
