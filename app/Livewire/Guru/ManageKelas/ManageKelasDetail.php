@@ -8,26 +8,53 @@ use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 use Masmerise\Toaster\Toaster;
 
 class ManageKelasDetail extends Component
 {
-    public $kelas, $murid, $nama, $description;
+
+    use WithPagination, WithoutUrlPagination;
+
+    public $kelas, $nama, $description;
     public $siswa, $namaSiswa;
+    public $search = '';
+    public $isGridView = true;
 
     public function render()
     {
-        return view('livewire.guru.manage-kelas.manage-kelas-detail');
+        $murid = User::where('role', UserRole::siswa)
+            ->whereHas('student', function ($query) {
+                $query->where('kelas_id', $this->kelas->id); 
+            })->whereAny([
+                'name',
+                'username'
+            ], 'like', '%'.$this->search.'%')
+            ->paginate(3);
+        $students = User::where('role', UserRole::siswa)
+            ->whereHas('student', function ($query) {
+                $query->where('kelas_id', $this->kelas->id); 
+            })->whereAny([
+                'name',
+                'username'
+            ], 'like', '%'.$this->search.'%')
+            ->paginate(5);
+        return view('livewire.guru.manage-kelas.manage-kelas-detail',[
+            'murid' => $murid,
+            'students' => $students
+        ]);
     }
 
     public function mount($id) {
         $this->kelas = ClassRoom::find($id);
-        $this->murid = User::where('role', UserRole::siswa)
-        ->whereHas('student', function ($query) {
-            $query->where('kelas_id', $this->kelas->id); 
-        })->with('student')->get();
         $this->nama = $this->kelas->name;
         $this->description = $this->kelas->description;
+
+    }
+
+    public function searchFocus() {
+        $this->resetPage();
     }
 
     public function updateNama() {

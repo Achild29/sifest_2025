@@ -1,6 +1,5 @@
-## Stage this App: Update seeder
+## Stage this App: UPDATE UI Manage Kelas Detail
 
-menambahkan assets photo profil
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

@@ -32,7 +32,7 @@
                 <flux:input 
                 icon="magnifying-glass"
                 label="Cari Siswa"
-                description="keywords pencarian: Nama, Nisn dan Kelas"
+                description="keywords pencarian: Nama dan NISN"
                 wire:model.live="search"
                 placeholder="Search..."
                 @focus="focusSearch()"

@@ -1,3 +1,3 @@
 !.gitignore
-!assets/
-!qr_code/
+!assets/*
+!qr_code/*
