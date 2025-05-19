@@ -12,6 +12,7 @@ use Mpdf\Mpdf;
 class JadwalPdf extends Controller
 {
     public $jadwal, $kelas, $bulan, $name_file_LS;
+    
     public function pdfDownload(Request $request) {
         $data = json_decode($request->data, true);
         $this->getData($data);
@@ -27,6 +28,7 @@ class JadwalPdf extends Controller
 
     protected function getData($data) {
         $this->kelas = ClassRoom::find($data['data']['kelasId']);
+        // dd($data['data']['bulan']);
         $this->bulan = $data['data']['bulan'] ?? Carbon::createFromFormat('Y-m', $data['data']['bulan'])->format('M-Y');
         $this->jadwal = Schedule::where('kelas_id', $data['data']['kelasId'])
         ->where('teacher_id', $data['data']['teacherId'])
@@ -34,5 +36,10 @@ class JadwalPdf extends Controller
             'tanggal'
         ],  'like', '%'. $data['data']['bulan'] .'%')->get();
         $this->name_file_LS = 'Jadwal_'.str_replace(' ', '-', $this->kelas->name).'_'. $this->bulan;
+    }
+
+    public function pdfDownloadSiswa(Request $request) {
+        $data = json_decode($request->data, true);
+        dd($data);
     }
 }

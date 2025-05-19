@@ -44,6 +44,7 @@
             <flux:navlist.item icon="home" href="{{ route('siswa.dashboard') }}">Home</flux:navlist.item>
             <flux:navlist.item icon="qr-code" href="{{ route('qrcode') }}">QR Code</flux:navlist.item>
             <flux:navlist.item icon="book-open" href="{{ route('modul') }}">Moduls</flux:navlist.item>
+            <flux:navlist.item icon="clipboard" href="{{ route('jadwal.siswa') }}">Jadwal</flux:navlist.item>
         @endif
     </flux:navlist>
     <flux:spacer />

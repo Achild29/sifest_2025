@@ -8,7 +8,6 @@ use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
@@ -58,7 +57,7 @@ class Jadwal extends Component
         $this->validate([
             'tanggal' => 'required',
             'kegiatan' => 'required',
-            'link' => "required_if:kegiatan,online"
+            'link' => "required_if:kegiatan,online|url:http,https"
         ]);
         if (is_null($this->link)) {
             $this->link = '-';

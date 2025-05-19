@@ -1,6 +1,4 @@
-## Stage this App: add Fitur: Create Schedule for teacher
-
-menambahkan Fitur untuk user role Teacher, menambahkan Jadwal untuk setiap Kelas
+## Stage this App: user role Siswa can access Jadwal created by Teacher
 
 ## Aplikasi ini dibuat dengan
 1. Laravel
