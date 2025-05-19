@@ -23,4 +23,8 @@ class ClassRoom extends Model
     public function moduls() {
         return $this->hasMany(Modul::class);
     }
+
+    public function schedules() {
+        return $this->hasMany(Schedule::class);
+    }
 }

@@ -30,6 +30,11 @@
             <flux:navlist.item icon="book-open" href="{{ route('manage.kelas') }}" :current="request()->routeIs([
                 'manage.kelas', 'detail.kelas', 'add.students.kelas'
             ])">Manage Kelas</flux:navlist.item>
+            <flux:navlist.item icon="clipboard" href="{{ route('guru.jadwal') }}" 
+            :current="request()->routeIs(['guru.jadwal','guru.jadwal.*'])"
+            >
+                Manage Jadwal
+            </flux:navlist.item>
             <flux:navlist.item icon="clipboard-document-list" href="{{ route('guru.absensi') }}" :current="request()->routeIs(['guru.absensi','guru.absensi.*'])">Absensi</flux:navlist.item>
             <flux:navlist.item icon="academic-cap" href="{{ route('bahan.ajar') }}" :current="request()->routeIs(['bahan.ajar','chatbot'])">Bahan Ajar</flux:navlist.item>
             <flux:navlist.item icon="presentation-chart-bar" href="{{ route('guru.laporan') }}" :current="request()->routeIs(['guru.laporan','guru.laporan.*'])">Laporan Absensi</flux:navlist.item>

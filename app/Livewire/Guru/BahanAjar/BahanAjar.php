@@ -185,4 +185,8 @@ class BahanAjar extends Component
             }
         }
     }
+
+    public function gotoManageKelas() {
+        return redirect()->route('manage.kelas');
+    }
 }

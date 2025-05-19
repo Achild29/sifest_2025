@@ -1,5 +1,6 @@
-## Stage this App: UPDATE UI Manage Kelas Detail
+## Stage this App: add Fitur: Create Schedule for teacher
 
+menambahkan Fitur untuk user role Teacher, menambahkan Jadwal untuk setiap Kelas
 
 ## Aplikasi ini dibuat dengan
 1. Laravel

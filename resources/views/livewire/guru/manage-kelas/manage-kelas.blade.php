@@ -29,21 +29,21 @@
             </flux:tooltip>
         </div>
     </flux:modal.trigger>
-    {{-- edit This --}}
+
     <livewire:guru.manage-kelas.manage-kelas-modal />
 
-    <div class="overflow-x-auto border rounded-lg shadow-2xl">
-        <table class="min-w-full table-auto border">
-            <thead class="bg-zinc-100 dark:bg-zinc-800">
-                <tr class="text-lg">
-                  <th class="w-4 px-4 py-2 border ">No.</th>
-                  <th class="border px-4 py-2 whitespace-pre">Nama</th>
-                  <th class="border px-4 py-2 whitespace-pre">Jumlah Murid</th>
-                  <th class="border px-4 py-2 whitespace-pre w-4">action</th>
-                </tr>
-              </thead>
-              <tbody class="text-lg">
-                @if ($ClassRooms && $ClassRooms->isNotEmpty())
+    @if ($ClassRooms && $ClassRooms->isNotEmpty())
+        <div class="overflow-x-auto border rounded-lg shadow-2xl">
+            <table class="min-w-full table-auto border">
+                <thead class="bg-zinc-100 dark:bg-zinc-800">
+                    <tr class="text-lg">
+                    <th class="w-4 px-4 py-2 border ">No.</th>
+                    <th class="border px-4 py-2 whitespace-pre">Nama</th>
+                    <th class="border px-4 py-2 whitespace-pre">Jumlah Murid</th>
+                    <th class="border px-4 py-2 whitespace-pre w-4">action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-lg">
                     @foreach ($ClassRooms as $kelas)    
                         <tr>
                             <td class="border px-4 py-2 text-center">{{ $loop->iteration }}</td>
@@ -78,13 +78,12 @@
                             </td>
                         </tr>
                     @endforeach                  
-                @else
-                    <tr class="">
-                        <td colspan="2" class="px-4 py-2 text-right text-red-500 font-semibold italic">Belum ada data </td>
-                    </tr>                    
-                @endif
-
-              </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
+    @else
+        <div class="grid my-auto mt-24 items-center text-center bg-rose-100 lg:h-[550px] h-96 rounded-2xl shadow-2xl">
+            <flux:heading size="xl" class="font-extrabold text-red-500" level="1">Anda belum memiliki Kelas</flux:heading>
+        </div>
+    @endif
 </div>

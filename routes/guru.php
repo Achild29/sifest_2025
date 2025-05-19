@@ -8,6 +8,8 @@ use App\Livewire\Guru\Absensi\ScanMasuk;
 use App\Livewire\Guru\Absensi\ScanPulang;
 use App\Livewire\Guru\BahanAjar\BahanAjar;
 use App\Livewire\Guru\BahanAjar\ChatBot;
+use App\Livewire\Guru\Jadwal\Jadwal;
+use App\Livewire\Guru\Jadwal\JadwalKelas;
 use App\Livewire\Guru\ManageKelas\ManageKelas;
 use App\Livewire\Guru\ManageKelas\ManageKelasAddStudents;
 use App\Livewire\Guru\ManageKelas\ManageKelasDetail;
@@ -68,6 +70,14 @@ Route::group(['middleware' =>'auth:guru'], function () {
 
             Route::get('/chat', ChatBot::class)
             ->name('chatbot');
+        });
+
+        Route::prefix('/jadwal')->group(function () {
+            Route::get('/', Jadwal::class)
+            ->name('guru.jadwal');
+
+            Route::get('/{id}', JadwalKelas::class )
+            ->name('guru.jadwal.kelas');
         });
 
     });

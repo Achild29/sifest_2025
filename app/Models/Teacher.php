@@ -36,4 +36,8 @@ class Teacher extends Model
     public function chatInteractions() {
         return $this->hasMany(ChatInteraction::class);
     }
+
+    public function schedules() {
+        return $this->hasMany(Schedule::class);
+    }
 }

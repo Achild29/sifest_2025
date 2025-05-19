@@ -20,4 +20,8 @@ class Absensi extends Component
         ->where('teacher_id', Auth::user()->teacher->id)
         ->get();
     }
+
+    public function gotoManageKelas() {
+        return redirect()->route('manage.kelas');
+    }
 }

@@ -25,9 +25,24 @@
             @blur="searchFocused = false"
             />
         </div>
-        <div class="text-center">
-            <flux:heading size="xl" class="font-extrabold" level="1">Bahan Ajar <br> Yang Anda Miliki</flux:heading>
-        </div>
+        @if ($kelas->count() <= 0)
+            <div class="text-center">
+                <flux:button class="
+                focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                bg-indigo-500 hover:bg-indigo-700
+                dark:bg-amber-600 dark:hover:bg-amber-500 dark:focus-visible:outline-amber-400
+                " variant="primary"
+                icon="arrow-up-left"
+                wire:click='gotoManageKelas'
+                >
+                    Manage Kelas
+                </flux:button>
+            </div>
+        @else
+            <div class="text-center">
+                <flux:heading size="xl" class="font-extrabold" level="1">Bahan Ajar <br> Yang Anda Miliki</flux:heading>
+            </div>
+        @endif
         <div class="flex">
             <flux:modal.trigger name="add-modul">
                 <flux:button icon="plus" class="bg-green-500" variant="primary">Tambah Modul</flux:button>
@@ -79,10 +94,20 @@
     </div>
     {{ $moduls->links() }}
 
-    @if ($moduls->count() <= 0)
+    @if ($kelas->count() <= 0)
         <div class="grid items-center text-center bg-rose-100 lg:h-[550px] h-96 rounded-2xl shadow-2xl">
-            <flux:heading size="xl" class="font-extrabold text-red-500" level="1">Anda belum memiliki Bahan Ajar</flux:heading>
+            <flux:heading size="xl" class="font-extrabold text-red-500" level="1">
+                Anda belum memiliki Bahan Ajar
+            </flux:heading>
         </div>
+    @else
+        @if ($moduls->count() <= 0)
+            <div class="grid items-center text-center bg-rose-100 lg:h-[550px] h-96 rounded-2xl shadow-2xl">
+                <flux:heading size="xl" class="font-extrabold text-red-500" level="1">
+                    Anda belum memiliki Bahan Ajar
+                </flux:heading>
+            </div>
+        @endif
     @endif
 
     <flux:modal name="add-modul" class="md:w-96">

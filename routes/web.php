@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\pdf\JadwalPdf;
 use App\Http\Controllers\pdf\PdfLayout;
 use App\Livewire\Settings;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ require __DIR__.'/siswa.php';
 Route::post('/view-pdf', [PdfLayout::class, 'viewPdf'])->name('view-pdf');
 Route::post('/download-pdf', [PdfLayout::class, 'downloadPdf'])->name('download-pdf');
 Route::post('/download-pdf-landscape', [PdfLayout::class, 'downloadPdfLandscape'])->name('download-pdf-landscape');
+
+Route::post('/download-pdf-jadwal', [JadwalPdf::class, 'pdfDownload'])->name('jadwal.pdf');
 
 Route::middleware('auth:admin,guru,siswa')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])
