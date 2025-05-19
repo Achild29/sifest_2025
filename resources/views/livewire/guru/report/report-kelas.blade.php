@@ -17,7 +17,7 @@
             Kelas
         </flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Laporan Absensi Kelas | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Laporan Absensi Kelas | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 
 <div>

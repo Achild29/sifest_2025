@@ -9,7 +9,7 @@
         <flux:breadcrumbs.item href="{{ route('guru.absensi') }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Absensi Kelas</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Absensi | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Absensi | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     <flux:heading size="xl" class="font-extrabold" level="1">Absensi Class: <span class="text-red-500">{{ $kelas->name }}</span></flux:heading>

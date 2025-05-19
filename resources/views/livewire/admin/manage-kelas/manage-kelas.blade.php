@@ -8,7 +8,7 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item >Manage Kelas</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | List Users | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     <flux:heading size="xl" class="font-extrabold" level="1">Manage Kelas</flux:heading>

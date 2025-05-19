@@ -12,7 +12,7 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item>Laporan Absensi</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Laporan Absensi | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Laporan Absensi | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 
 <div>

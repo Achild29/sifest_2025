@@ -13,7 +13,7 @@
         <flux:breadcrumbs.item href="{{ route('guru.absensi.kelas', $kelas->id) }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Scan Masuk</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Scan Pulang | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Scan Pulang | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 @push('html5-qrcode')

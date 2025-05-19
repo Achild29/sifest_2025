@@ -8,7 +8,7 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | List Users | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | List Users | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 <div>

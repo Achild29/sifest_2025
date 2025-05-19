@@ -11,7 +11,7 @@
             </div>
         </flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Settings | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 @php
     $profil_path = Auth::user()->profil_path ?? 'storage/assets/avatar.png';

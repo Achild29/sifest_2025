@@ -5,7 +5,7 @@ use App\Enums\UserRole;
 ?>
 
 <div>
-    <x-slot:title>Dashboard {{  Auth::user()->role->name ?? "| Aplikasi Absensi" }} </x-slot:title>
+    <x-slot:title>Dashboard {{  Auth::user()->role->name ?? env('APP_NAME') }} </x-slot:title>
     
     <div class="flex gap-2">
         <flux:heading size="xl" level="1">Selamat Datang, {{ Auth::user()->name ?? 'User' }} </flux:heading>

@@ -8,7 +8,7 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item>QR Code</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Absensi | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Absensi | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 <div>
     <div class="lg:flex">

@@ -9,7 +9,7 @@
         <flux:breadcrumbs.item href="{{ route('manage.kelas') }}" icon="ellipsis-horizontal" class="sm:hidden" />
         <flux:breadcrumbs.item>Detail Kelas</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>Aplikasi Absensi | Kelas Detail | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Kelas Detail | {{  Auth::user()->role->name ?? "| Sprinter" }} </x-slot:title>
 @endsection
 
 <div>
