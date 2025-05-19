@@ -26,7 +26,7 @@ class Dashboard extends Component
     }
 
     public function manageUsers() {
-        return redirect(route('manage.users'));
+        return redirect(route('manage.admin'));
     }
 
     public function manageTeachers() {

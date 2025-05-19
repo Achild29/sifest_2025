@@ -32,10 +32,10 @@ class Settings extends Component
         $this->no_telp_wali = $user->student->no_telp_wali;
         $this->nisn = $user->student->nisn;
         $this->alamat = $user->student->alamat;
-        $this->kelas = $user->student->classRoom->name;
+        $this->kelas = $user->student->classRoom?->name;
         $this->wali = $user->student->nama_wali_murid;
         $this->qr_code = $user->student->qr_path;
-        $idKelas = $user->student->classRoom->id;
+        $idKelas = $user->student->classRoom?->id;
         $this->wali_kelas = ClassRoom::find($idKelas);
     }
 
@@ -52,7 +52,9 @@ class Settings extends Component
             'photo.max' => 'File maksimal adalah 10mb'
         ]);
 
-        if (!is_null(Auth::user()->profil_path)) {
+        $isNotDefaultPicture = Auth::user()->profil_path !== "avatar_students.svg" ? true : false;
+
+        if (!is_null(Auth::user()->profil_path) && $isNotDefaultPicture) {
             $pathLama = 'storage/assets/profile_pictures/' . Auth::user()->profil_path;
             if (File::exists($pathLama)) {
                 File::delete($pathLama);

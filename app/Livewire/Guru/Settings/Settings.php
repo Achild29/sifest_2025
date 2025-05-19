@@ -46,7 +46,9 @@ class Settings extends Component
             'photo.max' => 'File maksimal adalah 10mb'
         ]);
 
-        if (!is_null(Auth::user()->profil_path)) {
+        $isNotDefaultPicture = Auth::user()->profil_path !== "avatar_teachers.svg" ? true : false;
+
+        if (!is_null(Auth::user()->profil_path) && $isNotDefaultPicture ) {
              $pathLama = 'storage/assets/profile_pictures/' . Auth::user()->profil_path;
              if (File::exists($pathLama)) {
                 File::delete($pathLama);

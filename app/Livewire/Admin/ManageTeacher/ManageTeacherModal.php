@@ -3,11 +3,14 @@
 namespace App\Livewire\Admin\ManageTeacher;
 
 use App\Enums\UserRole;
+use App\Models\ClassRoom;
+use App\Models\Modul;
 use App\Models\Teacher;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -155,15 +158,35 @@ class ManageTeacherModal extends Component
 
     public function removeTeacher() {
         $teacher = User::find($this->idUser)?->teacher;
+
         
         DB::beginTransaction();
         try {
+            $moduls = Modul::where('teacher_id', $teacher->id)->get();
+            $kelas = ClassRoom::where('teacher_id', $teacher->id)->count();
+
+            $isNotDefaultPicture = $teacher->user->profil_path !== "avatar_teachers.svg" ? true : false;
+            
+            if ( $isNotDefaultPicture && 
+            Storage::disk('public')->exists('assets/profile_pictures/'.$teacher->user->profil_path))
+            Storage::disk('public')->delete('assets/profile_pictures/'.$teacher->user->profil_path);
+
+            if ($moduls->count() > 0) {
+                foreach ($moduls as $item) {
+                    Storage::disk('public')->delete("assets/modul/".$item->modul_path);
+                }
+            }
+
             $teacher->user->forceDelete();
 
             DB::commit();
-            return redirect()->route('manage.teachers')->warning('Data berhasil di hapus');
-            $this->reset();
-            $this->dispatch('teacher-updated');
+            if ($kelas > 0) {
+                return redirect()->route('admin.manage.kelas')->warning('Data berhasil di hapus');
+            } else {
+                return redirect()->route('manage.teachers')->warning('Data berhasil di hapus');
+
+            }
+            
         } catch (\Exception $e) {
             DB::rollBack();
             Toaster::error('Gagal menghapus data: '. $e->getMessage());

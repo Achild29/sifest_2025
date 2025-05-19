@@ -8,11 +8,11 @@
         </flux:breadcrumbs.item>
         <flux:breadcrumbs.item >Manage Admin</flux:breadcrumbs.item>
     </flux:breadcrumbs>
-    <x-slot:title>{{env('APP_NAME')}} | List Users | {{  Auth::user()->role->name }} </x-slot:title>
+    <x-slot:title>{{env('APP_NAME')}} | Manage Admin | {{  Auth::user()->role->name }} </x-slot:title>
 @endsection
 
 <div>
-    <flux:heading size="xl" class="font-extrabold" level="1">List Users</flux:heading>
+    <flux:heading size="xl" class="font-extrabold" level="1">Manage Admin</flux:heading>
     <flux:text class="mb-2 mt-2 font-semibold">This page you can find list of Users with role Admin, Except your account</flux:text>
     <flux:separator variant="subtle" class="mb-5"/>
 
@@ -42,7 +42,7 @@
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600
                 bg-emerald-500 hover:bg-emerald-700 shadow-xl" wire:click="addUser">
                     <flux:icon.plus-circle variant="solid" />
-                    Add Students
+                    Add Admin
                 </button>
             </flux:tooltip>
         </div>

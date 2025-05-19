@@ -9,6 +9,7 @@ use Livewire\Component;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Masmerise\Toaster\Toaster;
 
 class ManageAdminModal extends Component
@@ -139,6 +140,10 @@ class ManageAdminModal extends Component
     public function deleteUser() {
         DB::beginTransaction();
         try {
+            $profil_picture = $this->user->profil_path !== "avatar_admin.svg" ? $this->user->profil_path : null;
+            if (!is_null($profil_picture) && 
+            Storage::disk('public')->exists('assets/profile_pictures/'.$profil_picture)) Storage::disk('public')->delete('assets/profile_pictures/'.$profil_picture);
+
             $this->user->forceDelete();
 
             DB::commit();

@@ -186,6 +186,11 @@ class ManageStudentsModal extends Component
             ->exists('qr_code/'.$student->qr_path)){
                 Storage::disk('public')->delete('qr_code/'.$student->qr_path);
             }
+            $isNotDefaultPicture = $student->user->profil_path !== "avatar_students.svg" ? true : false;
+            
+            if ( $isNotDefaultPicture && 
+            Storage::disk('public')->exists('assets/profile_pictures/'.$student->user->profil_path))
+            Storage::disk('public')->delete('assets/profile_pictures/'.$student->user->profil_path);
             
             $student->user->forceDelete();
 

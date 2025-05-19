@@ -76,7 +76,7 @@
                         <div class="min-w-0 flex-auto">
                             <flux:heading size="xl" class="font-bold text-indigo-500 dark:text-amber-600">Kelas | Wali Kelas - No.Hp Wali kelas</flux:heading>
                             <flux:text class="mt-2 ml-5" variant="strong">
-                                {{ $kelas ?? '-' }} | {{ $wali_kelas->teacher?->user?->name ?? 'belum ada' }} - {{ $wali_kelas->teacher?->no_telp }}
+                                {{ $kelas ?? '-' }} | {{ $wali_kelas?->teacher?->user?->name ?? 'belum ada' }} - {{ $wali_kelas?->teacher?->no_telp }}
                             </flux:text>
                         </div>
                     </div>

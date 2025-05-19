@@ -15,12 +15,12 @@ class Jadwal extends Component
     use WithPagination, WithoutUrlPagination;
 
     public  $bulan = '';
-    public  $kelas, $guru, $user;
+    public  $kelasId, $guruId, $user;
 
     public function render()
     {
-        $data = Schedule::where('kelas_id', $this->kelas->id)
-            ->where('teacher_id', $this->guru->teacher->id)->
+        $data = Schedule::where('kelas_id', $this->kelasId)
+            ->where('teacher_id', $this->guruId)->
             whereAny([
                 'tanggal'
             ], 'like', '%'. $this->bulan .'%')->paginate(31);;
@@ -31,8 +31,8 @@ class Jadwal extends Component
 
     public function mount() {
         $this->user = User::find(Auth::user()->id);
-        $this->kelas = ClassRoom::find($this->user->student->classRoom->id);
-        $this->guru = User::find($this->kelas->teacher->user_id);
+        $this->kelasId = $this->user->student->classRoom?->id ?? '';
+        $this->guruId = $this->user->student->classRoom?->teacher->id ?? '';
     }
 
     public function searchFocus() {

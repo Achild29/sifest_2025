@@ -20,8 +20,6 @@ Route::group(['middleware' =>'auth:admin'], function () {
         Route::get('/manage-teachers', ManageTeacherDashboard::class)
             ->name('manage.teachers');
 
-    //    Route::get('/manage-users', ManageAdmin::class)
-    //    ->name('manage.users');
         Route::get('/manage-admin', ManageAdminDashboard::class)
             ->name('manage.admin');
        
