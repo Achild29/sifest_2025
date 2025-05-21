@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
-        return view('welcome');
-    });
+        return view('landingpage');
+    })->name('landingPage') ;
     
     Route::get('/login',[AuthController::class, 'index'])
         ->name('login');
