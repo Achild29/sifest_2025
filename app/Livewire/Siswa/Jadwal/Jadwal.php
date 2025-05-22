@@ -15,7 +15,8 @@ class Jadwal extends Component
     use WithPagination, WithoutUrlPagination;
 
     public  $bulan = '';
-    public  $kelasId, $guruId, $user;
+    public  $kelasId, $guruId, $user, $kelas, $guru;
+
 
     public function render()
     {
@@ -32,6 +33,8 @@ class Jadwal extends Component
     public function mount() {
         $this->user = User::find(Auth::user()->id);
         $this->kelasId = $this->user->student->classRoom?->id ?? '';
+        $this->kelas = ClassRoom::find($this->kelasId);
+        $this->guru = $this->kelas?->teacher?->user?->name;
         $this->guruId = $this->user->student->classRoom?->teacher->id ?? '';
     }
 

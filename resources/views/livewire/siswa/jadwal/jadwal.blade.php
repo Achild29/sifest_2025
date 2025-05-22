@@ -30,8 +30,8 @@
                     @php
                         $jadwal = [
                             'data' => [
-                                'kelasId' => $this->kelas->id,
-                                'teacherId' => $this->guru->teacher->id,
+                                'kelasId' => $kelasId,
+                                'teacherId' => $guruId,
                                 'bulan' => $this->bulan
                             ]
                         ];
